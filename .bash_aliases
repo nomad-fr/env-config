@@ -1,12 +1,22 @@
+
+
 # enable color support of ls and also add handy aliases
-if [ "$TERM" != "dumb" ]; then
+if [[ "$OSTYPE" == "linux-gnu" ]]
+then
+	if [ "$TERM" != "dumb" ]; then
     	   eval "`dircolors -b`"
     	   alias ls='ls --color=auto'
-fi
+	fi
 
-# some more ls aliases
-alias ll='ls -l'
-alias la='ls -A'
+	# some more ls aliases
+	alias ll='ls -l'
+	alias la='ls -A'
+elif [[ "$OSTYPE" == "freebsd"* ]]
+then
+     	alias ls='ls -G'
+	export CLICOLOR='true'
+	export LSCOLORS='GxfxcxdxBxegedabagacad'
+fi
 
 alias grep='grep --color'
 #alias grep='grep --color=always'
