@@ -1,3 +1,6 @@
+;; Turn off alarms completely
+(setq ring-bell-function 'ignore)
+
 ;; Preventing the Creation of Backup Files
 
 (set-default-font "monospace-20")
