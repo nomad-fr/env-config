@@ -333,4 +333,5 @@
 (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
                        	 ("marmalade" . "https://marmalade-repo.org/packages/")
 			 ;; ("marmalade" . "https://ojab.ru/marmalade/")
+			 ("melpa" . "http://melpa.milkbox.net/packages/")
 		         ("melpa" . "https://melpa.org/packages/")))
