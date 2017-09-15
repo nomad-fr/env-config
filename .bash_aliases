@@ -66,8 +66,8 @@ then
 	# The *.rpm=90 parameter at the end tells ls to display any files ending in .rpm in the specified colour, in this case colour 90 (dark grey). This can be applied to any types of files (eg. you could use '*.png=35' to make jpeg files appear purple.) As many or as few parameters as you like can go into the LS_COLORS variable, as long as the parameters are separated by colons.
 
 	# alias ls='ls --color'
-	# LS_COLORS='di=1:fi=0:ln=31:pi=5:so=5:bd=5:cd=5:or=31:mi=0:ex=35:*.rpm=90'
-	# export LS_COLORS
+	LS_COLORS='di=96:fi=0:ln=35:pi=5:so=5:bd=5:cd=5:or=31:mi=0:ex=35:*.rpm=90'
+	export LS_COLORS
 	
 	# some more ls aliases
 	alias ll='ls -l'
@@ -76,46 +76,27 @@ then
 elif [[ "$OSTYPE" == "freebsd"* ]]
 then
      	alias ls='ls -G'
-	export CLICOLOR='true'
-	export LSCOLORS='GxfxcxdxBxegedabagacad'
 
 	# notes : http://plug-and-pray.blogspot.fr/2008/02/lscolors.html
-	# The available color codes are:
-	# a -- black
-	# b -- red
-	# c -- green
-	# d -- brown
-	# e -- blue
-	# f -- magenta
-	# g -- cyan
-	# h -- light gray
-	# A -- bold black, usually shows up as dark gray
-	# B -- bold red
-	# C -- bold green
-	# D -- bold brown, usually shows up as yellow
-	# E -- bold blue
-	# F -- bold magenta
-	# G -- bold cyan
-	# H -- bold light gray; looks like bright white
-	# x -- default foreground or background
-	#
+	# The available color codes are: see man ls \LSCOLORS
+
 	# pairs for each file type to suitable color
-	# 
-	# DIR=Ex
-	# SYM_LINK=Gx
-	# SOCKET=Fx
-	# PIPE=dx
-	# EXE=Cx
-	# BLOCK_SP=Dx
-	# CHAR_SP=Dx
-	# EXE_SUID=hb
-	# EXE_GUID=ad
-	# DIR_STICKY=Ex
-	# DIR_WO_STICKY=Ex
-	#
-	# export LSCOLORS="$DIR$SYM_LINK$SOCKET$PIPE$EXE$BLOCK_SP\
-        #        $CHAR_SP$EXE_SUID$EXE_GUID$DIR_STICKY$DIR_WO_STICKY"
-	# export CLICOLOR="YES"
+	 
+	DIR=Ex            # directory
+	SYM_LINK=Gx       # symbolic link
+	SOCKET=Fx         # socket
+	PIPE=dx           # pipe
+	EXE=Cx            # executable
+	BLOCK_SP=Dx       # block special
+	CHAR_SP=Dx        # character special
+	EXE_SUID=hb       # executable with setuid bit set
+	EXE_GUID=ad       # executable with setgid bit set
+	DIR_STICKY=Ex     # directory writable to others, with sticky bit
+	DIR_WO_STICKY=Ex  # directory writable to others, without sticky bit
+	
+	export LSCOLORS="$DIR$SYM_LINK$SOCKET$PIPE$EXE$BLOCK_SP\
+               $CHAR_SP$EXE_SUID$EXE_GUID$DIR_STICKY$DIR_WO_STICKY"
+	export CLICOLOR="YES"
 fi
 
 alias grep='grep --color'
