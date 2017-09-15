@@ -66,7 +66,7 @@ then
 	# The *.rpm=90 parameter at the end tells ls to display any files ending in .rpm in the specified colour, in this case colour 90 (dark grey). This can be applied to any types of files (eg. you could use '*.png=35' to make jpeg files appear purple.) As many or as few parameters as you like can go into the LS_COLORS variable, as long as the parameters are separated by colons.
 
 	# alias ls='ls --color'
-	LS_COLORS='di=96:fi=0:ln=35:pi=5:so=5:bd=5:cd=5:or=31:mi=0:ex=35:*.rpm=90'
+	LS_COLORS='di=94:fi=0:ln=96:pi=5:so=5:bd=5:cd=5:or=31:mi=0:ex=35:*.rpm=90'
 	export LS_COLORS
 	
 	# some more ls aliases
