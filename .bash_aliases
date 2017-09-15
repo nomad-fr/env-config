@@ -94,8 +94,7 @@ then
 	DIR_STICKY=Ex     # directory writable to others, with sticky bit
 	DIR_WO_STICKY=Ex  # directory writable to others, without sticky bit
 	
-	export LSCOLORS="$DIR$SYM_LINK$SOCKET$PIPE$EXE$BLOCK_SP\
-               $CHAR_SP$EXE_SUID$EXE_GUID$DIR_STICKY$DIR_WO_STICKY"
+	export LSCOLORS="$DIR$SYM_LINK$SOCKET$PIPE$EXE$BLOCK_SP$CHAR_SP$EXE_SUID$EXE_GUID$DIR_STICKY$DIR_WO_STICKY"
 	export CLICOLOR="YES"
 fi
 
