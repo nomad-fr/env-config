@@ -1,4 +1,5 @@
-
+# 
+# https://geoff.greer.fm/lscolors/
 
 # enable color support of ls and also add handy aliases
 if [[ "$OSTYPE" == "linux-gnu" ]]
@@ -91,13 +92,16 @@ then
 	CHAR_SP=Dx        # character special
 	EXE_SUID=hb       # executable with setuid bit set
 	EXE_GUID=ad       # executable with setgid bit set
-	DIR_STICKY=Ex     # directory writable to others, with sticky bit
-	DIR_WO_STICKY=Ex  # directory writable to others, without sticky bit
+
+	DIR_STICKY=xe     # directory writable to others, with sticky bit
+
+	DIR_WO_STICKY=eb  # directory writable to others, without sticky bit
 	
 	export LSCOLORS="$DIR$SYM_LINK$SOCKET$PIPE$EXE$BLOCK_SP$CHAR_SP$EXE_SUID$EXE_GUID$DIR_STICKY$DIR_WO_STICKY"
 	export CLICOLOR="YES"
 fi
 
+alias ls='ls -F'
 alias grep='grep --color'
 #alias grep='grep --color=always'
 alias emacs='emacs -nw'
