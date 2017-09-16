@@ -79,7 +79,7 @@ then
 	
 elif [[ "$OSTYPE" == "freebsd"* ]]
 then
-     	alias ls='ls -G'
+     	alias ls='ls -G -F'
 
 	# notes : http://plug-and-pray.blogspot.fr/2008/02/lscolors.html
 	# The available color codes are: see man ls \LSCOLORS
@@ -104,7 +104,7 @@ then
 	export CLICOLOR="YES"
 fi
 
-alias ls='ls -F'
+
 alias grep='grep --color'
 #alias grep='grep --color=always'
 alias emacs='emacs -nw'
