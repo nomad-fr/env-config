@@ -6,7 +6,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]
 then
 	if [ "$TERM" != "dumb" ]; then
     	   eval "`dircolors -b`"
-    	   alias ls='ls --color=auto'
+    	   alias ls='ls --color=auto -F'
 	fi
 
 	# notes : http://linux-sxs.org/housekeeping/lscolors.html
