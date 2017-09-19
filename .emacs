@@ -278,12 +278,18 @@
 ;; (autoload 'markdown-preview-eww "~/VersionControl/GitHub/markdown-preview-eww_zonuexe/markdown-preview-eww.el" "Major mode for Previewing Markdown files" t)
 
 ;; markdown mode
-(autoload 'markdown-mode "~/.emacs.d/markdown-mode"
+;;
+;; (autoload 'markdown-mode "~/.emacs.d/markdown-mode"
+;;   "Major mode for editing Markdown files" t)
+
+
+(autoload 'markdown-mode "markdown-mode"
    "Major mode for editing Markdown files" t)
+
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist      '("\\.text\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist      '("\\.page\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist      '("\\.markdown\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist      '("\\.md\\'" . markdown-mode))
 
 (global-set-key (kbd "C-c C-c w") 'markdown-preview)
 
