@@ -1,4 +1,15 @@
 
+# start the agent automatically and make sure that only one ssh-agent
+# process runs at a time
+
+if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+    ssh-agent > ~/.ssh-agent-thing
+fi
+if [[ "$SSH_AGENT_PID" == "" ]]; then
+    eval "$(<~/.ssh-agent-thing)"
+fi
+
+
 # this below for a color prompt
 
 
