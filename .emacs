@@ -1,8 +1,11 @@
+
+(setq python-shell-interpreter "/usr/bin/python3")
+
 ;; Turn off alarms completely
 (setq ring-bell-function 'ignore)
 
 ;; Preventing the Creation of Backup Files
-
+ 
 (set-default-font "monospace-20")
 ;; (set scrollBarWidth "50")
 
@@ -26,7 +29,7 @@
  '(markdown-command "/usr/bin/pandoc")
  '(package-selected-packages
    (quote
-    (xah-elisp-mode paredit emamux transpose-frame minimap markdown-mode magit elm-mode auto-package-update auto-complete-auctex auctex))))
+    (org-caldav xah-elisp-mode paredit emamux transpose-frame minimap markdown-mode magit elm-mode auto-package-update auto-complete-auctex auctex))))
 
 (defun markdown-to-html ()
   (interactive)
@@ -209,7 +212,7 @@
  ;; If there is more than one, they won't work right.
  '(minimap-active-region-background ((((background dark)) (:background "#2A2A2A222222")) (t (:background "#D3D3D3222222"))) nil :group)
  '(minimap-font-face ((t (:height 45 :width condensed))))
- '(mode-line ((t (:background "lemonchiffon" :foreground "black" :box (:line-width -1 :style released-button) :height 0.5)))))
+ '(mode-line ((t (:background "lemonchiffon" :foreground "black" :box (:line-width -1 :style released-button) :height 0.7)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; mutt emacs editor 
@@ -341,3 +344,26 @@
 			 ;; ("marmalade" . "https://ojab.ru/marmalade/")
 			 ("melpa" . "http://melpa.milkbox.net/packages/")
 		         ("melpa" . "https://melpa.org/packages/")))
+
+;; (require 'org-caldav)
+
+;; (setq org-caldav-url "http://cloud.neuronfarm.net/remote.php/caldav/calendars/nomad/default%20calendar")
+;; (setq org-caldav-calendar-id "<>")
+;; (setq org-caldav-inbox (expand-file-name "/localstorage/task-org-caldav/default calendar"))
+;; (setq org-caldav-files `(,org-caldav-inbox))
+
+;; http://cloud.neuronfarm.net/remote.php/caldav/calendars/nomad/appart
+
+(require 'org-caldav)
+ (setq org-caldav-calendars
+  '((:calendar-id "default%20calendar" :files ("/localstorage/task-org-caldav/default")
+     :url         "https://cloud.neuronfarm.net/remote.php/caldav/calendars/nomad"
+     :inbox       "/localstorage/task-org-caldav/default")
+    ;; (:calendar-id "perso" :files ("/localstorage/task-org-caldav/perso")
+    ;;  :url         "https://cloud.neuronfarm.net/remote.php/caldav/calendars/nomad"
+    ;;  :inbox       ("/localstorage/task-org-caldav/perso"))
+    ))
+
+ (setq org-caldav-delete-calendar-entries 'ask)
+ (setq org-icalendar-timezone "Europe/Paris")
+
