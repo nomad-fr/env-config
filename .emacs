@@ -1,3 +1,26 @@
+;; Single dot emacs file and per-computer configuration
+;; https://sigquit.wordpress.com/2008/09/28/single-dot-emacs-file/
+;; Get current system's name
+(defun insert-system-name()
+  (interactive)
+  "Get current system's name"
+  (insert (format "%s" system-name)))
+;; Get current system type
+(defun insert-system-type()
+  (interactive)
+  "Get current system type"
+  (insert (format "%s" system-type)))
+;; Check if system is GNU/Linux
+(defun system-type-is-gnu ()
+  (interactive)
+  "Return true if system is GNU/Linux-based"
+  (string-equal system-type "gnu/linux"))
+;; Check if system is berkeley-unix
+(defun system-type-is-gnu ()
+  (interactive)
+  "Return true if system is berkeley-unix"
+  (string-equal system-type "berkeley-unix"))
+
 ;; Turn off alarms completely
 (setq ring-bell-function 'ignore)
 
@@ -23,10 +46,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(markdown-command "/usr/bin/pandoc")
+ '(markdown-command "pandoc")
  '(package-selected-packages
    (quote
-    (xah-elisp-mode paredit emamux transpose-frame minimap markdown-mode magit elm-mode auto-package-update auto-complete-auctex auctex))))
+    (pov-mode apache-mode salt-mode xah-elisp-mode paredit emamux transpose-frame minimap markdown-mode magit elm-mode auto-package-update auto-complete-auctex auctex))))
 
 (defun markdown-to-html ()
   (interactive)
