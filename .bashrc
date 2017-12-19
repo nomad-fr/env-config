@@ -1,3 +1,6 @@
+# SET PATH
+
+PATH=$PATH:~/bin
 
 # start the agent automatically and make sure that only one ssh-agent
 # process runs at a time
@@ -39,7 +42,6 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 export EDITOR='emacs -nw'
-#export PATH='/usr/bin:'$PATH
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
