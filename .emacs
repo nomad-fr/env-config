@@ -1,9 +1,11 @@
+
+(setq python-shell-interpreter "/usr/bin/python3")
+
 ;; Turn off alarms completely
 (setq ring-bell-function 'ignore)
 
 ;; Preventing the Creation of Backup Files
-
-(set-default-font "monospace-20")
+ 
 ;; (set scrollBarWidth "50")
 
 ;; make emacs always use its own browser for opening URL links
@@ -26,7 +28,7 @@
  '(markdown-command "/usr/bin/pandoc")
  '(package-selected-packages
    (quote
-    (salt-mode xah-elisp-mode paredit emamux transpose-frame minimap markdown-mode magit elm-mode auto-package-update auto-complete-auctex auctex))))
+    (salt-mode org-caldav xah-elisp-mode paredit emamux transpose-frame minimap markdown-mode magit elm-mode auto-package-update auto-complete-auctex auctex))))
 
 (defun markdown-to-html ()
   (interactive)
@@ -126,90 +128,6 @@
 ;; indiquez dans les 8 premières lignes du fichier ;; Time-stamp: <>
 (add-hook 'write-file-hooks 'time-stamp)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Color
-
-;; highlight the current line; set a custom face, so we can
-;; recognize from the normal marking (selection)
-;; don't turn in on globally, only in specific modes (see djcb-c-mode-hook)
-;;(when-available 'global-hl-line-mode
-;;  (progn
-;;    (defface hl-line '((t (:background "blue")))
-    (defface hl-line '((t (:background "#646464")))
-      "Face to use for `hl-line-face'." :group 'hl-line)
-    (setq hl-line-face 'hl-line)
-    (global-hl-line-mode t) ;; turn it on for all modes by default
-
-;; font-lock-warning-face
-;;      for a construct that is peculiar,
-;;      or that greatly changes the meaning of other text, like ‘;;;###autoload’ in Emacs Lisp and ‘#error’ in C.
-;;- font-lock-function-name-face
-;;      for the name of a function being defined or declared.
-;;- font-lock-variable-name-face
-;;      for the name of a variable being defined or declared.
-;; font-lock-keyword-face
-;;      for a keyword with special syntactic significance, like ‘for’ and ‘if’ in C.
-;; font-lock-comment-face
-;;      for comments.
-;; font-lock-comment-delimiter-face
-;;      for comments delimiters, like ‘/*’ and ‘*/’ in C. On most terminals,
-;;      this inherits from font-lock-comment-face.
-;;- font-lock-type-face
-;;      for the names of user-defined data types.
-;;- font-lock-constant-face
-;;      for the names of constants, like ‘NULL’ in C.
-;; font-lock-builtin-face
-;;      for the names of built-in functions.
-;;- font-lock-preprocessor-face
-;;      for preprocessor commands. This inherits, by default, from font-lock-builtin-face.
-;; font-lock-string-face
-;;      for string constants.
-;; font-lock-doc-face
-;;      for documentation strings in the code. This inherits, by default, from font-lock-string-face.
-;; font-lock-negation-char-face
-;;      for easily-overlooked negation characters.
-
-;; custom colors
-  (set-foreground-color "grey")
-  (set-face-foreground 'font-lock-string-face  "#123467")
-  (set-face-foreground 'font-lock-comment-face  "#009380")
-  (make-face-italic 'font-lock-comment-face)
-  
-  (set-face-foreground 'font-lock-keyword-face  "lemonchiffon")
-  (make-face-bold 'font-lock-keyword-face)  
-
-  (set-face-foreground 'font-lock-string-face   "#77bbea") ; bleu cyant
-  (set-face-foreground 'font-lock-preprocessor-face "blue")
-  (set-face-foreground 'font-lock-constant-face   "green")
-
-  (set-face-foreground 'font-lock-function-name-face "pink")
-
-  (set-face-foreground 'font-lock-type-face    "lightblue")
-  (make-face-bold 'font-lock-type-face)
-    
-  (set-face-foreground 'font-lock-variable-name-face "grey")
-  
-  (set-face-foreground 'font-lock-warning-face "red")
-  (set-face-underline  'font-lock-warning-face "red")
-  
-  (set-face-foreground 'mode-line "black")(set-background-color "#102372")
-  (set-face-background 'mode-line "lemonchiffon")
-
-  (set-face-foreground 'minibuffer-prompt "orange")
-
-  (set-background-color "#000000") ; dark grey 
-
-;;custom colors minimap
-
-  
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(minimap-active-region-background ((((background dark)) (:background "#2A2A2A222222")) (t (:background "#D3D3D3222222"))) nil :group)
- '(minimap-font-face ((t (:height 45 :width condensed))))
- '(mode-line ((t (:background "lemonchiffon" :foreground "black" :box (:line-width -1 :style released-button) :height 0.5)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; mutt emacs editor 
@@ -341,3 +259,119 @@
 			 ;; ("marmalade" . "https://ojab.ru/marmalade/")
 			 ("melpa" . "http://melpa.milkbox.net/packages/")
 		         ("melpa" . "https://melpa.org/packages/")))
+
+;; (require 'org-caldav)
+
+;; (setq org-caldav-url "http://cloud.neuronfarm.net/remote.php/caldav/calendars/nomad/default%20calendar")
+;; (setq org-caldav-calendar-id "<>")
+;; (setq org-caldav-inbox (expand-file-name "/localstorage/task-org-caldav/default calendar"))
+;; (setq org-caldav-files `(,org-caldav-inbox))
+
+;; http://cloud.neuronfarm.net/remote.php/caldav/calendars/nomad/appart
+
+(require 'org-caldav)
+ (setq org-caldav-calendars
+  '((:calendar-id "default%20calendar" :files ("/localstorage/task-org-caldav/default")
+     :url         "https://cloud.neuronfarm.net/remote.php/caldav/calendars/nomad"
+     :inbox       "/localstorage/task-org-caldav/default")
+    ;; (:calendar-id "perso" :files ("/localstorage/task-org-caldav/perso")
+    ;;  :url         "https://cloud.neuronfarm.net/remote.php/caldav/calendars/nomad"
+    ;;  :inbox       ("/localstorage/task-org-caldav/perso"))
+    ))
+
+ (setq org-caldav-delete-calendar-entries 'ask)
+ (setq org-icalendar-timezone "Europe/Paris")
+
+(if (daemonp)
+    (add-hook 'after-make-frame-functions
+      (lambda (frame)
+	(with-selected-frame frame		
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	;; Color
+	
+	;; highlight the current line; set a custom face, so we can
+	;; recognize from the normal marking (selection)
+	;; don't turn in on globally, only in specific modes (see djcb-c-mode-hook)
+	;;(when-available 'global-hl-line-mode
+	;;  (progn
+	;;    (defface hl-line '((t (:background "blue")))
+	    (defface hl-line '((t (:background "#646464")))
+	      "Face to use for `hl-line-face'." :group 'hl-line)
+	    (setq hl-line-face 'hl-line)
+	    (global-hl-line-mode t) ;; turn it on for all modes by default
+	
+	;; font-lock-warning-face
+	;;      for a construct that is peculiar,
+	;;      or that greatly changes the meaning of other text, like ‘;;;###autoload’ in Emacs Lisp and ‘#error’ in C.
+	;;- font-lock-function-name-face
+	;;      for the name of a function being defined or declared.
+	;;- font-lock-variable-name-face
+	;;      for the name of a variable being defined or declared.
+	;; font-lock-keyword-face
+	;;      for a keyword with special syntactic significance, like ‘for’ and ‘if’ in C.
+	;; font-lock-comment-face
+	;;      for comments.
+	;; font-lock-comment-delimiter-face
+	;;      for comments delimiters, like ‘/*’ and ‘*/’ in C. On most terminals,
+	;;      this inherits from font-lock-comment-face.
+	;;- font-lock-type-face
+	;;      for the names of user-defined data types.
+	;;- font-lock-constant-face
+	;;      for the names of constants, like ‘NULL’ in C.
+	;; font-lock-builtin-face
+	;;      for the names of built-in functions.
+	;;- font-lock-preprocessor-face
+	;;      for preprocessor commands. This inherits, by default, from font-lock-builtin-face.
+	;; font-lock-string-face
+	;;      for string constants.
+	;; font-lock-doc-face
+	;;      for documentation strings in the code. This inherits, by default, from font-lock-string-face.
+	;; font-lock-negation-char-face
+	;;      for easily-overlooked negation characters.
+	
+	;; custom colors
+	  (set-foreground-color "grey")
+	  (set-face-foreground 'font-lock-string-face  "#123467")
+	  (set-face-foreground 'font-lock-comment-face  "#009380")
+	  (make-face-italic 'font-lock-comment-face)
+	  
+	  (set-face-foreground 'font-lock-keyword-face  "lemonchiffon")
+	  (make-face-bold 'font-lock-keyword-face)  
+	
+	  (set-face-foreground 'font-lock-string-face   "#77bbea") ; bleu cyant
+	  (set-face-foreground 'font-lock-preprocessor-face "blue")
+	  (set-face-foreground 'font-lock-constant-face   "green")
+	
+	  (set-face-foreground 'font-lock-function-name-face "pink")
+	
+	  (set-face-foreground 'font-lock-type-face    "lightblue")
+	  (make-face-bold 'font-lock-type-face)
+	    
+	  (set-face-foreground 'font-lock-variable-name-face "grey")
+	  
+	  (set-face-foreground 'font-lock-warning-face "red")
+	  (set-face-underline  'font-lock-warning-face "red")
+	  
+	  (set-face-foreground 'mode-line "black")(set-background-color "#102372")
+	  (set-face-background 'mode-line "lemonchiffon")
+	
+	  (set-face-foreground 'minibuffer-prompt "orange")
+	
+	  (set-background-color "#000000") ; dark grey 
+	
+	;;custom colors minimap
+	
+	(set-default-font "monospace-20")
+	  
+	(custom-set-faces
+	 ;; custom-set-faces was added by Custom.
+	 ;; If you edit it by hand, you could mess it up, so be careful.
+	 ;; Your init file should contain only one such instance.
+	 ;; If there is more than one, they won't work right.
+	 '(minimap-active-region-background ((((background dark)) (:background "#2A2A2A222222")) (t (:background "#D3D3D3222222"))) nil :group)
+	 '(minimap-font-face ((t (:height 45 :width condensed))))
+	 '(mode-line ((t (:background "lemonchiffon" :foreground "black" :box (:line-width -1 :style released-button) :height 0.7)))))
+	
+))))
+
+
