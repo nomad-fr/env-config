@@ -48,11 +48,13 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" default)))
  '(markdown-command "pandoc")
  '(package-selected-packages
    (quote
-
-    (org-caldav pov-mode apache-mode salt-mode xah-elisp-mode paredit emamux transpose-frame minimap markdown-mode magit elm-mode auto-package-update auto-complete-auctex auctex))))
+    (smart-mode-line-powerline-theme smart-mode-line org-caldav pov-mode apache-mode salt-mode xah-elisp-mode paredit emamux transpose-frame minimap markdown-mode magit elm-mode auto-package-update auto-complete-auctex auctex))))
 
 (defun markdown-to-html ()
   (interactive)
@@ -273,6 +275,8 @@
 (minimap-mode 1)
 (add-to-list 'minimap-major-modes 'markdown-mode)
 (add-to-list 'minimap-major-modes 'eww-mode)
+;  disable the mode line in Minimap sidebars
+(add-hook 'minimap-sb-mode-hook (lambda () (setq mode-line-format nil)))
 
 ;; show-parent-mode always
 (show-paren-mode 1)
@@ -295,12 +299,13 @@
 
 (require 'org-caldav)
  (setq org-caldav-calendars
-  '((:calendar-id "default%20calendar" :files ("/localstorage/task-org-caldav/default")
-     :url         "https://cloud.neuronfarm.net/remote.php/caldav/calendars/nomad"
-     :inbox       "/localstorage/task-org-caldav/default")
-    ;; (:calendar-id "perso" :files ("/localstorage/task-org-caldav/perso")
-    ;;  :url         "https://cloud.neuronfarm.net/remote.php/caldav/calendars/nomad"
-    ;;  :inbox       ("/localstorage/task-org-caldav/perso"))
+       ;; '((:calendar-id "default calendar" :files ("/localstorage/nomad/task-org-caldav/default")
+       ;; 		       :inbox       "/localstorage/nomad/task-org-caldav/from_default"
+       ;; 		       :url         "https://cloud.neuronfarm.net/remote.php/caldav/calendars/nomad")
+
+       '((:calendar-id "ipgp" :files ("/localstorage/nomad/task-org-caldav/ipgp")
+		       :url         "https://cloud.neuronfarm.net/remote.php/caldav/calendars/nomad")
+
     ))
 
  (setq org-caldav-delete-calendar-entries 'ask)
@@ -399,3 +404,11 @@
 ))))
 
 
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(minimap-active-region-background ((((background dark)) (:background "#2A2A2A222222")) (t (:background "#D3D3D3222222"))) nil :group)
+ '(minimap-font-face ((t (:height 45 :width condensed))))
+ '(mode-line ((t (:background "lemonchiffon" :foreground "black" :box (:line-width -1 :style released-button) :height 0.7)))))
