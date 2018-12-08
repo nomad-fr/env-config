@@ -276,6 +276,7 @@
 (add-to-list 'minimap-major-modes 'markdown-mode)
 (add-to-list 'minimap-major-modes 'eww-mode)
 (add-to-list 'minimap-major-modes 'conf-unix-mode)
+(add-to-list 'minimap-major-modes 'salt-mode)
 ;  disable the mode line in Minimap sidebars
 (add-hook 'minimap-sb-mode-hook (lambda () (setq mode-line-format nil)))
 
