@@ -57,7 +57,7 @@
  '(markdown-command "pandoc")
  '(package-selected-packages
    (quote
-    (smart-mode-line org-caldav pov-mode apache-mode salt-mode xah-elisp-mode paredit emamux transpose-frame minimap markdown-mode magit elm-mode auto-package-update auto-complete-auctex auctex)))
+    (smart-mode-line-atom-one-dark-theme smart-mode-line org-caldav pov-mode apache-mode salt-mode xah-elisp-mode paredit emamux transpose-frame minimap markdown-mode magit elm-mode auto-package-update auto-complete-auctex auctex)))
  '(sml/mode-width
    (if
        (eq
@@ -343,15 +343,6 @@
 (autoload 'pf-mode "~/.emacs.d/pf-mode.el" "Pf Mode." t)
       (add-to-list 'auto-mode-alist '("\\pf.conf\\'" . pf-mode))
 
-;; minimap-mode always
-(minimap-mode 1)
-(add-to-list 'minimap-major-modes 'markdown-mode)
-(add-to-list 'minimap-major-modes 'eww-mode)
-(add-to-list 'minimap-major-modes 'conf-unix-mode)
-(add-to-list 'minimap-major-modes 'salt-mode)
-;  disable the mode line in Minimap sidebars
-(add-hook 'minimap-sb-mode-hook (lambda () (setq mode-line-format nil)))
-
 ;; show-parent-mode always
 (show-paren-mode 1)
 
@@ -383,90 +374,99 @@
 
     ))
 
- (setq org-caldav-delete-calendar-entries 'ask)
- (setq org-icalendar-timezone "Europe/Paris")
+(setq org-caldav-delete-calendar-entries 'ask)
+(setq org-icalendar-timezone "Europe/Paris")
 
-(set-face-attribute 'default nil :height 100)
+;; bookmark +
+(add-to-list 'load-path "~/VersionControl/GitHub/bookmark-plus")
+(require 'bookmark+)
 
+;; change the mode-line color using the standard method ;;;
+(custom-set-faces
+ '(mode-line ((t (:foreground "#295488" :background "darkorange" :box nil))))
+ '(mode-line-inactive ((t (:foreground "darkorange" :background "#295488" :box nil))))
+ '(ido-subdir ((t (:foreground "#66ff00")))) ;; Face used by ido for highlighting subdirs in the alternatives.
+ '(ido-first-match ((t (:foreground "#ccff66")))) ;; Face used by ido for highlighting first match.
+ '(ido-only-match ((t (:foreground "#ffcc33")))) ;; Face used by ido for highlighting only match.
+ '(ido-indicator ((t (:foreground "#ffffff")))) ;; Face used by ido for highlighting its indicators (don't actually use this)
+ '(ido-incomplete-regexp ((t (:foreground "#ffffff")))) ;; Ido face for indicating incomplete regexps. (don't use this either)
+ )
+;; change the mode-line color end ;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (if (daemonp)
-    
     (add-hook 'after-make-frame-functions
-      (lambda (frame)
-	(with-selected-frame frame
+        (lambda (frame)
+	(select-frame frame)
 
-	;; (set-default-font "monospace-15")
-	  
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	;; Color
+
 	
+	;; mode-line PowerLine ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	;; https://github.com/jonathanchu/emacs-powerline
+	(add-to-list 'load-path "~/VersionControl/GitHub/emacs-powerline")
+	(require 'powerline)
+	(require 'cl)
+	;; You can choose between different arrow shapes:
+	;; (setq powerline-arrow-shape 'arrow)   ;; the default
+	(setq powerline-arrow-shape 'curve)   ;; give your mode-line curves
+	;; (setq powerline-arrow-shape 'arrow14) ;; best for small fonts
+	;; change the mode-line color : Change the :foreground, :background, powerline-color1, powerline-color2 to whatever you wish.
+	(setq powerline-color1 "#292929")
+	(setq powerline-color2 "#494949")
+	;; change again mode-line color because of theme
+	(custom-set-faces
+	  '(mode-line ((t (:foreground "#295488" :background "darkorange" :box nil))))
+	  '(mode-line-inactive ((t (:foreground "darkorange" :background "#295488" :box nil)))))
+	;; mode-line PowerLine end ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	
+	;; minimap-mode always
+	(minimap-mode 1)
+	(add-to-list 'minimap-major-modes 'markdown-mode)
+	(add-to-list 'minimap-major-modes 'eww-mode)
+	(add-to-list 'minimap-major-modes 'conf-unix-mode)
+	(add-to-list 'minimap-major-modes 'salt-mode)
+	;  disable the mode line in Minimap sidebars
+	(add-hook 'minimap-sb-mode-hook (lambda () (setq mode-line-format nil)))
+	
+	(custom-set-faces
+	 '(minimap-active-region-background
+	   ((((background dark)) (:background "#181818"))
+	    (t (:background "#D3D3D3222222"))
+	    "Face for the active region in the minimap.
+             By default, this is only a different background color."
+	    :group 'minimap))
+	 )
+
+	(set-face-attribute 'default nil :height 100)
+	  	    	    
+	;; Color ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	;; highlight the current line; set a custom face, so we can
 	;; recognize from the normal marking (selection)
-	;; don't turn in on globally, only in specific modes (see djcb-c-mode-hook)
-	;;(when-available 'global-hl-line-mode
-	;;  (progn
-	;;    (defface hl-line '((t (:background "blue")))
-	    (defface hl-line '((t (:background "#646464")))
-	      "Face to use for `hl-line-face'." :group 'hl-line)
-	    (setq hl-line-face 'hl-line)
-	    (global-hl-line-mode t) ;; turn it on for all modes by default
-	
-	;; custom colors
-	  (set-foreground-color "grey")
-	  (set-face-foreground 'font-lock-string-face  "#123467")
-	  (set-face-foreground 'font-lock-comment-face  "#009380")
-	  (make-face-italic 'font-lock-comment-face)
-	  
-	  (set-face-foreground 'font-lock-keyword-face  "orange")
-	  (make-face-bold 'font-lock-keyword-face)  
-	
-	  (set-face-foreground 'font-lock-string-face   "#77bbea") ; bleu cyant
-	  (set-face-foreground 'font-lock-preprocessor-face "blue")
-	  (set-face-foreground 'font-lock-constant-face   "green")
-	
-	  (set-face-foreground 'font-lock-function-name-face "pink")
-	
-	  (set-face-foreground 'font-lock-type-face    "lightblue")
-	  (make-face-bold 'font-lock-type-face)
+	(defface hl-line '((t (:background "#292929")))
+	  "Face to use for `hl-line-face'." :group 'hl-line)
+	(setq hl-line-face 'hl-line)
+	(global-hl-line-mode t) ;; turn it on for all modes by default
+
+	(set-face-attribute 'region nil :background "#494949") ;; couleur de fond des selections
 	    
-	  (set-face-foreground 'font-lock-variable-name-face "grey")
-	  
-	  (set-face-foreground 'font-lock-warning-face "red")
-	  (set-face-underline  'font-lock-warning-face "red")
-	  
-	  ;; (set-face-foreground 'mode-line "black")(set-background-color "#102372")
-	  ;; (set-face-background 'mode-line "darkorange")
+	;; custom colors
+	(set-foreground-color "grey")
+	(set-face-foreground 'font-lock-string-face  "#123467")
+	(set-face-foreground 'font-lock-comment-face  "#009380")
+	(make-face-italic 'font-lock-comment-face)	
+	(set-face-foreground 'font-lock-keyword-face  "orange")
+	(make-face-bold 'font-lock-keyword-face)  	
+	(set-face-foreground 'font-lock-string-face   "#77bbea") ; bleu cyant
+	(set-face-foreground 'font-lock-preprocessor-face "blue")
+	(set-face-foreground 'font-lock-constant-face   "green")	
+	(set-face-foreground 'font-lock-function-name-face "pink")	
+	(set-face-foreground 'font-lock-type-face    "lightblue")
+	(make-face-bold 'font-lock-type-face)	  
+	(set-face-foreground 'font-lock-variable-name-face "grey")	
+	(set-face-foreground 'font-lock-warning-face "red")
+	(set-face-underline  'font-lock-warning-face "red")		
+	(set-face-foreground 'minibuffer-prompt "orange")	
+	(set-background-color "#000000") ; dark grey 
+	;; Color end ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	
-	  (set-face-foreground 'minibuffer-prompt "orange")
-	
-	  (set-background-color "#000000") ; dark grey 
-	  
-	))))
-
-;; https://emacs.stackexchange.com/questions/281/how-do-i-get-a-fancier-mode-line-that-uses-solid-colors-and-triangles
-;; https://github.com/jonathanchu/emacs-powerline
-;; (add-to-list 'load-path "~/VersionControl/GitHub/emacs-powerline")
-;; (require 'powerline)
-
-;; (set-face-attribute 'mode-line nil
-;;                     :foreground "Black"
-;;                     :background "DarkOrange"
-;;                     :box nil)
-;; (setq powerline-arrow-shape 'curve)
-
-
-;; These two lines you really need.
-;; (setq sml/theme 'powerline)
-;; (sml/setup)
-
-
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(minimap-active-region-background ((((background dark)) (:background "#2A2A2A222222")) (t (:background "#D3D3D3222222"))) nil :group)
-
-)
-
+)))
 
