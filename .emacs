@@ -21,10 +21,13 @@
   "Return true if system is berkeley-unix"
   (string-equal system-type "berkeley-unix"))
 
+;; Set default font
+(add-to-list 'default-frame-alist
+             '(font . "DejaVu Sans Mono-20"))
+
 (setq python-shell-interpreter "/usr/bin/python3")
 
-
-;; Turn off alarms completely
+;; Turn off alarms completelyus
 (setq ring-bell-function 'ignore)
 
 ;; Preventing the Creation of Backup Files
@@ -50,11 +53,80 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" default)))
+    ("b9e9ba5aeedcc5ba8be99f1cc9301f6679912910ff92fdf7980929c2fc83ab4d" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" default)))
  '(markdown-command "pandoc")
  '(package-selected-packages
    (quote
-    (smart-mode-line-powerline-theme smart-mode-line org-caldav pov-mode apache-mode salt-mode xah-elisp-mode paredit emamux transpose-frame minimap markdown-mode magit elm-mode auto-package-update auto-complete-auctex auctex))))
+    (smart-mode-line org-caldav pov-mode apache-mode salt-mode xah-elisp-mode paredit emamux transpose-frame minimap markdown-mode magit elm-mode auto-package-update auto-complete-auctex auctex)))
+ '(sml/mode-width
+   (if
+       (eq
+	(powerline-current-separator)
+	(quote arrow))
+       (quote right)
+     (quote full)))
+ '(sml/pos-id-separator
+   (quote
+    (""
+     (:propertize " " face powerline-active1)
+     (:eval
+      (propertize " "
+		  (quote display)
+		  (funcall
+		   (intern
+		    (format "powerline-%s-%s"
+			    (powerline-current-separator)
+			    (car powerline-default-separator-dir)))
+		   (quote powerline-active1)
+		   (quote powerline-active2))))
+     (:propertize " " face powerline-active2))))
+ '(sml/pos-minor-modes-separator
+   (quote
+    (""
+     (:propertize " " face powerline-active1)
+     (:eval
+      (propertize " "
+		  (quote display)
+		  (funcall
+		   (intern
+		    (format "powerline-%s-%s"
+			    (powerline-current-separator)
+			    (cdr powerline-default-separator-dir)))
+		   (quote powerline-active1)
+		   (quote sml/global))))
+     (:propertize " " face sml/global))))
+ '(sml/pre-id-separator
+   (quote
+    (""
+     (:propertize " " face sml/global)
+     (:eval
+      (propertize " "
+		  (quote display)
+		  (funcall
+		   (intern
+		    (format "powerline-%s-%s"
+			    (powerline-current-separator)
+			    (car powerline-default-separator-dir)))
+		   (quote sml/global)
+		   (quote powerline-active1))))
+     (:propertize " " face powerline-active1))))
+ '(sml/pre-minor-modes-separator
+   (quote
+    (""
+     (:propertize " " face powerline-active2)
+     (:eval
+      (propertize " "
+		  (quote display)
+		  (funcall
+		   (intern
+		    (format "powerline-%s-%s"
+			    (powerline-current-separator)
+			    (cdr powerline-default-separator-dir)))
+		   (quote powerline-active2)
+		   (quote powerline-active1))))
+     (:propertize " " face powerline-active1))))
+ '(sml/pre-modes-separator (propertize " " (quote face) (quote sml/modes))))
+
 
 (defun markdown-to-html ()
   (interactive)
@@ -283,6 +355,7 @@
 ;; show-parent-mode always
 (show-paren-mode 1)
 
+
 ;; melpa
 (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
                        	 ("marmalade" . "https://marmalade-repo.org/packages/")
@@ -313,10 +386,17 @@
  (setq org-caldav-delete-calendar-entries 'ask)
  (setq org-icalendar-timezone "Europe/Paris")
 
+(set-face-attribute 'default nil :height 100)
+
+
 (if (daemonp)
+    
     (add-hook 'after-make-frame-functions
       (lambda (frame)
-	(with-selected-frame frame		
+	(with-selected-frame frame
+
+	;; (set-default-font "monospace-15")
+	  
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	;; Color
 	
@@ -331,42 +411,13 @@
 	    (setq hl-line-face 'hl-line)
 	    (global-hl-line-mode t) ;; turn it on for all modes by default
 	
-	;; font-lock-warning-face
-	;;      for a construct that is peculiar,
-	;;      or that greatly changes the meaning of other text, like ‘;;;###autoload’ in Emacs Lisp and ‘#error’ in C.
-	;;- font-lock-function-name-face
-	;;      for the name of a function being defined or declared.
-	;;- font-lock-variable-name-face
-	;;      for the name of a variable being defined or declared.
-	;; font-lock-keyword-face
-	;;      for a keyword with special syntactic significance, like ‘for’ and ‘if’ in C.
-	;; font-lock-comment-face
-	;;      for comments.
-	;; font-lock-comment-delimiter-face
-	;;      for comments delimiters, like ‘/*’ and ‘*/’ in C. On most terminals,
-	;;      this inherits from font-lock-comment-face.
-	;;- font-lock-type-face
-	;;      for the names of user-defined data types.
-	;;- font-lock-constant-face
-	;;      for the names of constants, like ‘NULL’ in C.
-	;; font-lock-builtin-face
-	;;      for the names of built-in functions.
-	;;- font-lock-preprocessor-face
-	;;      for preprocessor commands. This inherits, by default, from font-lock-builtin-face.
-	;; font-lock-string-face
-	;;      for string constants.
-	;; font-lock-doc-face
-	;;      for documentation strings in the code. This inherits, by default, from font-lock-string-face.
-	;; font-lock-negation-char-face
-	;;      for easily-overlooked negation characters.
-	
 	;; custom colors
 	  (set-foreground-color "grey")
 	  (set-face-foreground 'font-lock-string-face  "#123467")
 	  (set-face-foreground 'font-lock-comment-face  "#009380")
 	  (make-face-italic 'font-lock-comment-face)
 	  
-	  (set-face-foreground 'font-lock-keyword-face  "lemonchiffon")
+	  (set-face-foreground 'font-lock-keyword-face  "orange")
 	  (make-face-bold 'font-lock-keyword-face)  
 	
 	  (set-face-foreground 'font-lock-string-face   "#77bbea") ; bleu cyant
@@ -383,28 +434,34 @@
 	  (set-face-foreground 'font-lock-warning-face "red")
 	  (set-face-underline  'font-lock-warning-face "red")
 	  
-	  (set-face-foreground 'mode-line "black")(set-background-color "#102372")
-	  (set-face-background 'mode-line "lemonchiffon")
+	  ;; (set-face-foreground 'mode-line "black")(set-background-color "#102372")
+	  ;; (set-face-background 'mode-line "darkorange")
 	
 	  (set-face-foreground 'minibuffer-prompt "orange")
 	
 	  (set-background-color "#000000") ; dark grey 
-	
-	;;custom colors minimap
-	
-	(set-default-font "monospace-20")
-	  
-	(custom-set-faces
-	 ;; custom-set-faces was added by Custom.
-	 ;; If you edit it by hand, you could mess it up, so be careful.
-	 ;; Your init file should contain only one such instance.
-	 ;; If there is more than one, they won't work right.
-	 '(minimap-active-region-background ((((background dark)) (:background "#2A2A2A222222")) (t (:background "#D3D3D3222222"))) nil :group)
-	 '(minimap-font-face ((t (:height 45 :width condensed))))
-	 '(mode-line ((t (:background "lemonchiffon" :foreground "black" :box (:line-width -1 :style released-button) :height 0.7)))))
-	
-))))
 
+	))))
+
+;; https://emacs.stackexchange.com/questions/281/how-do-i-get-a-fancier-mode-line-that-uses-solid-colors-and-triangles
+;; https://github.com/jonathanchu/emacs-powerline
+;; (add-to-list 'load-path "~/VersionControl/GitHub/emacs-powerline")
+;; (require 'powerline)
+
+;; (set-face-attribute 'mode-line nil
+;;                     :foreground "Black"
+;;                     :background "DarkOrange"
+;;                     :box nil)
+;; (setq powerline-arrow-shape 'curve)
+
+
+;; These two lines are just examples
+;; These two lines are just examples
+;; (setq powerline-arrow-shape 'curve)
+;; (setq powerline-default-separator-dir '(right . left))
+;; ;; These two lines you really need.
+;; (setq sml/theme 'powerline)
+;; (sml/setup)
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -412,5 +469,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(minimap-active-region-background ((((background dark)) (:background "#2A2A2A222222")) (t (:background "#D3D3D3222222"))) nil :group)
- '(minimap-font-face ((t (:height 45 :width condensed))))
- '(mode-line ((t (:background "lemonchiffon" :foreground "black" :box (:line-width -1 :style released-button) :height 0.7)))))
+
+)
+
+
