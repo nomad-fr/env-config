@@ -440,7 +440,7 @@
 	  (set-face-foreground 'minibuffer-prompt "orange")
 	
 	  (set-background-color "#000000") ; dark grey 
-
+	  
 	))))
 
 ;; https://emacs.stackexchange.com/questions/281/how-do-i-get-a-fancier-mode-line-that-uses-solid-colors-and-triangles
@@ -455,13 +455,10 @@
 ;; (setq powerline-arrow-shape 'curve)
 
 
-;; These two lines are just examples
-;; These two lines are just examples
-;; (setq powerline-arrow-shape 'curve)
-;; (setq powerline-default-separator-dir '(right . left))
-;; ;; These two lines you really need.
+;; These two lines you really need.
 ;; (setq sml/theme 'powerline)
 ;; (sml/setup)
+
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
