@@ -51,6 +51,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(bmkp-last-as-first-bookmark-file "~/.emacs.d/bookmarks")
  '(custom-safe-themes
    (quote
     ("b9e9ba5aeedcc5ba8be99f1cc9301f6679912910ff92fdf7980929c2fc83ab4d" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" default)))
@@ -380,17 +381,23 @@
 ;; bookmark +
 (add-to-list 'load-path "~/VersionControl/GitHub/bookmark-plus")
 (require 'bookmark+)
+(setq desktop-buffers-not-to-save "^$")
 
 ;; change the mode-line color using the standard method ;;;
 (custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ido-first-match ((t (:foreground "#ccff66"))))
+ '(ido-incomplete-regexp ((t (:foreground "#ffffff"))))
+ '(ido-indicator ((t (:foreground "#ffffff"))))
+ '(ido-only-match ((t (:foreground "#ffcc33"))))
+ '(ido-subdir ((t (:foreground "#66ff00"))))
+ '(minimap-active-region-background ((((background dark)) (:background "#181818")) (t (:background "#D3D3D3222222")) "Face for the active region in the minimap.
+             By default, this is only a different background color." :group (quote minimap)))
  '(mode-line ((t (:foreground "#295488" :background "darkorange" :box nil))))
- '(mode-line-inactive ((t (:foreground "darkorange" :background "#295488" :box nil))))
- '(ido-subdir ((t (:foreground "#66ff00")))) ;; Face used by ido for highlighting subdirs in the alternatives.
- '(ido-first-match ((t (:foreground "#ccff66")))) ;; Face used by ido for highlighting first match.
- '(ido-only-match ((t (:foreground "#ffcc33")))) ;; Face used by ido for highlighting only match.
- '(ido-indicator ((t (:foreground "#ffffff")))) ;; Face used by ido for highlighting its indicators (don't actually use this)
- '(ido-incomplete-regexp ((t (:foreground "#ffffff")))) ;; Ido face for indicating incomplete regexps. (don't use this either)
- )
+ '(mode-line-inactive ((t (:foreground "darkorange" :background "#295488" :box nil)))))
 ;; change the mode-line color end ;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (if (daemonp)
