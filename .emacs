@@ -25,7 +25,24 @@
 (add-to-list 'default-frame-alist
              '(font . "DejaVu Sans Mono-20"))
 
-(setq python-shell-interpreter "/usr/bin/python3")
+;; (setq python-shell-interpreter "/usr/bin/python3")
+
+;; run Python code using Emacs
+    ;; C-c C-z : open a python shell
+    ;; C-c C-c : run the content of the buffer in the opened python shell
+    ;; C-c C-r : run the selected region in the python shell
+
+(setq
+ python-shell-interpreter "ipython"
+ python-shell-interpreter-args "--colors=Linux --profile=default --simple-prompt"
+ python-shell-prompt-regexp "In \\[[0-9]+\\]: "
+ python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
+ python-shell-completion-setup-code
+ "from IPython.core.completerlib import module_completion"
+ python-shell-completion-module-string-code
+ "';'.join(module_completion('''%s'''))\n"
+ python-shell-completion-string-code
+ "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
 
 ;; Turn off alarms completelyus
 (setq ring-bell-function 'ignore)
@@ -51,9 +68,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- 
  '(bmkp-last-as-first-bookmark-file "~/.emacs.d/bookmarks")
-
  '(custom-safe-themes
    (quote
     ("b9e9ba5aeedcc5ba8be99f1cc9301f6679912910ff92fdf7980929c2fc83ab4d" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" default)))
@@ -433,6 +448,7 @@
 	(add-to-list 'minimap-major-modes 'eww-mode)
 	(add-to-list 'minimap-major-modes 'conf-unix-mode)
 	(add-to-list 'minimap-major-modes 'salt-mode)
+	(add-to-list 'minimap-major-modes 'python-mode)
 	;  disable the mode line in Minimap sidebars
 	(add-hook 'minimap-sb-mode-hook (lambda () (setq mode-line-format nil)))
 	
