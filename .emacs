@@ -395,6 +395,9 @@
 (setq org-caldav-delete-calendar-entries 'ask)
 (setq org-icalendar-timezone "Europe/Paris")
 
+;; open full screen
+(add-to-list 'default-frame-alist '(fullscreen . fullboth)) 
+
 ;; bookmark + ;; https://github.com/emacsmirror/bookmark-plus.git
 (add-to-list 'load-path "~/VersionControl/GitHub/bookmark-plus")
 (require 'bookmark+)
@@ -421,8 +424,6 @@
     (add-hook 'after-make-frame-functions
         (lambda (frame)
 	(select-frame frame)
-
-
 	
 	;; mode-line PowerLine ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	;; https://github.com/jonathanchu/emacs-powerline
@@ -462,7 +463,11 @@
 	 )
 
 	(set-face-attribute 'default nil :height 100)
-	  	    	    
+
+	(when window-system
+	  (if (> (x-display-pixel-width) 3000)
+	      	(set-face-attribute 'default nil :height 200)))
+	
 	;; Color ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	;; highlight the current line; set a custom face, so we can
 	;; recognize from the normal marking (selection)
@@ -470,7 +475,10 @@
 	  "Face to use for `hl-line-face'." :group 'hl-line)
 	(setq hl-line-face 'hl-line)
 	(global-hl-line-mode t) ;; turn it on for all modes by default
-
+	(add-hook 'term-mode-hook (lambda ()
+                            (setq-local global-hl-line-mode
+                                        nil)))
+	
 	(set-face-attribute 'region nil :background "#494949") ;; couleur de fond des selections
 	    
 	;; custom colors
