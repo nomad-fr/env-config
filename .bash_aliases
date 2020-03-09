@@ -70,7 +70,7 @@ then
 	# See : `dircolor -p`
 	
 	# alias ls='ls --color'
-	LS_COLORS='di=33;94:fi=0:ln=96:pi=5:so=5:bd=5:cd=5:or=31:mi=0:ex=92:ow=0;41'
+	LS_COLORS='di=33:fi=0:ln=96:pi=5:so=5:bd=5:cd=5:or=31:mi=0:ex=92:ow=0;41'
  	export LS_COLORS
 	
 	# some more ls aliases
