@@ -86,7 +86,7 @@ then
 
 	# pairs for each file type to suitable color
 	 
-	DIR=Ex            # directory
+	DIR=Dx            # directory
 	SYM_LINK=Gx       # symbolic link
 	SOCKET=Fx         # socket
 	PIPE=dx           # pipe
