@@ -2,21 +2,54 @@
 
 PATH=$PATH:~/bin
 
-# start the agent automatically and make sure that only one ssh-agent
-# process runs at a time
+# # start the agent automatically and make sure that only one ssh-agent
+# # process runs at a time
 
-if ! pgrep -u "$USER" ssh-agent > /dev/null; then
-    ssh-agent > ~/.ssh-agent-thing
+# if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+#     ssh-agent > ~/.ssh-agent-thing
+# fi
+# if [[ "$SSH_AGENT_PID" == "" ]]; then
+#     eval "$(<~/.ssh-agent-thing)"
+# fi
+
+# if [ ! -f "${HOME}/.gpg-agent-info" ] && [ -S "${HOME}/.gnupg/S.gpg-agent" ] && [ -S "${HOME}/.gnupg/S.gpg-agent.ssh" ]; then
+#     echo "GPG_AGENT_INFO=${HOME}/.gnupg/S.gpg-agent" >> "${HOME}/.gpg-agent-info";
+#     echo "SSH_AUTH_SOCK=${HOME}/.gnupg/S.gpg-agent.ssh" >> "${HOME}/.gpg-agent-info";
+# fi
+
+# if [ -f "${HOME}/.gpg-agent-info" ]; then
+#     . "${HOME}/.gpg-agent-info"
+#     export GPG_AGENT_INFO
+#     export SSH_AUTH_SOCK=
+#     export GPG_TTY="$(tty)"
+#     gpg-connect-agent updatestartuptty /bye >& /dev/null
+# fi
+
+
+
+# Start the gpg-agent if not already running
+if ! pgrep -x -u "${USER}" gpg-agent >/dev/null 2>&1; then
+  gpg-connect-agent /bye >/dev/null 2>&1
 fi
-if [[ "$SSH_AGENT_PID" == "" ]]; then
-    eval "$(<~/.ssh-agent-thing)"
+
+# Set SSH to use gpg-agent
+unset SSH_AGENT_PID
+if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
+  export SSH_AUTH_SOCK="/run/user/$UID/gnupg/S.gpg-agent.ssh"
 fi
+
+# Set GPG TTY
+export GPG_TTY=$(tty)
+
+# Refresh gpg-agent tty in case user switches into an X session
+gpg-connect-agent updatestartuptty /bye >/dev/null
+
 
 
 # this below for a color prompt
 
 
-PS1='\[\033[01;34m\]\u\[\033[1;31m\]@\[\033[1;31m\]\h\[\033[00m\]:\[\033[1;33m\]\w\[\033[00m\]\$ '
+PS1='\[\033[01;94m\]\u\[\033[1;31m\]@\[\033[1;96m\]\h\[\033[00m\]:\[\033[1;33m\]\w\[\033[00m\]\$ '
 
 if [ "$USER" = 'root' ]
 then
@@ -52,9 +85,6 @@ export EDITOR='emacs -nw'
 
 export NO_AT_BRIDGE=1
 
-# added by Anaconda2 4.1.1 installer
-#export PATH="/local/anaconda/bin:$PATH"
-
 # git
-#GIT_PROMPT_ONLY_IN_REPO=1
+GIT_PROMPT_ONLY_IN_REPO=1
 #source /home/nomad/VersionControl/GitHub/bash-git-prompt/gitprompt.sh
