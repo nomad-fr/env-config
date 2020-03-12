@@ -73,6 +73,7 @@
    (quote
     ("b9e9ba5aeedcc5ba8be99f1cc9301f6679912910ff92fdf7980929c2fc83ab4d" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" default)))
  '(markdown-command "pandoc")
+ '(minimap-automatically-delete-window nil)
  '(package-selected-packages
    (quote
     (smart-mode-line-atom-one-dark-theme smart-mode-line org-caldav pov-mode apache-mode salt-mode xah-elisp-mode paredit emamux transpose-frame minimap markdown-mode magit elm-mode auto-package-update auto-complete-auctex auctex)))
@@ -450,6 +451,7 @@
 	(add-to-list 'minimap-major-modes 'conf-unix-mode)
 	(add-to-list 'minimap-major-modes 'salt-mode)
 	(add-to-list 'minimap-major-modes 'python-mode)
+	(add-to-list 'minimap-major-modes 'html-mode)
 	;  disable the mode line in Minimap sidebars
 	(add-hook 'minimap-sb-mode-hook (lambda () (setq mode-line-format nil)))
 	
