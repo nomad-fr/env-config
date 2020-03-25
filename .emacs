@@ -70,61 +70,81 @@
  ;; If there is more than one, they won't work right.
  '(bmkp-last-as-first-bookmark-file "~/.emacs.d/bookmarks")
  '(custom-safe-themes
-   '("b9e9ba5aeedcc5ba8be99f1cc9301f6679912910ff92fdf7980929c2fc83ab4d" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" default))
+   (quote
+    ("b9e9ba5aeedcc5ba8be99f1cc9301f6679912910ff92fdf7980929c2fc83ab4d" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" default)))
  '(markdown-command "pandoc")
  '(minimap-automatically-delete-window nil)
  '(package-selected-packages
-   '(powerline smart-mode-line-atom-one-dark-theme smart-mode-line org-caldav pov-mode apache-mode salt-mode xah-elisp-mode paredit emamux transpose-frame minimap markdown-mode magit elm-mode auto-package-update auto-complete-auctex auctex))
- '(sml/mode-width (if (eq (powerline-current-separator) 'arrow) 'right 'full))
+   (quote
+    (frame-local projectile ov s dash-functional dash powerline smart-mode-line-atom-one-dark-theme smart-mode-line org-caldav pov-mode apache-mode salt-mode xah-elisp-mode paredit emamux transpose-frame minimap markdown-mode magit elm-mode auto-package-update auto-complete-auctex auctex)))
+ '(sml/mode-width
+   (if
+       (eq
+	(powerline-current-separator)
+	(quote arrow))
+       (quote right)
+     (quote full)))
  '(sml/pos-id-separator
-   '(""
+   (quote
+    (""
      (:propertize " " face powerline-active1)
      (:eval
-      (propertize " " 'display
+      (propertize " "
+		  (quote display)
 		  (funcall
 		   (intern
 		    (format "powerline-%s-%s"
 			    (powerline-current-separator)
 			    (car powerline-default-separator-dir)))
-		   'powerline-active1 'powerline-active2)))
-     (:propertize " " face powerline-active2)))
+		   (quote powerline-active1)
+		   (quote powerline-active2))))
+     (:propertize " " face powerline-active2))))
  '(sml/pos-minor-modes-separator
-   '(""
+   (quote
+    (""
      (:propertize " " face powerline-active1)
      (:eval
-      (propertize " " 'display
+      (propertize " "
+		  (quote display)
 		  (funcall
 		   (intern
 		    (format "powerline-%s-%s"
 			    (powerline-current-separator)
 			    (cdr powerline-default-separator-dir)))
-		   'powerline-active1 'sml/global)))
-     (:propertize " " face sml/global)))
+		   (quote powerline-active1)
+		   (quote sml/global))))
+     (:propertize " " face sml/global))))
  '(sml/pre-id-separator
-   '(""
+   (quote
+    (""
      (:propertize " " face sml/global)
      (:eval
-      (propertize " " 'display
+      (propertize " "
+		  (quote display)
 		  (funcall
 		   (intern
 		    (format "powerline-%s-%s"
 			    (powerline-current-separator)
 			    (car powerline-default-separator-dir)))
-		   'sml/global 'powerline-active1)))
-     (:propertize " " face powerline-active1)))
+		   (quote sml/global)
+		   (quote powerline-active1))))
+     (:propertize " " face powerline-active1))))
  '(sml/pre-minor-modes-separator
-   '(""
+   (quote
+    (""
      (:propertize " " face powerline-active2)
      (:eval
-      (propertize " " 'display
+      (propertize " "
+		  (quote display)
 		  (funcall
 		   (intern
 		    (format "powerline-%s-%s"
 			    (powerline-current-separator)
 			    (cdr powerline-default-separator-dir)))
-		   'powerline-active2 'powerline-active1)))
-     (:propertize " " face powerline-active1)))
- '(sml/pre-modes-separator (propertize " " 'face 'sml/modes)))
+		   (quote powerline-active2)
+		   (quote powerline-active1))))
+     (:propertize " " face powerline-active1))))
+ '(sml/pre-modes-separator (propertize " " (quote face) (quote sml/modes))))
 
 
 (defun markdown-to-html ()
@@ -376,6 +396,15 @@
 (setq org-caldav-delete-calendar-entries 'ask)
 (setq org-icalendar-timezone "Europe/Paris")
 
+;; sidebar : https://github.com/sebastiencs/sidebar.el
+(add-to-list 'load-path "/home/nomad/VersionControl/GitHub/font-lock+.el")
+(add-to-list 'load-path "~/.local/share/icons-in-terminal/") ;; If it's not already done
+(add-to-list 'load-path "/home/nomad/VersionControl/GitHub/sidebar.el")
+(require 'sidebar)
+(global-set-key (kbd "C-x C-F") 'sidebar-open)
+(global-set-key (kbd "C-x C-a") 'sidebar-buffers-open)
+;; sidebar : end
+
 ;; open full screen
 (add-to-list 'default-frame-alist '(fullscreen . fullboth)) 
 
@@ -396,7 +425,7 @@
  '(ido-only-match ((t (:foreground "#ffcc33"))))
  '(ido-subdir ((t (:foreground "#66ff00"))))
  '(minimap-active-region-background ((((background dark)) (:background "#181818")) (t (:background "#D3D3D3222222")) "Face for the active region in the minimap.
-             By default, this is only a different background color." :group 'minimap))
+             By default, this is only a different background color." :group (quote minimap)))
  '(mode-line ((t (:foreground "#295488" :background "darkorange" :box nil))))
  '(mode-line-inactive ((t (:foreground "darkorange" :background "#295488" :box nil)))))
 ;; change the mode-line color end ;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -426,6 +455,7 @@
 	
 	;; minimap-mode always
 	(minimap-mode 1)
+	(setq minimap-window-location 'right)
 	(add-to-list 'minimap-major-modes 'markdown-mode)
 	(add-to-list 'minimap-major-modes 'eww-mode)
 	(add-to-list 'minimap-major-modes 'conf-unix-mode)
