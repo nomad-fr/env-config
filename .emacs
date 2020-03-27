@@ -400,7 +400,7 @@
 ;; show line numbers
 ;; show line number with f6 : see key bindings
 ;; https://github.com/targzeta/linum-highlight-current-line-number
-(add-to-list 'load-path "/home/nomad/VersionControl/GitHub/linum-highlight-current-line-number/")
+(add-to-list 'load-path "/home/nomad/VersionControl/GitHub/linum-highlight-current-line-number/linum-highlight-current-line-number.el")
 (require 'linum-highlight-current-line-number)
 (setq linum-format 'linum-highlight-current-line-number)
 ;; If you want line number to start at 0, put this in your emacs init file:
@@ -456,12 +456,17 @@
  '(ido-indicator ((t (:foreground "#ffffff"))))
  '(ido-only-match ((t (:foreground "#ffcc33"))))
  '(ido-subdir ((t (:foreground "#66ff00"))))
+ 
  '(minimap-active-region-background ((((background dark)) (:background "#181818")) (t (:background "#D3D3D3222222")) "Face for the active region in the minimap.
              By default, this is only a different background color." :group (quote minimap)))
+ 
  '(mode-line ((t (:foreground "#295488" :background "darkorange" :box nil))))
  '(mode-line-inactive ((t (:foreground "darkorange" :background "#295488" :box nil))))
- '(sidebar-buffers-headers-face ((t (:foreground "#2196F3" :height 1))))
- '(sidebar-primary-color ((t (:background "dark orange" :foreground "royal blue")))))
+ 
+ '(sidebar-buffers-headers-face ((t (:foreground "darkorange" :background "#295488" :height 1))))
+ '(sidebar-primary-color ((t (:foreground "darkorange" :background "#295488"))))
+)
+
 ;; change the mode-line color end ;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (if (daemonp)
