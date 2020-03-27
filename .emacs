@@ -76,7 +76,10 @@
  '(minimap-automatically-delete-window nil)
  '(package-selected-packages
    (quote
-    (frame-local projectile ov s dash-functional dash powerline smart-mode-line-atom-one-dark-theme smart-mode-line org-caldav pov-mode apache-mode salt-mode xah-elisp-mode paredit emamux transpose-frame minimap markdown-mode magit elm-mode auto-package-update auto-complete-auctex auctex)))
+    (powerline frame-local projectile ov s dash-functional dash smart-mode-line-atom-one-dark-theme smart-mode-line org-caldav pov-mode apache-mode salt-mode xah-elisp-mode paredit emamux transpose-frame minimap markdown-mode magit elm-mode auto-package-update auto-complete-auctex auctex)))
+ '(sidebar-buffers-width 25)
+ '(sidebar-mode-line-height 1.1)
+ '(sidebar-width 30)
  '(sml/mode-width
    (if
        (eq
@@ -235,7 +238,7 @@
 ;; key binding
 
 (autoload 'setnu-mode "~/config/emacs/setnu.el" "set-nu" t)
-(global-set-key (kbd "<f6>") 'setnu-mode)	; show line number with f6
+(global-set-key (kbd "<f6>") 'linum-mode)	; show line number with f6
 
 (global-set-key (kbd "<f7>") 'ispell-region)	; ispell region with f7
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -369,7 +372,6 @@
 ;; melpa
 (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
                        	 ("marmalade" . "https://marmalade-repo.org/packages/")
-			 ;; ("marmalade" . "https://ojab.ru/marmalade/")
 			 ("melpa" . "http://melpa.milkbox.net/packages/")
 		         ("melpa" . "https://melpa.org/packages/")))
 
@@ -396,6 +398,25 @@
 (setq org-caldav-delete-calendar-entries 'ask)
 (setq org-icalendar-timezone "Europe/Paris")
 
+;; show line numbers
+;; show line number with f6 : see key bindings
+
+;; (global-linum-mode 1) ; always show line numbers
+
+(add-to-list 'load-path "/home/nomad/VersionControl/GitHub/linum-highlight-current-line-number/")
+
+;; https://github.com/targzeta/linum-highlight-current-line-number
+(require 'linum-highlight-current-line-number)
+(setq linum-format 'linum-highlight-current-line-number)
+
+;; If you want line number to start at 0, put this in your emacs init file:
+;; (require 'linum)
+;; (setq linum-format
+;;       (lambda (line)
+;;         (propertize (number-to-string (1- line)) 'face 'linum)))
+
+;; show line numbers ; end
+
 ;; sidebar : https://github.com/sebastiencs/sidebar.el
 (add-to-list 'load-path "/home/nomad/VersionControl/GitHub/font-lock+.el")
 (add-to-list 'load-path "~/.local/share/icons-in-terminal/") ;; If it's not already done
@@ -404,6 +425,24 @@
 (global-set-key (kbd "C-x C-F") 'sidebar-open)
 (global-set-key (kbd "C-x C-a") 'sidebar-buffers-open)
 ;; sidebar : end
+
+;; 
+(unless window-system
+  (add-hook 'linum-before-numbering-hook
+	    (lambda ()
+	      (setq-local linum-format-fmt
+			  (let ((w (length (number-to-string
+					    (count-lines (point-min) (point-max))))))
+			    (concat "%" (number-to-string w) "d"))))))
+
+(defun linum-format-func (line)
+  (concat
+   (propertize (format linum-format-fmt line) 'face 'linum)
+   (propertize " " 'face 'mode-line)))
+
+(unless window-system
+  (setq linum-format 'linum-format-func))
+;;
 
 ;; open full screen
 (add-to-list 'default-frame-alist '(fullscreen . fullboth)) 
@@ -427,7 +466,9 @@
  '(minimap-active-region-background ((((background dark)) (:background "#181818")) (t (:background "#D3D3D3222222")) "Face for the active region in the minimap.
              By default, this is only a different background color." :group (quote minimap)))
  '(mode-line ((t (:foreground "#295488" :background "darkorange" :box nil))))
- '(mode-line-inactive ((t (:foreground "darkorange" :background "#295488" :box nil)))))
+ '(mode-line-inactive ((t (:foreground "darkorange" :background "#295488" :box nil))))
+ '(sidebar-buffers-headers-face ((t (:foreground "#2196F3" :height 1))))
+ '(sidebar-primary-color ((t (:background "dark orange" :foreground "royal blue")))))
 ;; change the mode-line color end ;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (if (daemonp)
