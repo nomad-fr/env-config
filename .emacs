@@ -438,7 +438,9 @@
 ;;
 
 ;; open full screen
-(add-to-list 'default-frame-alist '(fullscreen . fullboth)) 
+;; (add-to-list 'default-frame-alist '(fullscreen . fullboth)) 
+(add-to-list 'default-frame-alist '(fullscreen . maximized)) 
+
 
 ;; bookmark + ;; https://github.com/emacsmirror/bookmark-plus.git
 (add-to-list 'load-path "~/VersionControl/GitHub/bookmark-plus")
