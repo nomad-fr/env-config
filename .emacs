@@ -456,16 +456,13 @@
  '(ido-indicator ((t (:foreground "#ffffff"))))
  '(ido-only-match ((t (:foreground "#ffcc33"))))
  '(ido-subdir ((t (:foreground "#66ff00"))))
- 
  '(minimap-active-region-background ((((background dark)) (:background "#181818")) (t (:background "#D3D3D3222222")) "Face for the active region in the minimap.
              By default, this is only a different background color." :group (quote minimap)))
- 
  '(mode-line ((t (:foreground "#295488" :background "darkorange" :box nil))))
  '(mode-line-inactive ((t (:foreground "darkorange" :background "#295488" :box nil))))
- 
  '(sidebar-buffers-headers-face ((t (:foreground "darkorange" :background "#295488" :height 1))))
- '(sidebar-primary-color ((t (:foreground "darkorange" :background "#295488"))))
-)
+ '(sidebar-dir ((t (:inherit dired-directory :foreground "light goldenrod"))))
+ '(sidebar-primary-color ((t (:foreground "darkorange" :background "#295488")))))
 
 ;; change the mode-line color end ;;;;;;;;;;;;;;;;;;;;;;;;;
 
