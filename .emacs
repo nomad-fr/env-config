@@ -77,8 +77,8 @@
  '(package-selected-packages
    (quote
     (powerline frame-local projectile ov s dash-functional dash smart-mode-line-atom-one-dark-theme smart-mode-line org-caldav pov-mode apache-mode salt-mode xah-elisp-mode paredit emamux transpose-frame minimap markdown-mode magit elm-mode auto-package-update auto-complete-auctex auctex)))
- '(sidebar-header-line-height 1.2)
- '(sidebar-mode-line-height 1.2)
+ '(sidebar-header-line-height 1)
+ '(sidebar-mode-line-height 1)
  '(sml/mode-width
    (if
        (eq
@@ -508,7 +508,7 @@
 	    :group 'minimap))
 	 )
 
-	(set-face-attribute 'default nil :height 100) ;; 116 max size sinon le theme bave
+	(set-face-attribute 'default nil :height 116) ;; 116 max size sinon le theme bave
 	
 	(when window-system
 	  (if (> (x-display-pixel-width) 3000)
