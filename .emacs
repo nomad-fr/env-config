@@ -508,7 +508,7 @@
 	    :group 'minimap))
 	 )
 
-	(set-face-attribute 'default nil :height 116) ;; 116 max size sinon le theme bave
+	(set-face-attribute 'default nil :height 116) ;; 116 minimum size sinon le theme bave
 	
 	(when window-system
 	  (if (> (x-display-pixel-width) 3000)
