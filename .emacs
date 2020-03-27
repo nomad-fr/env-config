@@ -514,11 +514,11 @@
 	    :group 'minimap))
 	 )
 
-	(set-face-attribute 'default nil :height 100)
-
+	(set-face-attribute 'default nil :height 100) ;; 116 max size sinon le theme bave
+	
 	(when window-system
 	  (if (> (x-display-pixel-width) 3000)
-	      	(set-face-attribute 'default nil :height 200)))
+	      	(set-face-attribute 'default nil :height 116)))
 	
 	;; Color ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	;; highlight the current line; set a custom face, so we can
