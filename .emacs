@@ -78,7 +78,6 @@
    (quote
     (powerline frame-local projectile ov s dash-functional dash smart-mode-line-atom-one-dark-theme smart-mode-line org-caldav pov-mode apache-mode salt-mode xah-elisp-mode paredit emamux transpose-frame minimap markdown-mode magit elm-mode auto-package-update auto-complete-auctex auctex)))
  '(sidebar-buffers-width 25)
- '(sidebar-mode-line-height 1.1)
  '(sidebar-width 30)
  '(sml/mode-width
    (if
