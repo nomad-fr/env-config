@@ -325,8 +325,8 @@
 
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist      '("\\.text\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist      '("\\.page\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.page\\'" . markdown-mode))
 
 (global-set-key (kbd "C-c C-c w") 'markdown-preview)
 
