@@ -439,7 +439,7 @@
 
 ;; (require 'mu4e)
 
-(setq mu4e-maildir (expand-file-name "/localstorage/isyncmail/neuronfarm"))
+(setq mu4e-maildir (expand-file-name "~/.localsyncmail/neuronfarm"))
 
 (setq mu4e-inbox-folder "/Inbox")
 (setq mu4e-drafts-folder "/Drafts")
