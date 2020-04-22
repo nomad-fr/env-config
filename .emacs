@@ -276,13 +276,13 @@
 ;; http://www.emacswiki.org/emacs/DeleteSelectionMode
 (delete-selection-mode 1)
 
-;;;; ;; muttrc-mode (used when editing muttrc)
-;;;; ;; http://www.emacswiki.org/cgi-bin/wiki/download/muttrc-mode.el
-   (autoload 'muttrc-mode "~/config/emacs/muttrc-mode.el" "mode for editing muttrc" t)
-    (setq auto-mode-alist 
-    (append '(("muttrc\\'" . muttrc-mode))
-            auto-mode-alist)) 
-    (add-to-list 'auto-mode-alist '("\\.muttrc[^/]*\\'"   . muttrc-mode))
+;; ;;;; ;; muttrc-mode (used when editing muttrc)
+;; ;;;; ;; http://www.emacswiki.org/cgi-bin/wiki/download/muttrc-mode.el
+;;    (autoload 'muttrc-mode "~/config/emacs/muttrc-mode.el" "mode for editing muttrc" t)
+;;     (setq auto-mode-alist 
+;;     (append '(("muttrc\\'" . muttrc-mode))
+;;             auto-mode-alist)) 
+;;     (add-to-list 'auto-mode-alist '("\\.muttrc[^/]*\\'"   . muttrc-mode))
 
 ;; python-mode
   ;; (autoload 'python-mode "~/config/emacs/python-mode.el" "Python Mode." t)
@@ -358,7 +358,11 @@
 
 ;; mail mode
 ;; (autoload 'mail-mode "mode for editing email" t)
-(add-to-list 'auto-mode-alist '("\\.eml\\'" . mail-mode))
+;; (add-to-list 'auto-mode-alist '("\\.eml\\'" . mail-mode))
+
+
+;; mu4e
+;; (load "~/.emacs.d/mu4e.el")
 
 ;; pf mode
 (autoload 'pf-mode "~/.emacs.d/pf-mode.el" "Pf Mode." t)
@@ -418,74 +422,6 @@
 (global-set-key (kbd "C-x C-F") 'sidebar-open)
 (global-set-key (kbd "C-x C-a") 'sidebar-buffers-open)
 ;; sidebar : end
-
-;; mu4e
-
-;; (add-to-list 'load-path "~/place/to/your/mu4e")
-(require 'smtpmail)
-
-;; ; smtp
-;; for sendmail read this http://www.gnus.org/manual/message_36.html
-;; am using nullmailer, so my mail sending just became STUPID fast
-(setq message-send-mail-function 'message-send-mail-with-sendmail)
-
-;; (setq message-send-mail-function 'smtpmail-send-it
-;;       smtpmail-starttls-credentials
-;;       '(("mail.neuronfarm.net" 465 nil nil))
-;;       smtpmail-default-smtp-server "mail.neuronfarm.net"
-;;       smtpmail-smtp-server "mail.neuronfarm.net"
-;;       smtpmail-smtp-service 465
-;;       smtpmail-debug-info t)
-
-;; (require 'mu4e)
-
-(setq mu4e-maildir (expand-file-name "/localstorage/isyncmail/neuronfarm"))
-
-(setq mu4e-inbox-folder "/Inbox")
-(setq mu4e-drafts-folder "/Drafts")
-(setq mu4e-sent-folder   "/Inbox")
-(setq mu4e-trash-folder  "/Trash")
-(setq message-signature-file "~/.emacs.d/.signature") ; put your signature in this file
-
-; get mail
-(setq mu4e-get-mail-command "mbsync -c ~/.emacs.d/.mbsyncrc work"
-      mu4e-html2text-command "w3m -T text/html"
-      mu4e-update-interval 120
-      mu4e-headers-auto-update t
-      mu4e-compose-signature-auto-include nil)
-
-;; (setq mu4e-maildir-shortcuts
-;;       '( ("/INBOX"               . ?i)
-;;          ("/Sent Items"   . ?s)
-;;          ("/Trash"       . ?t)
-;;          ("/Drafts"    . ?d)))
-
-;; show images
-(setq mu4e-show-images t)
-
-;; use imagemagick, if available
-(when (fboundp 'imagemagick-register-types)
-  (imagemagick-register-types))
-
-;; general emacs mail settings; used when composing e-mail
-;; the non-mu4e-* stuff is inherited from emacs/message-mode
-(setq mu4e-reply-to-address "nomad@neuronfarm.net"
-    user-mail-address "nomad@neuronfarm.net"
-    user-full-name  "Michel Le Cocq")
-
-;; don't save message to Sent Messages, IMAP takes care of this
-(setq mu4e-sent-messages-behavior 'delete)
-
-;; spell check
-(add-hook 'mu4e-compose-mode-hook
-        (defun my-do-compose-stuff ()
-           "My settings for message composition."
-           (set-fill-column 72)
-           (flyspell-mode)))
-
-;; mu4e end
-
-
 
 ;; 
 (unless window-system
@@ -610,7 +546,7 @@
 	(set-face-foreground 'font-lock-keyword-face  "orange")
 	(make-face-bold 'font-lock-keyword-face)  	
 	(set-face-foreground 'font-lock-string-face   "#77bbea") ; bleu cyant
-	(set-face-foreground 'font-lock-preprocessor-face "blue")
+	(set-face-foreground 'font-lock-preprocessor-face "pink")
 	(set-face-foreground 'font-lock-constant-face   "green")	
 	(set-face-foreground 'font-lock-function-name-face "pink")	
 	(set-face-foreground 'font-lock-type-face    "lightblue")
