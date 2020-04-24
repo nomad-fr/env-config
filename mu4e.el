@@ -97,5 +97,30 @@
            (set-fill-column 72)
            (flyspell-mode)))
 
+
+(defun my-mu4e-choose-signature ()
+  "Insert one of a number of sigs"
+  (interactive)
+  (let ((message-signature
+          (mu4e-read-option "Signature:"
+            '(("pro" .
+	       (concat
+"Michel LE COCQ : CNRS : UMR7154 - UMS3454\n"
+"IPGP : Institut de Physique du Globe de Paris\n"
+"Service Mutualisé Virtualisation / Sismologie / Géoscope\n"
+"Bureau 322 : Tél +33 (0)1.83.95.75.59\n"))
+               ("full-short" .
+		"Michel Le Cocq\n")
+               ("short" .
+		"Michel Le Cocq\n")
+               ("really-short" .
+		"M\n")	       
+	       ))))
+    (message-insert-signature)))
+
+(add-hook 'mu4e-compose-mode-hook
+          (lambda () (local-set-key (kbd "C-c C-w") #'my-mu4e-choose-signature)))
+
+
 ;; mu4e :  end
 
