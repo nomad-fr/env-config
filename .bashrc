@@ -27,22 +27,22 @@ PATH=$PATH:~/bin
 
 
 
-# Start the gpg-agent if not already running
-if ! pgrep -x -u "${USER}" gpg-agent >/dev/null 2>&1; then
-  gpg-connect-agent /bye >/dev/null 2>&1
-fi
+# # Start the gpg-agent if not already running
+# if ! pgrep -x -u "${USER}" gpg-agent >/dev/null 2>&1; then
+#   gpg-connect-agent /bye >/dev/null 2>&1
+# fi
 
-# Set SSH to use gpg-agent
-unset SSH_AGENT_PID
-if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
-  export SSH_AUTH_SOCK="/run/user/$UID/gnupg/S.gpg-agent.ssh"
-fi
+# # Set SSH to use gpg-agent
+# unset SSH_AGENT_PID
+# if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
+#   export SSH_AUTH_SOCK="/run/user/$UID/gnupg/S.gpg-agent.ssh"
+# fi
 
-# Set GPG TTY
-export GPG_TTY=$(tty)
+# # Set GPG TTY
+# export GPG_TTY=$(tty)
 
-# Refresh gpg-agent tty in case user switches into an X session
-gpg-connect-agent updatestartuptty /bye >/dev/null
+# # Refresh gpg-agent tty in case user switches into an X session
+# gpg-connect-agent updatestartuptty /bye >/dev/null
 
 
 
@@ -88,3 +88,19 @@ export NO_AT_BRIDGE=1
 # git
 GIT_PROMPT_ONLY_IN_REPO=1
 #source /home/nomad/VersionControl/GitHub/bash-git-prompt/gitprompt.sh
+
+# # >>> conda initialize >>>
+# # !! Contents within this block are managed by 'conda init' !!
+# __conda_setup="$('/localstorage/nomad/Anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "/localstorage/nomad/Anaconda3/etc/profile.d/conda.sh" ]; then
+#         . "/localstorage/nomad/Anaconda3/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/localstorage/nomad/Anaconda3/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
+# # <<< conda initialize <<<
+

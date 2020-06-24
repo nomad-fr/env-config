@@ -13,6 +13,18 @@
 (setq mu4e-sent-folder   "/Inbox")
 (setq mu4e-trash-folder  "/Trash")
 
+;; rename file when moving them
+(setq mu4e-change-filenames-when-moving t)
+
+;; compose messages in a separate frame
+(setq mu4e-compose-in-new-frame t)
+
+
+;; mu4e seems to remove myself from the Cc:-list
+;; how can I prevent that?
+(setq mu4e-compose-keep-self-cc t)
+
+
 ;; default singature
 ;;(setq message-signature-file "~/.emacs.d/.signature.neuronfarm") ; put your signature in this file
 
@@ -24,12 +36,11 @@
       ;; mu4e-compose-signature-auto-include nil
       )
 
-
-     ;; enable inline images
-     (setq mu4e-view-show-images t)
-     ;; use imagemagick, if available
-     (when (fboundp 'imagemagick-register-types)
-       (imagemagick-register-types))
+;; enable inline images
+(setq mu4e-view-show-images t)
+;; use imagemagick, if available
+(when (fboundp 'imagemagick-register-types)
+  (imagemagick-register-types))
 
 (setq mu4e-contexts
       `( ,(make-mu4e-context
@@ -90,13 +101,27 @@
 ;; don't save message to Sent Messages, IMAP takes care of this
 (setq mu4e-sent-messages-behavior 'delete)
 
-;; spell check
 (add-hook 'mu4e-compose-mode-hook
-        (defun my-do-compose-stuff ()
+   ;; add me in Bcc based on context
+   (lambda()
+    (let* ((ctx (mu4e-context-current))
+  	    (name (if ctx (mu4e-context-name ctx))))
+      (when name
+  	(cond
+  	  ((string= name "NeuronFarm")
+            (save-excursion (message-add-header "Bcc: nomad@neuronfarm.net\n")))
+  	  ((string= name "IPGP")
+	   (save-excursion (message-add-header "Bcc: lecocq@ipgp.fr\n")))) ))
+    )
+   ;; spell check and flychek during composition
+   ;; limit to 72
+   (defun my-do-compose-stuff ()
            "My settings for message composition."
            (set-fill-column 72)
-           (flyspell-mode)))
-
+           (flycheck-mode)
+	   (flyspell-mode)
+	  )
+)
 
 (defun my-mu4e-choose-signature ()
   "Insert one of a number of sigs"
@@ -120,7 +145,6 @@
 
 (add-hook 'mu4e-compose-mode-hook
           (lambda () (local-set-key (kbd "C-c C-w") #'my-mu4e-choose-signature)))
-
 
 ;; mu4e :  end
 

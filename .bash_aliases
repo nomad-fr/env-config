@@ -113,7 +113,6 @@ alias watch='watch --color'
 alias less='less -r'
 alias grep='grep --color'
 
-
 # # anaconda
 # alias conda_activate='source /localstorage/Anaconda/bin/activate /localstorage/Anaconda'
 # alias conda_deactivate='source /localstorage/Anaconda/bin/deactivate'

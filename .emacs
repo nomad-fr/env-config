@@ -51,9 +51,6 @@
  
 ;; (set scrollBarWidth "50")
 
-;; make emacs always use its own browser for opening URL links
-(setq browse-url-browser-function 'eww-browse-url)
-
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
@@ -72,11 +69,14 @@
  '(custom-safe-themes
    (quote
     ("b9e9ba5aeedcc5ba8be99f1cc9301f6679912910ff92fdf7980929c2fc83ab4d" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" default)))
+ '(flycheck-grammalecte-download-without-asking t)
+ '(flycheck-grammalecte-report-apos nil)
+ '(flycheck-grammalecte-report-spellcheck t)
  '(markdown-command "pandoc")
  '(minimap-automatically-delete-window nil)
  '(package-selected-packages
    (quote
-    (powerline frame-local projectile ov s dash-functional dash smart-mode-line-atom-one-dark-theme smart-mode-line org-caldav pov-mode apache-mode salt-mode xah-elisp-mode paredit emamux transpose-frame minimap markdown-mode magit elm-mode auto-package-update auto-complete-auctex auctex)))
+    (flycheck flycheck-grammalecte powerline frame-local projectile ov s dash-functional dash smart-mode-line-atom-one-dark-theme smart-mode-line org-caldav pov-mode apache-mode salt-mode xah-elisp-mode paredit emamux transpose-frame minimap markdown-mode magit elm-mode auto-package-update auto-complete-auctex auctex)))
  '(sidebar-header-line-height 1)
  '(sidebar-mode-line-height 1)
  '(sml/mode-width
@@ -472,6 +472,34 @@
 
 
 ;; change the mode-line color end ;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; open link in firefox           ;;;;;;;;;;;;;;;;;;;;;;;;;
+;; make emacs always use its own browser for opening URL links
+;;(setq browse-url-browser-function 'eww-browse-url)
+;; work around the bogus "-remote" flag specified by browse-url-firefox
+(setq browse-url-browser-function 'browse-url-generic)
+(setq browse-url-generic-program "firefox")
+;; open link in firefox end       ;;;;;;;;;;;;;;;;;;;;;;;;;
+ 
+
+;; spell check ;;;;
+
+(add-hook 'org-mode-hook 'turn-on-flyspell)
+
+
+(package-install 'flycheck)
+
+(global-flycheck-mode)
+
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
+(with-eval-after-load 'flycheck  
+  (require 'flycheck-grammalecte)
+  (setq flycheck-grammalecte-report-esp nil)
+  (add-to-list 'flycheck-grammalecte-enabled-modes 'markdown-mode)
+  (add-to-list 'flycheck-grammalecte-enabled-modes 'mu4e-compose-mode)
+  (flycheck-grammalecte-setup))
+;; spell check end  ;;;;
 
 (if (daemonp)
     (add-hook 'after-make-frame-functions
