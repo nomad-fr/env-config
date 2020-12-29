@@ -2,6 +2,8 @@
 (require 'mu4e)
 (require 'org-mu4e)
 
+(add-to-list 'load-path "~/VersionControl/GitHub/mu4e-overview/mu4e-overview.el")
+
 ;;send mail using postfix
 (setq send-mail-function 'sendmail-send-it)
 (setq message-send-mail-function 'message-send-mail-with-sendmail)
