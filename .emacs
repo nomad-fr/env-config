@@ -400,7 +400,7 @@
 ;; show line numbers
 ;; show line number with f6 : see key bindings
 ;; https://github.com/targzeta/linum-highlight-current-line-number
-(add-to-list 'load-path "/home/nomad/VersionControl/GitHub/linum-highlight-current-line-number/")
+(add-to-list 'load-path "~/VersionControl/GitHub/linum-highlight-current-line-number/")
 (require 'linum-highlight-current-line-number)
 (setq linum-format 'linum-highlight-current-line-number)
 ;; If you want line number to start at 0, put this in your emacs init file:
@@ -585,13 +585,13 @@
 )))
 
 
+;; load my config files
 (defconst user-init-dir
   (cond ((boundp 'user-emacs-directory)
          user-emacs-directory)
         ((boundp 'user-init-directory)
          user-init-directory)
         (t "~/.emacs.d/")))
-
 
 (defun load-user-file (file)
   (interactive "f")
