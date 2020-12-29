@@ -1,5 +1,5 @@
 ;; mu4e : begin
-
+(require 'mu4e)
 (require 'org-mu4e)
 
 ;;send mail using postfix
@@ -7,6 +7,25 @@
 (setq message-send-mail-function 'message-send-mail-with-sendmail)
 
 (setq mu4e-maildir (expand-file-name "~/.localsyncmail/neuronfarm/"))
+
+(add-to-list 'mu4e-bookmarks
+  '( :name  "Big messages"
+     :query "size:5M..500M"
+     :key   ?b))
+(add-to-list 'mu4e-bookmarks
+  '( :name  "Flag"
+     :query "flag:flagged"
+     :key   ?f))
+(add-to-list 'mu4e-bookmarks
+  '( :name  "IPGP : PDF in attachment"
+     :query "maildir:/IPGP and mime:application/pdf"
+     :key   ?g)
+)
+(add-to-list 'mu4e-bookmarks
+  '( :name  "IPGP : more than7 days less than 2 month"
+     :query "maildir:/IPGP and date:2m..1W"
+     :key   ?g)
+)
 
 (setq mu4e-inbox-folder "/Inbox")
 (setq mu4e-drafts-folder "/Drafts")
@@ -133,7 +152,7 @@
 "Michel LE COCQ : CNRS : UMR7154 - UMS3454\n"
 "IPGP : Institut de Physique du Globe de Paris\n"
 "Service Mutualisé Virtualisation / Sismologie / Géoscope\n"
-"Bureau 322 : Tél +33 (0)1.83.95.75.59\n"))
+"Bureau 322 : Tél +33 (0)6 26 56 15 61\n"))
                ("full-short" .
 		"Michel Le Cocq\n")
                ("short" .
@@ -141,10 +160,24 @@
                ("really-short" .
 		"M\n")	       
 	       ))))
-    (message-insert-signature)))
+    (save-restriction
+      (narrow-to-region (point) (point))
+      (message-insert-signature))
+  ))
 
 (add-hook 'mu4e-compose-mode-hook
-          (lambda () (local-set-key (kbd "C-c C-w") #'my-mu4e-choose-signature)))
+          (lambda () (local-set-key (kbd "C-c C-w") #'my-mu4e-choose-signature)) )
+ 
+;; a V opens the current message in the default web browsers.
+(add-to-list 'mu4e-view-actions '("ViewInBrowser" . mu4e-action-view-in-browser) t)
+(add-to-list 'mu4e-view-actions '("browse message" . mu4e-action-view-in-browser))
+
+
+;; speed up indexing
+;; https://www.djcbsoftware.nl/code/mu/mu4e/Retrieval-and-indexing.html
+(setq
+  mu4e-index-cleanup nil      ;; don't do a full cleanup check
+  mu4e-index-lazy-check t)    ;; don't consider up-to-date dirs
 
 ;; mu4e :  end
 

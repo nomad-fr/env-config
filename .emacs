@@ -55,7 +55,7 @@
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
-(package-initialize)
+;; (package-initialize)
 
 ;; pb de signature de packages
 (setq package-check-signature nil)
@@ -77,8 +77,8 @@
  '(package-selected-packages
    (quote
     (flycheck flycheck-grammalecte powerline frame-local projectile ov s dash-functional dash smart-mode-line-atom-one-dark-theme smart-mode-line org-caldav pov-mode apache-mode salt-mode xah-elisp-mode paredit emamux transpose-frame minimap markdown-mode magit elm-mode auto-package-update auto-complete-auctex auctex)))
- '(sidebar-header-line-height 1)
- '(sidebar-mode-line-height 1)
+ ;;'(sidebar-header-line-height 1)
+ ;;'(sidebar-mode-line-height 1)
  '(sml/mode-width
    (if
        (eq
@@ -360,10 +360,6 @@
 ;; (autoload 'mail-mode "mode for editing email" t)
 ;; (add-to-list 'auto-mode-alist '("\\.eml\\'" . mail-mode))
 
-
-;; mu4e
-;; (load "~/.emacs.d/mu4e.el")
-
 ;; pf mode
 (autoload 'pf-mode "~/.emacs.d/pf-mode.el" "Pf Mode." t)
       (add-to-list 'auto-mode-alist '("\\pf.conf\\'" . pf-mode))
@@ -387,16 +383,16 @@
 
 ;; http://cloud.neuronfarm.net/remote.php/caldav/calendars/nomad/appart
 
-(require 'org-caldav)
- (setq org-caldav-calendars
-       ;; '((:calendar-id "default calendar" :files ("/localstorage/nomad/task-org-caldav/default")
-       ;; 		       :inbox       "/localstorage/nomad/task-org-caldav/from_default"
-       ;; 		       :url         "https://cloud.neuronfarm.net/remote.php/caldav/calendars/nomad")
+;; (require 'org-caldav)
+;;  (setq org-caldav-calendars
+;;        ;; '((:calendar-id "default calendar" :files ("/localstorage/nomad/task-org-caldav/default")
+;;        ;; 		       :inbox       "/localstorage/nomad/task-org-caldav/from_default"
+;;        ;; 		       :url         "https://cloud.neuronfarm.net/remote.php/caldav/calendars/nomad")
 
-       '((:calendar-id "ipgp" :files ("/localstorage/nomad/task-org-caldav/ipgp")
-		       :url         "https://cloud.neuronfarm.net/remote.php/caldav/calendars/nomad")
+;;        '((:calendar-id "ipgp" :files ("/localstorage/nomad/task-org-caldav/ipgp")
+;; 		       :url         "https://cloud.neuronfarm.net/remote.php/caldav/calendars/nomad")
 
-    ))
+;;     ))
 
 (setq org-caldav-delete-calendar-entries 'ask)
 (setq org-icalendar-timezone "Europe/Paris")
@@ -417,10 +413,10 @@
 ;; sidebar : https://github.com/sebastiencs/sidebar.el
 (add-to-list 'load-path "/home/nomad/VersionControl/GitHub/font-lock+.el")
 (add-to-list 'load-path "~/.local/share/icons-in-terminal/") ;; If it's not already done
-(add-to-list 'load-path "/home/nomad/VersionControl/GitHub/sidebar.el")
-(require 'sidebar)
-(global-set-key (kbd "C-x C-F") 'sidebar-open)
-(global-set-key (kbd "C-x C-a") 'sidebar-buffers-open)
+;; (add-to-list 'load-path "/home/nomad/VersionControl/GitHub/sidebar.el")
+;; (require 'sidebar)
+;; (global-set-key (kbd "C-x C-F") 'sidebar-open)
+;; (global-set-key (kbd "C-x C-a") 'sidebar-buffers-open)
 ;; sidebar : end
 
 ;; 
@@ -487,7 +483,7 @@
 (add-hook 'org-mode-hook 'turn-on-flyspell)
 
 
-(package-install 'flycheck)
+;;(package-install 'flycheck)
 
 (global-flycheck-mode)
 
@@ -551,7 +547,7 @@
 	
 	(when window-system
 	  (if (> (x-display-pixel-width) 3000)
-	      	(set-face-attribute 'default nil :height 200)))
+	      	(set-face-attribute 'default nil :height 100)))
 	
 	;; Color ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	;; highlight the current line; set a custom face, so we can
@@ -588,3 +584,19 @@
 	
 )))
 
+
+(defconst user-init-dir
+  (cond ((boundp 'user-emacs-directory)
+         user-emacs-directory)
+        ((boundp 'user-init-directory)
+         user-init-directory)
+        (t "~/.emacs.d/")))
+
+
+(defun load-user-file (file)
+  (interactive "f")
+  "Load a file in current user's configuration directory"
+  (load-file (expand-file-name file user-init-dir)))
+
+(load-user-file "mu4e.el")
+(load-user-file "tramp.el")
