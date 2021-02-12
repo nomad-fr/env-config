@@ -11,6 +11,30 @@
 (setq mu4e-maildir (expand-file-name "~/.localsyncmail/neuronfarm/"))
 
 (add-to-list 'mu4e-bookmarks
+  '( :name  "ASR"
+     :query "maildir:/IPGP/Listes/ASR"
+     :key   ?z))
+(add-to-list 'mu4e-bookmarks
+  '( :name  "Respire"
+     :query "maildir:/IPGP/Listes/Respire"
+     :key   ?y))
+(add-to-list 'mu4e-bookmarks
+  '( :name  "Respire Copile"
+     :query "maildir:/IPGP/Listes/Respire/copile"
+     :key   ?x))
+(add-to-list 'mu4e-bookmarks
+  '( :name  "hackesr"
+     :query "maildir:/IPGP/Listes/hackesr"
+     :key   ?w))
+(add-to-list 'mu4e-bookmarks
+  '( :name  "IPGP"
+     :query "maildir:/IPGP"
+     :key   ?a))
+(add-to-list 'mu4e-bookmarks
+  '( :name  "Inbox"
+     :query "maildir:/Inbox"
+     :key   ?c))
+(add-to-list 'mu4e-bookmarks
   '( :name  "Big messages"
      :query "size:5M..500M"
      :key   ?b))
