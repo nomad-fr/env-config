@@ -551,15 +551,15 @@
 	  ;;     (set-face-attribute 'default nil :height 100)
 	  ;;   )
 	  
-	  ;; U4320 : 3840 x 2160
-	  ;; moitiée : 1920 x 2160
-	  (if (>= (x-display-pixel-height) 2160)
-	      (set-face-attribute 'default nil :height 50)
-	    )	  
-	  ;; Dell Xps13 : 3840 x 2400
-	  (if (>= (x-display-pixel-height) 2400)
-	      (set-face-attribute 'default nil :height 100)
-	    )	  
+	  ;; ;; U4320 : 3840 x 2160
+	  ;; ;; moitiée : 1920 x 2160
+	  ;; (if (>= (x-display-pixel-height) 2160)
+	  ;;     (set-face-attribute 'default nil :height 50)
+	  ;;   )	  
+	  ;; ;; Dell Xps13 : 3840 x 2400
+	  ;; (if (>= (x-display-pixel-height) 2400)
+	  ;;     (set-face-attribute 'default nil :height 100)
+	  ;;   )	  
 		
 	  ;; (and (>= (x-display-pixel-width) 3840)
 	  ;;      (>= (x-display-pixel-width) 2160))
