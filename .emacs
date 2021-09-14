@@ -67,86 +67,65 @@
  ;; If there is more than one, they won't work right.
  '(bmkp-last-as-first-bookmark-file "~/.emacs.d/bookmarks")
  '(custom-safe-themes
-   (quote
-    ("b9e9ba5aeedcc5ba8be99f1cc9301f6679912910ff92fdf7980929c2fc83ab4d" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" default)))
+   '("b9e9ba5aeedcc5ba8be99f1cc9301f6679912910ff92fdf7980929c2fc83ab4d" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" default))
  '(flycheck-grammalecte-download-without-asking t)
  '(flycheck-grammalecte-report-apos nil)
  '(flycheck-grammalecte-report-spellcheck t)
+ '(grammalecte-download-without-asking t)
  '(markdown-command "pandoc")
  '(minimap-automatically-delete-window nil)
  '(package-selected-packages
-   (quote
-    (flycheck flycheck-grammalecte powerline frame-local projectile ov s dash-functional dash smart-mode-line-atom-one-dark-theme smart-mode-line org-caldav pov-mode apache-mode salt-mode xah-elisp-mode paredit emamux transpose-frame minimap markdown-mode magit elm-mode auto-package-update auto-complete-auctex auctex)))
- ;;'(sidebar-header-line-height 1)
- ;;'(sidebar-mode-line-height 1)
- '(sml/mode-width
-   (if
-       (eq
-	(powerline-current-separator)
-	(quote arrow))
-       (quote right)
-     (quote full)))
+   '(async with-emacs magit-popup git-commit-insert-issue flycheck flycheck-grammalecte powerline frame-local projectile ov s dash-functional dash smart-mode-line-atom-one-dark-theme smart-mode-line org-caldav pov-mode apache-mode salt-mode xah-elisp-mode paredit emamux transpose-frame minimap markdown-mode magit elm-mode auto-package-update auto-complete-auctex auctex))
+ '(sml/mode-width (if (eq (powerline-current-separator) 'arrow) 'right 'full))
  '(sml/pos-id-separator
-   (quote
-    (""
+   '(""
      (:propertize " " face powerline-active1)
      (:eval
-      (propertize " "
-		  (quote display)
+      (propertize " " 'display
 		  (funcall
 		   (intern
 		    (format "powerline-%s-%s"
 			    (powerline-current-separator)
 			    (car powerline-default-separator-dir)))
-		   (quote powerline-active1)
-		   (quote powerline-active2))))
-     (:propertize " " face powerline-active2))))
+		   'powerline-active1 'powerline-active2)))
+     (:propertize " " face powerline-active2)))
  '(sml/pos-minor-modes-separator
-   (quote
-    (""
+   '(""
      (:propertize " " face powerline-active1)
      (:eval
-      (propertize " "
-		  (quote display)
+      (propertize " " 'display
 		  (funcall
 		   (intern
 		    (format "powerline-%s-%s"
 			    (powerline-current-separator)
 			    (cdr powerline-default-separator-dir)))
-		   (quote powerline-active1)
-		   (quote sml/global))))
-     (:propertize " " face sml/global))))
+		   'powerline-active1 'sml/global)))
+     (:propertize " " face sml/global)))
  '(sml/pre-id-separator
-   (quote
-    (""
+   '(""
      (:propertize " " face sml/global)
      (:eval
-      (propertize " "
-		  (quote display)
+      (propertize " " 'display
 		  (funcall
 		   (intern
 		    (format "powerline-%s-%s"
 			    (powerline-current-separator)
 			    (car powerline-default-separator-dir)))
-		   (quote sml/global)
-		   (quote powerline-active1))))
-     (:propertize " " face powerline-active1))))
+		   'sml/global 'powerline-active1)))
+     (:propertize " " face powerline-active1)))
  '(sml/pre-minor-modes-separator
-   (quote
-    (""
+   '(""
      (:propertize " " face powerline-active2)
      (:eval
-      (propertize " "
-		  (quote display)
+      (propertize " " 'display
 		  (funcall
 		   (intern
 		    (format "powerline-%s-%s"
 			    (powerline-current-separator)
 			    (cdr powerline-default-separator-dir)))
-		   (quote powerline-active2)
-		   (quote powerline-active1))))
-     (:propertize " " face powerline-active1))))
- '(sml/pre-modes-separator (propertize " " (quote face) (quote sml/modes))))
+		   'powerline-active2 'powerline-active1)))
+     (:propertize " " face powerline-active1)))
+ '(sml/pre-modes-separator (propertize " " 'face 'sml/modes)))
 
 
 (defun markdown-to-html ()
@@ -459,7 +438,7 @@
  '(ido-only-match ((t (:foreground "#ffcc33"))))
  '(ido-subdir ((t (:foreground "#66ff00"))))
  '(minimap-active-region-background ((((background dark)) (:background "#181818")) (t (:background "#D3D3D3222222")) "Face for the active region in the minimap.
-             By default, this is only a different background color." :group (quote minimap)))
+             By default, this is only a different background color." :group 'minimap))
  '(mode-line ((t (:foreground "#295488" :background "darkorange" :box nil))))
  '(mode-line-inactive ((t (:foreground "darkorange" :background "#295488" :box nil))))
  '(sidebar-buffers-headers-face ((t (:foreground "darkorange" :background "#295488" :height 1))))
@@ -554,7 +533,7 @@
 	  ;; U4320 : 3840 x 2160
 	  ;; moitiée : 1920 x 2160
 	  (if (>= (x-display-pixel-height) 2160)
-	      (set-face-attribute 'default nil :height 50)
+	      (set-face-attribute 'default nil :height 100)
 	    )	  
 	  ;; Dell Xps13 : 3840 x 2400
 	  (if (>= (x-display-pixel-height) 2400)
