@@ -89,18 +89,18 @@ export NO_AT_BRIDGE=1
 GIT_PROMPT_ONLY_IN_REPO=1
 #source /home/nomad/VersionControl/GitHub/bash-git-prompt/gitprompt.sh
 
-# # >>> conda initialize >>>
-# # !! Contents within this block are managed by 'conda init' !!
-# __conda_setup="$('/localstorage/nomad/Anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-# if [ $? -eq 0 ]; then
-#     eval "$__conda_setup"
-# else
-#     if [ -f "/localstorage/nomad/Anaconda3/etc/profile.d/conda.sh" ]; then
-#         . "/localstorage/nomad/Anaconda3/etc/profile.d/conda.sh"
-#     else
-#         export PATH="/localstorage/nomad/Anaconda3/bin:$PATH"
-#     fi
-# fi
-# unset __conda_setup
-# # <<< conda initialize <<<
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/localstorage/Anaconda/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/localstorage/Anaconda/etc/profile.d/conda.sh" ]; then
+        . "/localstorage/Anaconda/etc/profile.d/conda.sh"
+    else
+        export PATH="/localstorage/Anaconda/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
 
