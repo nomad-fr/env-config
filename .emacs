@@ -539,9 +539,6 @@
 	  (if (>= (x-display-pixel-height) 2400)
 	      (set-face-attribute 'default nil :height 100)
 	    )	  
-		
-	  ;; (and (>= (x-display-pixel-width) 3840)
-	  ;;      (>= (x-display-pixel-width) 2160))
 	  )
 	
 	;; Color ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

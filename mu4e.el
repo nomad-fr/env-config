@@ -45,13 +45,17 @@
 (add-to-list 'mu4e-bookmarks
   '( :name  "IPGP : PDF in attachment"
      :query "maildir:/IPGP and mime:application/pdf"
-     :key   ?g)
-)
+     :key   ?g
+     :hide-unread t
+     ))
 (add-to-list 'mu4e-bookmarks
   '( :name  "IPGP : more than7 days less than 2 month"
      :query "maildir:/IPGP and date:2m..1W"
-     :key   ?g)
-)
+     :key   ?h))
+(add-to-list 'mu4e-bookmarks
+  '( :name  "Unread not in Listes"
+	    :query "flag:unread NOT maildir:/IPGP/Listes/*"
+	    :key   ?i))
 
 (setq mu4e-inbox-folder "/Inbox")
 (setq mu4e-drafts-folder "/Drafts")
