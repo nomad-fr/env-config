@@ -123,4 +123,4 @@ alias grep='grep --color'
 
 # emacs
 alias emacs='/usr/bin/emacs -mm'  
-#alias emacs='/usr/local/bin/emacs -mm'  
+alias emacsclient='emacsclient -c'
