@@ -56,6 +56,10 @@
   '( :name  "Unread not in Listes"
 	    :query "flag:unread NOT maildir:/IPGP/Listes/*"
 	    :key   ?i))
+(add-to-list 'mu4e-bookmarks
+  '( :name  "Spams"
+	    :query "maildir:/Spams/*"
+	    :key   ?j))
 
 (setq mu4e-inbox-folder "/Inbox")
 (setq mu4e-drafts-folder "/Drafts")
