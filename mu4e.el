@@ -76,9 +76,18 @@
 	( :name "Unread messages"
           :query "flag:unread AND NOT flag:trashed"
 	  :key ?u)
+	( :name  "Unread not in Listes"
+	  :query "flag:unread NOT flag:list"
+	  :key   ?U)	
 	( :name "Last 7 days"
 	  :query "date:7d..now"
-	  :key ?w)	
+	  :key ?w)
+	( :name  "Inbox"
+	  :query "maildir:/Inbox"
+	  :key   ?i)		
+	( :name  "IPGP"
+	  :query "maildir:/IPGP"
+	  :key   ?I)
 	( :name  "Liste ASR"
 	  :query "maildir:/IPGP/Listes/ASR"
 	  :key   ?z)
@@ -91,12 +100,6 @@
 	( :name  "Liste hackesr"
 	  :query "maildir:/IPGP/Listes/hackesr"
 	  :key   ?w)
-	( :name  "IPGP"
-	  :query "maildir:/IPGP"
-	  :key   ?I)
-	( :name  "Inbox"
-	  :query "maildir:/Inbox"
-	  :key   ?i)
 	( :name  "Big messages"
 	  :query "size:5M..500M"
 	  :key   ?b)
@@ -110,12 +113,13 @@
 	( :name  "IPGP : more than7 days less than 2 month"
 	  :query "maildir:/IPGP and date:2m..1W"
 	  :key   ?h)
-	( :name  "Unread not in Listes"
-	  :query "flag:unread NOT flag:list"
-	  :key   ?U)
 	( :name  "Spams"
 	  :query "maildir:/Spams/*"
-	  :key   ?j)))
+	  :key   ?j)
+	( :name  "Drafts"
+	  :query "flag:draft and maildir:/Drafts/"
+	  :key   ?d)
+	))
       
 (setq mu4e-inbox-folder "/Inbox")
 (setq mu4e-drafts-folder "/Drafts")
