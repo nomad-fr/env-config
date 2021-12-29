@@ -349,8 +349,7 @@
 
 ;; melpa
 (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
-                       	 ("marmalade" . "https://marmalade-repo.org/packages/")
-			 ;;("melpa" . "http://melpa.milkbox.net/packages/")
+			 ("nongnu" . "https://elpa.nongnu.org/nongnu/")
 		         ("melpa" . "https://melpa.org/packages/")))
 
 ;; (require 'org-caldav)
@@ -483,9 +482,9 @@
 	
 	;; mode-line PowerLine ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	;; https://github.com/jonathanchu/emacs-powerline
-	(add-to-list 'load-path "~/VersionControl/GitHub/emacs-powerline")
-	(require 'powerline)
-	(require 'cl)
+	;; (add-to-list 'load-path "~/VersionControl/GitHub/emacs-powerline")
+	;; (require 'powerline)
+	;; (require 'cl)
 	;; You can choose between different arrow shapes:
 	
 	(setq powerline-arrow-shape 'arrow)   ;; the default

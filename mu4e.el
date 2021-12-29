@@ -67,16 +67,16 @@
 
 
 (setq mu4e-bookmarks
-      `(( :name "Today's messages not in list"
+      `(( :name "Today NO list"
           :query "date:today..now NOT flag:list"
 	  :key ?t)
-	( :name "Today's messages in list"
+	( :name "Today IN list"
           :query "date:today..now flag:list"
 	  :key ?T)
 	( :name "Unread messages"
           :query "flag:unread AND NOT flag:trashed"
 	  :key ?u)
-	( :name  "Unread not in Listes"
+	( :name  "Unread NO list"
 	  :query "flag:unread NOT flag:list"
 	  :key   ?U)	
 	( :name "Last 7 days"
@@ -110,7 +110,7 @@
 	  :query "maildir:/IPGP and mime:application/pdf"
 	  :key   ?g
 	  :hide-unread t)
-	( :name  "IPGP : more than7 days less than 2 month"
+	( :name  "IPGP : more than 7 days less than 2 month"
 	  :query "maildir:/IPGP and date:2m..1W"
 	  :key   ?h)
 	( :name  "Spams"
@@ -266,12 +266,12 @@
 (add-to-list 'mu4e-view-actions '("ViewInBrowser" . mu4e-action-view-in-browser) t)
 (add-to-list 'mu4e-view-actions '("browse message" . mu4e-action-view-in-browser))
 
-
+;; 29.12.2021 Désactivé pour voir su cela résoud le souci de mails qui n'apparaissent pas si 'vue' sur un autre client
 ;; speed up indexing
 ;; https://www.djcbsoftware.nl/code/mu/mu4e/Retrieval-and-indexing.html
-(setq
-  mu4e-index-cleanup nil      ;; don't do a full cleanup check
-  mu4e-index-lazy-check t)    ;; don't consider up-to-date dirs
+;; (setq
+;;   mu4e-index-cleanup nil      ;; don't do a full cleanup check
+;;   mu4e-index-lazy-check t)    ;; don't consider up-to-date dirs
 
 ;; mu4e :  end
 
