@@ -1,19 +1,3 @@
-(defun set-exec-path-from-shell-PATH ()
-  "Set up Emacs' `exec-path' and PATH environment variable to match
-that used by the user's shell.
-
-This is particularly useful under Mac OS X and macOS, where GUI
-apps are not started from a shell."
-  (interactive)
-  (let ((path-from-shell (replace-regexp-in-string
-			  "[ \t\n]*$" "" (shell-command-to-string
-					  "$SHELL --login -c 'echo $PATH'"
-						    ))))
-    (setenv "PATH" path-from-shell)
-    (setq exec-path (split-string path-from-shell path-separator))))
-
-(set-exec-path-from-shell-PATH)
-
 ;; Single dot emacs file and per-computer configuration
 ;; https://sigquit.wordpress.com/2008/09/28/single-dot-emacs-file/
 ;; Get current system's name
@@ -344,7 +328,6 @@ apps are not started from a shell."
 
 ;; svn mode
 
-
 ;; pour utiliser avec C-x b
 ;; (require 'ido)
 ;; (setq ido-enable-flex-matching t)
@@ -606,3 +589,7 @@ apps are not started from a shell."
 
 (load-user-file "mu4e.el")
 (load-user-file "tramp.el")
+
+
+(setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
+(setq exec-path (append exec-path '("/usr/local/bin")))
