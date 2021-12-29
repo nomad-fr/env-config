@@ -590,6 +590,4 @@
 (load-user-file "mu4e.el")
 (load-user-file "tramp.el")
 
-
-(setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
-(setq exec-path (append exec-path '("/usr/local/bin")))
+(add-to-list 'exec-path "/usr/local/bin/")
