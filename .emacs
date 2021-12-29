@@ -590,4 +590,3 @@
 (load-user-file "mu4e.el")
 (load-user-file "tramp.el")
 
-(add-to-list 'exec-path "/usr/local/bin/")
