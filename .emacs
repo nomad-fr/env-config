@@ -5,21 +5,31 @@
   (interactive)
   "Get current system's name"
   (insert (format "%s" system-name)))
+
 ;; Get current system type
 (defun insert-system-type()
   (interactive)
   "Get current system type"
   (insert (format "%s" system-type)))
 ;; Check if system is GNU/Linux
-(defun system-type-is-gnu ()
+(defun system-type-is-linux ()
   (interactive)
   "Return true if system is GNU/Linux-based"
   (string-equal system-type "gnu/linux"))
 ;; Check if system is berkeley-unix
-(defun system-type-is-gnu ()
+(defun system-type-is-bsd ()
   (interactive)
   "Return true if system is berkeley-unix"
   (string-equal system-type "berkeley-unix"))
+
+;; ‘M-x insert-system-name‘ or ‘M-x insert-system-type‘ to test them.
+
+(if (system-type-is-bsd)
+  (message "\nBSD\n")
+)
+(if (system-type-is-linux)
+  (message "\nLinux\n")
+)
 
 ;; Set default font
 (add-to-list 'default-frame-alist
@@ -68,14 +78,10 @@
  '(bmkp-last-as-first-bookmark-file "~/.emacs.d/bookmarks")
  '(custom-safe-themes
    '("b9e9ba5aeedcc5ba8be99f1cc9301f6679912910ff92fdf7980929c2fc83ab4d" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" default))
- '(flycheck-grammalecte-download-without-asking t)
- '(flycheck-grammalecte-report-apos nil)
- '(flycheck-grammalecte-report-spellcheck t)
- '(grammalecte-download-without-asking t)
  '(markdown-command "pandoc")
  '(minimap-automatically-delete-window nil)
  '(package-selected-packages
-   '(async with-emacs magit-popup git-commit-insert-issue flycheck flycheck-grammalecte powerline frame-local projectile ov s dash-functional dash smart-mode-line-atom-one-dark-theme smart-mode-line org-caldav pov-mode apache-mode salt-mode xah-elisp-mode paredit emamux transpose-frame minimap markdown-mode magit elm-mode auto-package-update auto-complete-auctex auctex))
+   '(exec-path-from-shell async with-emacs magit-popup git-commit-insert-issue flycheck flycheck-grammalecte powerline frame-local projectile ov s dash-functional dash smart-mode-line-atom-one-dark-theme smart-mode-line org-caldav pov-mode apache-mode salt-mode xah-elisp-mode paredit emamux transpose-frame minimap markdown-mode magit elm-mode auto-package-update auto-complete-auctex auctex))
  '(sml/mode-width (if (eq (powerline-current-separator) 'arrow) 'right 'full))
  '(sml/pos-id-separator
    '(""
@@ -454,26 +460,6 @@
 (setq browse-url-generic-program "firefox")
 ;; open link in firefox end       ;;;;;;;;;;;;;;;;;;;;;;;;;
  
-
-;; spell check ;;;;
-
-(add-hook 'org-mode-hook 'turn-on-flyspell)
-
-
-;;(package-install 'flycheck)
-
-(global-flycheck-mode)
-
-(add-hook 'after-init-hook #'global-flycheck-mode)
-
-(with-eval-after-load 'flycheck  
-  (require 'flycheck-grammalecte)
-  (setq flycheck-grammalecte-report-esp nil)
-  (add-to-list 'flycheck-grammalecte-enabled-modes 'markdown-mode)
-  (add-to-list 'flycheck-grammalecte-enabled-modes 'mu4e-compose-mode)
-  (flycheck-grammalecte-setup))
-;; spell check end  ;;;;
-
 (if (daemonp)
     (add-hook 'after-make-frame-functions
         (lambda (frame)
@@ -485,7 +471,7 @@
 	;; (require 'powerline)
 	;; (require 'cl)
 	;; You can choose between different arrow shapes:
-	
+91	
 	(setq powerline-arrow-shape 'arrow)   ;; the default
 	;; (setq powerline-arrow-shape 'curve)   ;; give your mode-line curves
 	;; (setq powerline-arrow-shape 'arrow14) ;; best for small fonts
@@ -510,15 +496,7 @@
 	(add-to-list 'minimap-major-modes 'html-mode)
 	;  disable the mode line in Minimap sidebars
 	(add-hook 'minimap-sb-mode-hook (lambda () (setq mode-line-format nil)))
-	
-	(custom-set-faces
-	 '(minimap-active-region-background
-	   ((((background dark)) (:background "#181818"))
-	    (t (:background "#D3D3D3222222"))
-	    "Face for the active region in the minimap.
-             By default, this is only a different background color."
-	    :group 'minimap))
-	 )
+
 
 	(set-face-attribute 'default nil :height 116) ;; 116 minimum size sinon le theme bave
 
@@ -538,40 +516,7 @@
 	      (set-face-attribute 'default nil :height 100)
 	    )	  
 	  )
-	
-	;; Color ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	;; highlight the current line; set a custom face, so we can
-	;; recognize from the normal marking (selection)
-	(defface hl-line '((t (:background "#292929")))
-	  "Face to use for `hl-line-face'." :group 'hl-line)
-	(setq hl-line-face 'hl-line)
-	(global-hl-line-mode t) ;; turn it on for all modes by default
-	(add-hook 'term-mode-hook (lambda ()
-                            (setq-local global-hl-line-mode
-                                        nil)))
-	
-	(set-face-attribute 'region nil :background "#494949") ;; couleur de fond des selections
-	    
-	;; custom colors
-	(set-foreground-color "grey")
-	(set-face-foreground 'font-lock-string-face  "#123467")
-	(set-face-foreground 'font-lock-comment-face  "#009380")
-	(make-face-italic 'font-lock-comment-face)	
-	(set-face-foreground 'font-lock-keyword-face  "orange")
-	(make-face-bold 'font-lock-keyword-face)  	
-	(set-face-foreground 'font-lock-string-face   "#77bbea") ; bleu cyant
-	(set-face-foreground 'font-lock-preprocessor-face "pink")
-	(set-face-foreground 'font-lock-constant-face   "green")	
-	(set-face-foreground 'font-lock-function-name-face "pink")	
-	(set-face-foreground 'font-lock-type-face    "lightblue")
-	(make-face-bold 'font-lock-type-face)	  
-	(set-face-foreground 'font-lock-variable-name-face "grey")	
-	(set-face-foreground 'font-lock-warning-face "red")
-	(set-face-underline  'font-lock-warning-face "red")		
-	(set-face-foreground 'minibuffer-prompt "orange")	
-	(set-background-color "#000000") ; dark grey 
-	;; Color end ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	
+	(load-user-file "color.el") ;; il y a un souci ici a verifier multiple instance color
 )))
 
 ;; load my config files
@@ -587,6 +532,10 @@
   "Load a file in current user's configuration directory"
   (load-file (expand-file-name file user-init-dir)))
 
+;;(load-user-file "color.el")
 (load-user-file "mu4e.el")
 (load-user-file "tramp.el")
+(load-user-file "flycheck.el")
+
+
 
