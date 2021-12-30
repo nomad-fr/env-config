@@ -81,60 +81,10 @@
  '(markdown-command "pandoc")
  '(minimap-automatically-delete-window nil)
  '(package-selected-packages
-   '(exec-path-from-shell async with-emacs magit-popup git-commit-insert-issue flycheck flycheck-grammalecte powerline frame-local projectile ov s dash-functional dash smart-mode-line-atom-one-dark-theme smart-mode-line org-caldav pov-mode apache-mode salt-mode xah-elisp-mode paredit emamux transpose-frame minimap markdown-mode magit elm-mode auto-package-update auto-complete-auctex auctex))
-
-
- '(sml/mode-width (if (eq (powerline-current-separator) 'arrow) 'right 'full))
- '(sml/pos-id-separator
-   '(""
-     (:propertize " " face powerline-active1)
-     (:eval
-      (propertize " " 'display
-		  (funcall
-		   (intern
-		    (format "powerline-%s-%s"
-			    (powerline-current-separator)
-			    (car powerline-default-separator-dir)))
-		   'powerline-active1 'powerline-active2)))
-     (:propertize " " face powerline-active2)))
- '(sml/pos-minor-modes-separator
-   '(""
-     (:propertize " " face powerline-active1)
-     (:eval
-      (propertize " " 'display
-		  (funcall
-		   (intern
-		    (format "powerline-%s-%s"
-			    (powerline-current-separator)
-			    (cdr powerline-default-separator-dir)))
-		   'powerline-active1 'sml/global)))
-     (:propertize " " face sml/global)))
- '(sml/pre-id-separator
-   '(""
-     (:propertize " " face sml/global)
-     (:eval
-      (propertize " " 'display
-		  (funcall
-		   (intern
-		    (format "powerline-%s-%s"
-			    (powerline-current-separator)
-			    (car powerline-default-separator-dir)))
-		   'sml/global 'powerline-active1)))
-     (:propertize " " face powerline-active1)))
- '(sml/pre-minor-modes-separator
-   '(""
-     (:propertize " " face powerline-active2)
-     (:eval
-      (propertize " " 'display
-		  (funcall
-		   (intern
-		    (format "powerline-%s-%s"
-			    (powerline-current-separator)
-			    (cdr powerline-default-separator-dir)))
-		   'powerline-active2 'powerline-active1)))
-     (:propertize " " face powerline-active1)))
- '(sml/pre-modes-separator (propertize " " 'face 'sml/modes)))
-
+   '(exec-path-from-shell async with-emacs magit-popup git-commit-insert-issue flycheck flycheck-grammalecte frame-local projectile ov s dash-functional dash smart-mode-line-atom-one-dark-theme smart-mode-line org-caldav pov-mode apache-mode salt-mode xah-elisp-mode paredit emamux transpose-frame minimap markdown-mode magit elm-mode auto-package-update auto-complete-auctex auctex))
+ 
+;; pour mode-line /!\ a expliquer customizer 
+'(sml/pre-modes-separator (propertize " " 'face 'sml/modes)))
 
 (defun markdown-to-html ()
   (interactive)
@@ -143,11 +93,6 @@
     (shell-command (format "pandoc -o %s %s"
                            html-filename (buffer-file-name)))
     (find-file-other-window html-filename)))
-
-;; (add-to-list 'load-path "~/.emacs.d/elpa/python-mode-6.1.3/")
-;; (setq py-install-directory "~/.emacs.d/elpa/python-mode-6.1.3/")
-;; (require 'python-mode)
-
 
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
@@ -271,14 +216,6 @@
 (define-key global-map "\C-cl" 'org-store-link)
 (define-key global-map "\C-ca" 'org-agenda)
 (setq org-log-done t)
-
-;; ditaa
-;; http://ditaa.sourceforge.net
-;; (setq ditaa-cmd "java -jar ~/config/emacs/ditaa0_9.jar -E ")
-;; (defun ditaa-generate ()
-;;   (interactive)
-;;   (shell-command
-;;     (concat ditaa-cmd " " buffer-file-name)))
 
 ;; procmail-mode 
 ;; http://emacs-21.ki.nu/application/procmail-mode.html
@@ -455,26 +392,7 @@
     (add-hook 'after-make-frame-functions
         (lambda (frame)
 	(select-frame frame)
-	
-	;; mode-line PowerLine ;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;
-	;; https://github.com/jonathanchu/emacs-powerline
-	;; (add-to-list 'load-path "~/VersionControl/GitHub/emacs-powerline")
-	;; (require 'powerline)
-	;; (require 'cl)
-	;; You can choose between different arrow shapes:
-	(setq powerline-arrow-shape 'arrow)   ;; the default
-	;; (setq powerline-arrow-shape 'curve)   ;; give your mode-line curves
-	;; (setq powerline-arrow-shape 'arrow14) ;; best for small fonts
-	
-	;; change the mode-line color : Change the :foreground, :background, powerline-color1, powerline-color2 to whatever you wish.
-	(setq powerline-color1 "#292929")
-	(setq powerline-color2 "#494949")
-	;; change again mode-line color because of theme
-	(custom-set-faces
-	  '(mode-line ((t (:foreground "#295488" :background "darkorange" :box nil))))
-	  '(mode-line-inactive ((t (:foreground "darkorange" :background "#295488" :box nil)))))
-	;; mode-line PowerLine end ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	
+
 	;; minimap-mode always
 	(minimap-mode 1)
 	(setq minimap-window-location 'right)
