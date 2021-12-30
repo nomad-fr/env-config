@@ -82,6 +82,8 @@
  '(minimap-automatically-delete-window nil)
  '(package-selected-packages
    '(exec-path-from-shell async with-emacs magit-popup git-commit-insert-issue flycheck flycheck-grammalecte powerline frame-local projectile ov s dash-functional dash smart-mode-line-atom-one-dark-theme smart-mode-line org-caldav pov-mode apache-mode salt-mode xah-elisp-mode paredit emamux transpose-frame minimap markdown-mode magit elm-mode auto-package-update auto-complete-auctex auctex))
+
+
  '(sml/mode-width (if (eq (powerline-current-separator) 'arrow) 'right 'full))
  '(sml/pos-id-separator
    '(""
@@ -242,18 +244,7 @@
 	(mail-text)						;;; Jumps to the beginning of the mail text 
 	(setq make-backup-files nil)				;;; No backups necessary. 
 ) 
-
-;; (or (assoc "mutt-" auto-mode-alist) 
-;; 	(setq auto-mode-alist (cons '("mutt-" . mail-mode) auto-mode-alist))) 
-;; 	(add-hook 'mail-mode-hook 'axels-mail-mode-hook) 
-
-;; (server-start) ;;; For use with emacsclient  Starts server for (among others) emacsclient
-;; mutt / zopeedit
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-
-
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;some special purpose modes
@@ -465,13 +456,12 @@
         (lambda (frame)
 	(select-frame frame)
 	
-	;; mode-line PowerLine ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	;; mode-line PowerLine ;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;
 	;; https://github.com/jonathanchu/emacs-powerline
 	;; (add-to-list 'load-path "~/VersionControl/GitHub/emacs-powerline")
 	;; (require 'powerline)
 	;; (require 'cl)
 	;; You can choose between different arrow shapes:
-91	
 	(setq powerline-arrow-shape 'arrow)   ;; the default
 	;; (setq powerline-arrow-shape 'curve)   ;; give your mode-line curves
 	;; (setq powerline-arrow-shape 'arrow14) ;; best for small fonts
@@ -496,26 +486,18 @@
 	(add-to-list 'minimap-major-modes 'html-mode)
 	;  disable the mode line in Minimap sidebars
 	(add-hook 'minimap-sb-mode-hook (lambda () (setq mode-line-format nil)))
-
-
+	
 	(set-face-attribute 'default nil :height 116) ;; 116 minimum size sinon le theme bave
 
 	;; ajustement de la taille de police en fonction de la resolution
 	(when window-system
-	  ;; (if (> (x-display-pixel-width) 3000)
-	  ;;     (set-face-attribute 'default nil :height 100)
-	  ;;   )
-	  
 	  ;; U4320 : 3840 x 2160
 	  ;; moitiée : 1920 x 2160
 	  (if (>= (x-display-pixel-height) 2160)
-	      (set-face-attribute 'default nil :height 100)
-	    )	  
+	      (set-face-attribute 'default nil :height 150))	  
 	  ;; Dell Xps13 : 3840 x 2400
 	  (if (>= (x-display-pixel-height) 2400)
-	      (set-face-attribute 'default nil :height 100)
-	    )	  
-	  )
+	      (set-face-attribute 'default nil :height 100)) )
 	(load-user-file "color.el") ;; il y a un souci ici a verifier multiple instance color
 )))
 
@@ -532,7 +514,7 @@
   "Load a file in current user's configuration directory"
   (load-file (expand-file-name file user-init-dir)))
 
-;;(load-user-file "color.el")
+(load-user-file "color.el")
 (load-user-file "mu4e.el")
 (load-user-file "tramp.el")
 (load-user-file "flycheck.el")
