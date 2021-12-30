@@ -34,3 +34,6 @@
 (add-to-list 'tramp-connection-properties
              (list (regexp-quote "/ssh:root@magister\:")
                    "remote-shell" "/usr/local/bin/bash"))
+(add-to-list 'tramp-connection-properties
+             (list (regexp-quote "/ssh:magister\:")
+                   "remote-shell" "/usr/local/bin/bash"))

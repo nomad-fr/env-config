@@ -3,18 +3,23 @@
 ;; M-x list-color-display to show all available color
 ;; custom colors
 
-(set-face-attribute 'region nil :background "gray15") ;; couleur de fond des selections
-
 (custom-set-faces
- '(minimap-active-region-background
-   ((((background dark)) (:background "#181818"))
-    (t (:background "gray10")) ;;color of minimap active region
-    "Face for the active region in the minimap.
-     By default, this is only a different background color."
-    :group 'minimap))
- )
+ '(ido-first-match ((t (:foreground "#ccff66"))))
+ '(ido-incomplete-regexp ((t (:foreground "#ffffff"))))
+ '(ido-indicator ((t (:foreground "#ffffff"))))
+ '(ido-only-match ((t (:foreground "#ffcc33"))))
+ '(ido-subdir ((t (:foreground "#66ff00"))))
+ 
+ '(mode-line ((t (:foreground "#295488" :background "darkorange" :box nil))))
+ '(mode-line-inactive ((t (:foreground "darkorange" :background "#295488" :box nil))))
 
-(set-foreground-color "grey")
+ '(minimap-active-region-background ((((background dark)) (:background "#181818")) (t (:background "#D3D3D3222222")) "Face for the active region in the minimap.
+             By default, this is only a different background color." :group 'minimap))
+)
+
+(add-to-list 'default-frame-alist '(foreground-color . "#E0DFDB"))
+(add-to-list 'default-frame-alist '(background-color . "black"))
+
 (set-face-foreground 'font-lock-string-face  "#123467")
 (set-face-foreground 'font-lock-comment-face  "#009380")
 (make-face-italic 'font-lock-comment-face)	
@@ -30,19 +35,13 @@
 (set-face-foreground 'font-lock-warning-face "red")
 (set-face-underline  'font-lock-warning-face "red")		
 (set-face-foreground 'minibuffer-prompt "orange")	
-(set-background-color "#000000") ; dark grey
-
+(set-background-color "#000000")
 
 ;; highlight the current line; set a custom face, so we can
 ;; recognize from the normal marking (selection)
-(defface hl-line '((t (:background "pink")))
-  "Face to use for `hl-line-face'." :group 'hl-line)
-(setq hl-line-face 'hl-line)
 (global-hl-line-mode t) ;; turn it on for all modes by default
-(add-hook 'term-mode-hook (lambda ()
-                    (setq-local global-hl-line-mode
-                                nil)))
+(set-face-background 'hl-line "gray10")
 
+(set-face-attribute 'region nil :background "gray19") ;; couleur de fond des selections
 
 ;; Color end ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	
