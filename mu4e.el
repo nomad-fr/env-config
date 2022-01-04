@@ -73,33 +73,36 @@
 	( :name "Today IN list"
           :query "date:today..now flag:list"
 	  :key ?T)
+	( :name  "Inbox"
+	  :query "maildir:/Inbox"
+	  :key   ?i)		
+	( :name  "IPGP"
+	  :query "maildir:/IPGP"
+	  :key   ?I)	
+	( :name "Last 7 days till now"
+	  :query "date:7d..now"
+	  :key ?l)
+	( :name  "IPGP : more than 7 days less than 2 month"
+	  :query "maildir:/IPGP and date:2m..1W"
+	  :key   ?L)	
 	( :name "Unread messages"
           :query "flag:unread AND NOT flag:trashed"
 	  :key ?u)
 	( :name  "Unread NO list"
 	  :query "flag:unread NOT flag:list"
 	  :key   ?U)	
-	( :name "Last 7 days"
-	  :query "date:7d..now"
-	  :key ?w)
-	( :name  "Inbox"
-	  :query "maildir:/Inbox"
-	  :key   ?i)		
-	( :name  "IPGP"
-	  :query "maildir:/IPGP"
-	  :key   ?I)
 	( :name  "Liste ASR"
 	  :query "maildir:/IPGP/Listes/ASR"
-	  :key   ?z)
+	  :key   ?a)
 	( :name  "Liste Respire"
 	  :query "maildir:/IPGP/Listes/Respire"
-	  :key   ?y)
+	  :key   ?r)
 	( :name  "Liste Respire Copile"
 	  :query "maildir:/IPGP/Listes/Respire/copile"
-	  :key   ?x)
+	  :key   ?R)
 	( :name  "Liste hackesr"
 	  :query "maildir:/IPGP/Listes/hackesr"
-	  :key   ?w)
+	  :key   ?h)
 	( :name  "Big messages"
 	  :query "size:5M..500M"
 	  :key   ?b)
@@ -108,14 +111,11 @@
 	  :key   ?f)
 	( :name  "IPGP : PDF in attachment"
 	  :query "maildir:/IPGP and mime:application/pdf"
-	  :key   ?g
+	  :key   ?p
 	  :hide-unread t)
-	( :name  "IPGP : more than 7 days less than 2 month"
-	  :query "maildir:/IPGP and date:2m..1W"
-	  :key   ?h)
 	( :name  "Spams"
-	  :query "maildir:/Spams/*"
-	  :key   ?j)
+	  :query "maildir:/Spams"
+	  :key   ?s)
 	( :name  "Drafts"
 	  :query "flag:draft and maildir:/Drafts/"
 	  :key   ?d)
