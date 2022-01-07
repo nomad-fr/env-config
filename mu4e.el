@@ -86,10 +86,12 @@
 	  :query "maildir:/IPGP and date:2m..1W"
 	  :key   ?L)	
 	( :name "Unread messages"
-          :query "flag:unread AND NOT flag:trashed"
+		:query "flag:unread AND NOT flag:trashed"
+		:hide-unread t
 	  :key ?u)
 	( :name  "Unread NO list"
-	  :query "flag:unread NOT flag:list"
+		 :query "flag:unread NOT flag:list"
+		 :hide-unread t
 	  :key   ?U)	
 	( :name  "Liste ASR"
 	  :query "maildir:/IPGP/Listes/ASR"
@@ -100,6 +102,9 @@
 	( :name  "Liste Respire Copile"
 	  :query "maildir:/IPGP/Listes/Respire/copile"
 	  :key   ?R)
+	( :name  "Liste stockage"
+	  :query "maildir:/IPGP/Listes/stockage"
+	  :key   ?s)	
 	( :name  "Liste hackesr"
 	  :query "maildir:/IPGP/Listes/hackesr"
 	  :key   ?h)
@@ -115,7 +120,7 @@
 	  :hide-unread t)
 	( :name  "Spams"
 	  :query "maildir:/Spams"
-	  :key   ?s)
+	  :key   ?S)
 	( :name  "Drafts"
 	  :query "flag:draft and maildir:/Drafts/"
 	  :key   ?d)
