@@ -269,9 +269,9 @@
 ;; 29.12.2021 Désactivé pour voir su cela résoud le souci de mails qui n'apparaissent pas si 'vue' sur un autre client
 ;; speed up indexing
 ;; https://www.djcbsoftware.nl/code/mu/mu4e/Retrieval-and-indexing.html
-;; (setq
-;;   mu4e-index-cleanup nil      ;; don't do a full cleanup check
-;;   mu4e-index-lazy-check t)    ;; don't consider up-to-date dirs
+(setq
+  mu4e-index-cleanup nil      ;; don't do a full cleanup check
+  mu4e-index-lazy-check t)    ;; don't consider up-to-date dirs
 
 ;; mu4e :  end
 
