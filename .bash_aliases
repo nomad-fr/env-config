@@ -122,5 +122,5 @@ alias grep='grep --color'
 # alias conda_deactivate='source /local/anaconda/bin/deactivate'
 
 # emacs
-alias emacs='/usr/bin/emacs -mm'  
+#alias emacs='/usr/bin/emacs -mm'  
 alias emacsclient='emacsclient -c'
