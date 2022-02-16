@@ -95,6 +95,9 @@
 	( :name  "Liste ASR"
 	  :query "maildir:/IPGP/Listes/ASR"
 	  :key   ?a)
+	( :name  "Liste virtualisation"
+	  :query "maildir:/IPGP/Listes/virtualisation"
+	  :key   ?v)	
 	( :name  "Liste Respire"
 	  :query "maildir:/IPGP/Listes/Respire"
 	  :key   ?r)
