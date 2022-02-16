@@ -67,11 +67,11 @@
 
 
 (setq mu4e-bookmarks
-      `(( :name "Today NO list"
-          :query "date:today..now NOT flag:list"
+      `(( :name "Today NOT list folder"
+          :query "date:today..now AND NOT maildir:/IPGP/Listes/*"
 	  :key ?t)
 	( :name "Today IN list"
-          :query "date:today..now flag:list"
+          :query "date:today..now AND maildir:/IPGP/Listes/*"
 	  :key ?T)
 	( :name  "Inbox"
 	  :query "maildir:/Inbox"
@@ -89,9 +89,8 @@
 		:query "flag:unread AND NOT flag:trashed"
 		:hide-unread t
 	  :key ?u)
-	( :name  "Unread NO list"
-		 :query "flag:unread NOT flag:list"
-		 :hide-unread t
+	( :name  "Unread NOT list folder"
+		 :query "flag:unread NOT maildir:/IPGP/Listes/*"
 	  :key   ?U)	
 	( :name  "Liste ASR"
 	  :query "maildir:/IPGP/Listes/ASR"
