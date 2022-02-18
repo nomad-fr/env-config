@@ -67,68 +67,52 @@
 
 
 (setq mu4e-bookmarks
-      `(( :name "Today NOT list folder"
+      `(
+	( :name "Today NOT List"
           :query "date:today..now AND NOT maildir:/IPGP/Listes/*"
 	  :key ?t)
-	( :name "Today IN list"
-          :query "date:today..now AND maildir:/IPGP/Listes/*"
-	  :key ?T)
+	( :name  "Drafts"
+	  :query "flag:draft and maildir:/Drafts/"
+	  :key   ?d)	
 	( :name  "Inbox"
 	  :query "maildir:/Inbox"
 	  :key   ?i)		
 	( :name  "IPGP"
 	  :query "maildir:/IPGP"
-	  :key   ?I)	
-	( :name "Last 7 days till now"
-	  :query "date:7d..now"
-	  :key ?l)
-	( :name  "IPGP : more than 7 days less than 2 month"
-	  :query "maildir:/IPGP and date:2m..1W"
-	  :key   ?L)	
-	( :name "Unread messages"
-		:query "flag:unread AND NOT flag:trashed"
-		:hide-unread t
-	  :key ?u)
-	( :name  "Unread NOT list folder"
-		 :query "flag:unread NOT maildir:/IPGP/Listes/*"
-	  :key   ?U)	
-	( :name  "Liste ASR"
-	  :query "maildir:/IPGP/Listes/ASR"
-	  :key   ?a)
-	( :name  "Liste virtualisation"
-	  :query "maildir:/IPGP/Listes/virtualisation"
-	  :key   ?v)	
-	( :name  "Liste Respire"
-	  :query "maildir:/IPGP/Listes/Respire"
-	  :key   ?r)
-	( :name  "Liste Respire Copile"
-	  :query "maildir:/IPGP/Listes/Respire/copil"
-	  :key   ?R)
-	( :name  "Liste stockage"
-	  :query "maildir:/IPGP/Listes/stockage"
-	  :key   ?s)	
-	( :name  "Liste hackesr"
-	  :query "maildir:/IPGP/Listes/hackesr"
-	  :key   ?h)
-	( :name  "Liste RogueEsr"
-	  :query "maildir:/IPGP/Listes/RogueEsr"
-	  :key   ?o)	
-	( :name  "Big messages"
-	  :query "size:5M..500M"
-	  :key   ?b)
-	( :name  "Flag"
+	  :key   ?I)
+	( :name  "Flagged"
 	  :query "flag:flagged"
 	  :key   ?f)
-	( :name  "IPGP : PDF in attachment"
-	  :query "maildir:/IPGP and mime:application/pdf"
-	  :key   ?p
-	  :hide-unread t)
 	( :name  "Spams"
 	  :query "maildir:/Spams"
-	  :key   ?S)
-	( :name  "Drafts"
-	  :query "flag:draft and maildir:/Drafts/"
-	  :key   ?d)
+	  :key   ?S)	
+	( :name "IPGP   : last 7 days"
+	  :query "maildir:/IPGP AND date:7d..now"
+	  :key ?l)
+	( :name  "IPGP   : 2 month old till last week"
+	  :query "maildir:/IPGP and date:2m..1w"
+	  :key   ?L)	
+	( :name "List   : * till last week"
+          :query "date:today..1w AND maildir:/IPGP/Listes/*"
+	  :key ?T)	
+	( :name  "List   : * all of them"
+		 :query "maildir:/IPGP/Listes/*"
+	  :key   ?g)	
+	( :name  "List   : Respire"
+	  :query "maildir:/IPGP/Listes/Respire"
+	  :key   ?r)
+	( :name  "List   : Respire Copile"
+	  :query "maildir:/IPGP/Listes/Respire/copil"
+	  :key   ?R)
+	( :name  "List   : stockage"
+	  :query "maildir:/IPGP/Listes/stockage"
+	  :key   ?s)
+	( :name  "Unread : NOT list folder"
+		 :query "flag:unread NOT maildir:/IPGP/Listes/*"
+		 :key   ?U)
+	( :name "Unread : All messages"
+		:query "flag:unread AND NOT flag:trashed"
+	  :key ?u)		
 	))
       
 (setq mu4e-inbox-folder "/Inbox")
