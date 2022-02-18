@@ -110,6 +110,9 @@
 	( :name  "Liste hackesr"
 	  :query "maildir:/IPGP/Listes/hackesr"
 	  :key   ?h)
+	( :name  "Liste RogueEsr"
+	  :query "maildir:/IPGP/Listes/RogueEsr"
+	  :key   ?o)	
 	( :name  "Big messages"
 	  :query "size:5M..500M"
 	  :key   ?b)
