@@ -102,7 +102,7 @@
 	  :query "maildir:/IPGP/Listes/Respire"
 	  :key   ?r)
 	( :name  "Liste Respire Copile"
-	  :query "maildir:/IPGP/Listes/Respire/copile"
+	  :query "maildir:/IPGP/Listes/Respire/copil"
 	  :key   ?R)
 	( :name  "Liste stockage"
 	  :query "maildir:/IPGP/Listes/stockage"
