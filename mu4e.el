@@ -10,53 +10,111 @@
 
 (setq mu4e-maildir (expand-file-name "~/.localsyncmail/neuronfarm/"))
 
-(add-to-list 'mu4e-bookmarks
-  '( :name  "ASR"
-     :query "maildir:/IPGP/Listes/ASR"
-     :key   ?z))
-(add-to-list 'mu4e-bookmarks
-  '( :name  "Respire"
-     :query "maildir:/IPGP/Listes/Respire"
-     :key   ?y))
-(add-to-list 'mu4e-bookmarks
-  '( :name  "Respire Copile"
-     :query "maildir:/IPGP/Listes/Respire/copile"
-     :key   ?x))
-(add-to-list 'mu4e-bookmarks
-  '( :name  "hackesr"
-     :query "maildir:/IPGP/Listes/hackesr"
-     :key   ?w))
-(add-to-list 'mu4e-bookmarks
-  '( :name  "IPGP"
-     :query "maildir:/IPGP"
-     :key   ?a))
-(add-to-list 'mu4e-bookmarks
-  '( :name  "Inbox"
-     :query "maildir:/Inbox"
-     :key   ?c))
-(add-to-list 'mu4e-bookmarks
-  '( :name  "Big messages"
-     :query "size:5M..500M"
-     :key   ?b))
-(add-to-list 'mu4e-bookmarks
-  '( :name  "Flag"
-     :query "flag:flagged"
-     :key   ?f))
-(add-to-list 'mu4e-bookmarks
-  '( :name  "IPGP : PDF in attachment"
-     :query "maildir:/IPGP and mime:application/pdf"
-     :key   ?g
-     :hide-unread t
-     ))
-(add-to-list 'mu4e-bookmarks
-  '( :name  "IPGP : more than7 days less than 2 month"
-     :query "maildir:/IPGP and date:2m..1W"
-     :key   ?h))
-(add-to-list 'mu4e-bookmarks
-  '( :name  "Unread not in Listes"
-	    :query "flag:unread NOT maildir:/IPGP/Listes/*"
-	    :key   ?i))
+;; (add-to-list 'mu4e-bookmarks
+;;   '( :name  "ASR"
+;;      :query "maildir:/IPGP/Listes/ASR"
+;;      :key   ?z))
+;; (add-to-list 'mu4e-bookmarks
+;;   '( :name  "Respire"
+;;      :query "maildir:/IPGP/Listes/Respire"
+;;      :key   ?y))
+;; (add-to-list 'mu4e-bookmarks
+;;   '( :name  "Respire Copile"
+;;      :query "maildir:/IPGP/Listes/Respire/copile"
+;;      :key   ?x))
+;; (add-to-list 'mu4e-bookmarks
+;;   '( :name  "hackesr"
+;;      :query "maildir:/IPGP/Listes/hackesr"
+;;      :key   ?d))
+;; (add-to-list 'mu4e-bookmarks
+;;   '( :name  "IPGP"
+;;      :query "maildir:/IPGP"
+;;      :key   ?a))
+;; (add-to-list 'mu4e-bookmarks
+;;   '( :name  "Inbox"
+;;      :query "maildir:/Inbox"
+;;      :key   ?c))
+;; (add-to-list 'mu4e-bookmarks
+;;   '( :name  "Big messages"
+;;      :query "size:5M..500M"
+;;      :key   ?b))
+;; (add-to-list 'mu4e-bookmarks
+;;   '( :name  "Flag"
+;;      :query "flag:flagged"
+;;      :key   ?f))
+;; (add-to-list 'mu4e-bookmarks
+;;   '( :name  "IPGP : PDF in attachment"
+;;      :query "maildir:/IPGP and mime:application/pdf"
+;;      :key   ?g
+;;      :hide-unread t
+;;      ))
+;; (add-to-list 'mu4e-bookmarks
+;;   '( :name  "IPGP : more than7 days less than 2 month"
+;;      :query "maildir:/IPGP and date:2m..1W"
+;;      :key   ?h))
+;; (add-to-list 'mu4e-bookmarks
+;;   '( :name  "Unread not in Listes"
+;; 	    :query "flag:unread NOT flag:listg"
+;; 	    :key   ?i))
+;; (add-to-list 'mu4e-bookmarks
+;;   '( :name  "Spams"
+;; 	    :query "maildir:/Spams/*"
+;; 	    :key   ?j))
 
+;; Today's messages -- date:today..now
+;; Unread messages  -- flag:unread AND NOT flag:trashed
+;; Last 7 days      -- date:7d..now
+
+
+(setq mu4e-bookmarks
+      `(
+	( :name "Today NOT List"
+          :query "date:today..now AND NOT maildir:/IPGP/Listes/*"
+	  :key ?t)
+	( :name  "Drafts"
+	  :query "flag:draft and maildir:/Drafts/"
+	  :key   ?d)	
+	( :name  "Inbox"
+	  :query "maildir:/Inbox"
+	  :key   ?i)		
+	( :name  "IPGP"
+	  :query "maildir:/IPGP"
+	  :key   ?I)
+	( :name  "Flagged"
+	  :query "flag:flagged"
+	  :key   ?f)
+	( :name  "Spams"
+	  :query "maildir:/Spams"
+	  :key   ?S)	
+	( :name "IPGP   : last 7 days"
+	  :query "maildir:/IPGP AND date:7d..now"
+	  :key ?l)
+	( :name  "IPGP   : 2 month old till last week"
+	  :query "maildir:/IPGP and date:2m..1w"
+	  :key   ?L)	
+	( :name "List   : * till last week"
+          :query "date:today..1w AND maildir:/IPGP/Listes/*"
+	  :key ?T)	
+	( :name  "List   : * all of them"
+		 :query "maildir:/IPGP/Listes/*"
+	  :key   ?g)	
+	( :name  "List   : Respire"
+	  :query "maildir:/IPGP/Listes/Respire"
+	  :key   ?r)
+	( :name  "List   : Respire Copile"
+	  :query "maildir:/IPGP/Listes/Respire/copil"
+	  :key   ?R)
+	( :name  "List   : stockage"
+	  :query "maildir:/IPGP/Listes/stockage"
+	  :key   ?s)
+	( :name  "Unread : NOT list folder"
+		 :query "flag:unread NOT maildir:/IPGP/Listes/*"
+		 :key   ?U)
+	( :name "Unread : All messages"
+		:query "flag:unread AND NOT flag:trashed"
+	  :key ?u)		
+	))
+      
 (setq mu4e-inbox-folder "/Inbox")
 (setq mu4e-drafts-folder "/Drafts")
 (setq mu4e-sent-folder   "/Inbox")
@@ -202,7 +260,7 @@
 (add-to-list 'mu4e-view-actions '("ViewInBrowser" . mu4e-action-view-in-browser) t)
 (add-to-list 'mu4e-view-actions '("browse message" . mu4e-action-view-in-browser))
 
-
+;; 29.12.2021 Désactivé pour voir su cela résoud le souci de mails qui n'apparaissent pas si 'vue' sur un autre client
 ;; speed up indexing
 ;; https://www.djcbsoftware.nl/code/mu/mu4e/Retrieval-and-indexing.html
 (setq

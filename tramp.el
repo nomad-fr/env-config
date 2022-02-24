@@ -11,6 +11,12 @@
 
 ;; tramp shell work arround for IPGP host
 (add-to-list 'tramp-connection-properties
+             (list (regexp-quote "/ssh:root@bigfish.ipgp.fr:")
+                   "remote-shell" "/usr/local/bin/bash"))
+(add-to-list 'tramp-connection-properties
+             (list (regexp-quote "/ssh:root@bigfish:")
+                   "remote-shell" "/usr/local/bin/bash"))
+(add-to-list 'tramp-connection-properties
              (list (regexp-quote "/ssh:root@narval.ipgp.fr:")
                    "remote-shell" "/usr/local/bin/bash"))
 (add-to-list 'tramp-connection-properties
@@ -27,4 +33,7 @@
                    "remote-shell" "/usr/local/bin/bash"))
 (add-to-list 'tramp-connection-properties
              (list (regexp-quote "/ssh:root@magister\:")
+                   "remote-shell" "/usr/local/bin/bash"))
+(add-to-list 'tramp-connection-properties
+             (list (regexp-quote "/ssh:magister\:")
                    "remote-shell" "/usr/local/bin/bash"))

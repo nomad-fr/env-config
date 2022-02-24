@@ -5,21 +5,31 @@
   (interactive)
   "Get current system's name"
   (insert (format "%s" system-name)))
+
 ;; Get current system type
 (defun insert-system-type()
   (interactive)
   "Get current system type"
   (insert (format "%s" system-type)))
 ;; Check if system is GNU/Linux
-(defun system-type-is-gnu ()
+(defun system-type-is-linux ()
   (interactive)
   "Return true if system is GNU/Linux-based"
   (string-equal system-type "gnu/linux"))
 ;; Check if system is berkeley-unix
-(defun system-type-is-gnu ()
+(defun system-type-is-bsd ()
   (interactive)
   "Return true if system is berkeley-unix"
   (string-equal system-type "berkeley-unix"))
+
+;; ‘M-x insert-system-name‘ or ‘M-x insert-system-type‘ to test them.
+
+(if (system-type-is-bsd)
+  (message "\nBSD\n")
+)
+(if (system-type-is-linux)
+  (message "\nLinux\n")
+)
 
 ;; Set default font
 (add-to-list 'default-frame-alist
@@ -68,65 +78,14 @@
  '(bmkp-last-as-first-bookmark-file "~/.emacs.d/bookmarks")
  '(custom-safe-themes
    '("b9e9ba5aeedcc5ba8be99f1cc9301f6679912910ff92fdf7980929c2fc83ab4d" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" default))
- '(flycheck-grammalecte-download-without-asking t)
+  '(flycheck-grammalecte-download-without-asking t)
  '(flycheck-grammalecte-report-apos nil)
  '(flycheck-grammalecte-report-spellcheck t)
- '(grammalecte-download-without-asking t)
  '(markdown-command "pandoc")
- '(minimap-automatically-delete-window nil)
  '(package-selected-packages
-   '(async with-emacs magit-popup git-commit-insert-issue flycheck flycheck-grammalecte powerline frame-local projectile ov s dash-functional dash smart-mode-line-atom-one-dark-theme smart-mode-line org-caldav pov-mode apache-mode salt-mode xah-elisp-mode paredit emamux transpose-frame minimap markdown-mode magit elm-mode auto-package-update auto-complete-auctex auctex))
- '(sml/mode-width (if (eq (powerline-current-separator) 'arrow) 'right 'full))
- '(sml/pos-id-separator
-   '(""
-     (:propertize " " face powerline-active1)
-     (:eval
-      (propertize " " 'display
-		  (funcall
-		   (intern
-		    (format "powerline-%s-%s"
-			    (powerline-current-separator)
-			    (car powerline-default-separator-dir)))
-		   'powerline-active1 'powerline-active2)))
-     (:propertize " " face powerline-active2)))
- '(sml/pos-minor-modes-separator
-   '(""
-     (:propertize " " face powerline-active1)
-     (:eval
-      (propertize " " 'display
-		  (funcall
-		   (intern
-		    (format "powerline-%s-%s"
-			    (powerline-current-separator)
-			    (cdr powerline-default-separator-dir)))
-		   'powerline-active1 'sml/global)))
-     (:propertize " " face sml/global)))
- '(sml/pre-id-separator
-   '(""
-     (:propertize " " face sml/global)
-     (:eval
-      (propertize " " 'display
-		  (funcall
-		   (intern
-		    (format "powerline-%s-%s"
-			    (powerline-current-separator)
-			    (car powerline-default-separator-dir)))
-		   'sml/global 'powerline-active1)))
-     (:propertize " " face powerline-active1)))
- '(sml/pre-minor-modes-separator
-   '(""
-     (:propertize " " face powerline-active2)
-     (:eval
-      (propertize " " 'display
-		  (funcall
-		   (intern
-		    (format "powerline-%s-%s"
-			    (powerline-current-separator)
-			    (cdr powerline-default-separator-dir)))
-		   'powerline-active2 'powerline-active1)))
-     (:propertize " " face powerline-active1)))
- '(sml/pre-modes-separator (propertize " " 'face 'sml/modes)))
-
+   '(exec-path-from-shell async with-emacs magit-popup git-commit-insert-issue flycheck flycheck-grammalecte frame-local projectile ov s dash-functional dash smart-mode-line-atom-one-dark-theme smart-mode-line org-caldav pov-mode apache-mode salt-mode xah-elisp-mode paredit emamux transpose-frame minimap markdown-mode magit elm-mode auto-package-update auto-complete-auctex auctex))
+ '(sml/pre-modes-separator (propertize " " 'face 'sml/modes))
+)
 
 (defun markdown-to-html ()
   (interactive)
@@ -135,11 +94,6 @@
     (shell-command (format "pandoc -o %s %s"
                            html-filename (buffer-file-name)))
     (find-file-other-window html-filename)))
-
-;; (add-to-list 'load-path "~/.emacs.d/elpa/python-mode-6.1.3/")
-;; (setq py-install-directory "~/.emacs.d/elpa/python-mode-6.1.3/")
-;; (require 'python-mode)
-
 
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
@@ -236,18 +190,7 @@
 	(mail-text)						;;; Jumps to the beginning of the mail text 
 	(setq make-backup-files nil)				;;; No backups necessary. 
 ) 
-
-;; (or (assoc "mutt-" auto-mode-alist) 
-;; 	(setq auto-mode-alist (cons '("mutt-" . mail-mode) auto-mode-alist))) 
-;; 	(add-hook 'mail-mode-hook 'axels-mail-mode-hook) 
-
-;; (server-start) ;;; For use with emacsclient  Starts server for (among others) emacsclient
-;; mutt / zopeedit
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-
-
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;some special purpose modes
@@ -274,14 +217,6 @@
 (define-key global-map "\C-cl" 'org-store-link)
 (define-key global-map "\C-ca" 'org-agenda)
 (setq org-log-done t)
-
-;; ditaa
-;; http://ditaa.sourceforge.net
-;; (setq ditaa-cmd "java -jar ~/config/emacs/ditaa0_9.jar -E ")
-;; (defun ditaa-generate ()
-;;   (interactive)
-;;   (shell-command
-;;     (concat ditaa-cmd " " buffer-file-name)))
 
 ;; procmail-mode 
 ;; http://emacs-21.ki.nu/application/procmail-mode.html
@@ -328,7 +263,6 @@
 
 ;; svn mode
 
-
 ;; pour utiliser avec C-x b
 ;; (require 'ido)
 ;; (setq ido-enable-flex-matching t)
@@ -349,8 +283,7 @@
 
 ;; melpa
 (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
-                       	 ("marmalade" . "https://marmalade-repo.org/packages/")
-			 ;;("melpa" . "http://melpa.milkbox.net/packages/")
+			 ("nongnu" . "https://elpa.nongnu.org/nongnu/")
 		         ("melpa" . "https://melpa.org/packages/")))
 
 ;; (require 'org-caldav)
@@ -426,28 +359,6 @@
 (require 'bookmark+)
 (setq desktop-buffers-not-to-save "^$")
 
-;; change the mode-line color using the standard method ;;;
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ido-first-match ((t (:foreground "#ccff66"))))
- '(ido-incomplete-regexp ((t (:foreground "#ffffff"))))
- '(ido-indicator ((t (:foreground "#ffffff"))))
- '(ido-only-match ((t (:foreground "#ffcc33"))))
- '(ido-subdir ((t (:foreground "#66ff00"))))
- '(minimap-active-region-background ((((background dark)) (:background "#181818")) (t (:background "#D3D3D3222222")) "Face for the active region in the minimap.
-             By default, this is only a different background color." :group 'minimap))
- '(mode-line ((t (:foreground "#295488" :background "darkorange" :box nil))))
- '(mode-line-inactive ((t (:foreground "darkorange" :background "#295488" :box nil))))
- '(sidebar-buffers-headers-face ((t (:foreground "darkorange" :background "#295488" :height 1))))
- '(sidebar-dir ((t (:inherit dired-directory :foreground "light goldenrod"))))
- '(sidebar-primary-color ((t (:foreground "darkorange" :background "#295488")))))
-
-
-;; change the mode-line color end ;;;;;;;;;;;;;;;;;;;;;;;;;
-
 ;; open link in firefox           ;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; make emacs always use its own browser for opening URL links
 ;;(setq browse-url-browser-function 'eww-browse-url)
@@ -455,7 +366,7 @@
 (setq browse-url-browser-function 'browse-url-generic)
 (setq browse-url-generic-program "firefox")
 ;; open link in firefox end       ;;;;;;;;;;;;;;;;;;;;;;;;;
- 
+
 
 ;; spell check ;;;;
 
@@ -481,99 +392,17 @@
         (lambda (frame)
 	(select-frame frame)
 	
-	;; mode-line PowerLine ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	;; https://github.com/jonathanchu/emacs-powerline
-	(add-to-list 'load-path "~/VersionControl/GitHub/emacs-powerline")
-	(require 'powerline)
-	(require 'cl)
-	;; You can choose between different arrow shapes:
-	
-	(setq powerline-arrow-shape 'arrow)   ;; the default
-	;; (setq powerline-arrow-shape 'curve)   ;; give your mode-line curves
-	;; (setq powerline-arrow-shape 'arrow14) ;; best for small fonts
-	
-	;; change the mode-line color : Change the :foreground, :background, powerline-color1, powerline-color2 to whatever you wish.
-	(setq powerline-color1 "#292929")
-	(setq powerline-color2 "#494949")
-	;; change again mode-line color because of theme
-	(custom-set-faces
-	  '(mode-line ((t (:foreground "#295488" :background "darkorange" :box nil))))
-	  '(mode-line-inactive ((t (:foreground "darkorange" :background "#295488" :box nil)))))
-	;; mode-line PowerLine end ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	
-	;; minimap-mode always
-	(minimap-mode 1)
-	(setq minimap-window-location 'right)
-	(add-to-list 'minimap-major-modes 'markdown-mode)
-	(add-to-list 'minimap-major-modes 'eww-mode)
-	(add-to-list 'minimap-major-modes 'conf-unix-mode)
-	(add-to-list 'minimap-major-modes 'salt-mode)
-	(add-to-list 'minimap-major-modes 'python-mode)
-	(add-to-list 'minimap-major-modes 'html-mode)
-	;  disable the mode line in Minimap sidebars
-	(add-hook 'minimap-sb-mode-hook (lambda () (setq mode-line-format nil)))
-	
-	(custom-set-faces
-	 '(minimap-active-region-background
-	   ((((background dark)) (:background "#181818"))
-	    (t (:background "#D3D3D3222222"))
-	    "Face for the active region in the minimap.
-             By default, this is only a different background color."
-	    :group 'minimap))
-	 )
-
 	(set-face-attribute 'default nil :height 116) ;; 116 minimum size sinon le theme bave
 
 	;; ajustement de la taille de police en fonction de la resolution
 	(when window-system
-	  ;; (if (> (x-display-pixel-width) 3000)
-	  ;;     (set-face-attribute 'default nil :height 100)
-	  ;;   )
-	  
 	  ;; U4320 : 3840 x 2160
 	  ;; moitiée : 1920 x 2160
 	  (if (>= (x-display-pixel-height) 2160)
-	      (set-face-attribute 'default nil :height 100)
-	    )	  
+	      (set-face-attribute 'default nil :height 150))	  
 	  ;; Dell Xps13 : 3840 x 2400
 	  (if (>= (x-display-pixel-height) 2400)
-	      (set-face-attribute 'default nil :height 100)
-	    )	  
-	  )
-	
-	;; Color ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	;; highlight the current line; set a custom face, so we can
-	;; recognize from the normal marking (selection)
-	(defface hl-line '((t (:background "#292929")))
-	  "Face to use for `hl-line-face'." :group 'hl-line)
-	(setq hl-line-face 'hl-line)
-	(global-hl-line-mode t) ;; turn it on for all modes by default
-	(add-hook 'term-mode-hook (lambda ()
-                            (setq-local global-hl-line-mode
-                                        nil)))
-	
-	(set-face-attribute 'region nil :background "#494949") ;; couleur de fond des selections
-	    
-	;; custom colors
-	(set-foreground-color "grey")
-	(set-face-foreground 'font-lock-string-face  "#123467")
-	(set-face-foreground 'font-lock-comment-face  "#009380")
-	(make-face-italic 'font-lock-comment-face)	
-	(set-face-foreground 'font-lock-keyword-face  "orange")
-	(make-face-bold 'font-lock-keyword-face)  	
-	(set-face-foreground 'font-lock-string-face   "#77bbea") ; bleu cyant
-	(set-face-foreground 'font-lock-preprocessor-face "pink")
-	(set-face-foreground 'font-lock-constant-face   "green")	
-	(set-face-foreground 'font-lock-function-name-face "pink")	
-	(set-face-foreground 'font-lock-type-face    "lightblue")
-	(make-face-bold 'font-lock-type-face)	  
-	(set-face-foreground 'font-lock-variable-name-face "grey")	
-	(set-face-foreground 'font-lock-warning-face "red")
-	(set-face-underline  'font-lock-warning-face "red")		
-	(set-face-foreground 'minibuffer-prompt "orange")	
-	(set-background-color "#000000") ; dark grey 
-	;; Color end ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	
+	      (set-face-attribute 'default nil :height 100)) )
 )))
 
 ;; load my config files
@@ -589,6 +418,27 @@
   "Load a file in current user's configuration directory"
   (load-file (expand-file-name file user-init-dir)))
 
+(load-user-file "color.el")
 (load-user-file "mu4e.el")
 (load-user-file "tramp.el")
 (load-user-file "org-mode.el")
+(load-user-file "flycheck.el")
+(load-user-file "minimap.el")
+
+
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ido-first-match ((t (:foreground "#ccff66"))))
+ '(ido-incomplete-regexp ((t (:foreground "#ffffff"))))
+ '(ido-indicator ((t (:foreground "#ffffff"))))
+ '(ido-only-match ((t (:foreground "#ffcc33"))))
+ '(ido-subdir ((t (:foreground "#66ff00"))))
+ '(mode-line ((t (:foreground "#295488" :background "darkorange" :box nil))))
+ '(mode-line-inactive ((t (:foreground "darkorange" :background "#295488" :box nil))))
+ '(sidebar-buffers-headers-face ((t (:foreground "darkorange" :background "#295488" :height 1))))
+ '(sidebar-dir ((t (:inherit dired-directory :foreground "light goldenrod"))))
+ '(sidebar-primary-color ((t (:foreground "darkorange" :background "#295488")))))
+
