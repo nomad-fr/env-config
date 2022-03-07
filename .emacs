@@ -421,6 +421,7 @@
 (load-user-file "color.el")
 (load-user-file "mu4e.el")
 (load-user-file "tramp.el")
+(load-user-file "org-mode.el")
 (load-user-file "flycheck.el")
 (load-user-file "minimap.el")
 
@@ -442,3 +443,4 @@
  '(sidebar-buffers-headers-face ((t (:foreground "darkorange" :background "#295488" :height 1))))
  '(sidebar-dir ((t (:inherit dired-directory :foreground "light goldenrod"))))
  '(sidebar-primary-color ((t (:foreground "darkorange" :background "#295488")))))
+
