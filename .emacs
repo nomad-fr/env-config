@@ -84,7 +84,7 @@
  '(grammalecte-download-without-asking t)
  '(markdown-command "pandoc")
  '(package-selected-packages
-   '(deft exec-path-from-shell async with-emacs magit-popup git-commit-insert-issue flycheck flycheck-grammalecte frame-local projectile ov s dash-functional dash smart-mode-line-atom-one-dark-theme smart-mode-line org-caldav pov-mode apache-mode salt-mode xah-elisp-mode paredit emamux transpose-frame minimap markdown-mode magit elm-mode auto-package-update auto-complete-auctex auctex))
+   '(helm-directory deft exec-path-from-shell async with-emacs magit-popup git-commit-insert-issue flycheck flycheck-grammalecte frame-local projectile ov s dash-functional dash smart-mode-line-atom-one-dark-theme smart-mode-line org-caldav pov-mode apache-mode salt-mode xah-elisp-mode paredit emamux transpose-frame minimap markdown-mode magit elm-mode auto-package-update auto-complete-auctex auctex))
  '(sml/pre-modes-separator (propertize " " 'face 'sml/modes)))
 
 (defun markdown-to-html ()
@@ -370,7 +370,8 @@
 
 ;; spell check ;;;;
 
-(add-hook 'org-mode-hook 'turn-on-flyspell)
+;; (add-hook 'org-mode-hook 'flycheck-mode)
+;; (add-hook 'rst-mode-hook 'flycheck-mode)
 
 
 ;;(package-install 'flycheck)
@@ -383,6 +384,7 @@
   (require 'flycheck-grammalecte)
   (setq flycheck-grammalecte-report-esp nil)
   (add-to-list 'flycheck-grammalecte-enabled-modes 'markdown-mode)
+  (add-to-list 'flycheck-grammalecte-enabled-modes 'rst-mode)
   (add-to-list 'flycheck-grammalecte-enabled-modes 'mu4e-compose-mode)
   (flycheck-grammalecte-setup))
 ;; spell check end  ;;;;
@@ -424,7 +426,7 @@
 (load-user-file "org-mode.el")
 (load-user-file "flycheck.el")
 (load-user-file "minimap.el")
-
+(load-user-file "deft.el")
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -443,4 +445,3 @@
  '(sidebar-buffers-headers-face ((t (:foreground "darkorange" :background "#295488" :height 1))))
  '(sidebar-dir ((t (:inherit dired-directory :foreground "light goldenrod"))))
  '(sidebar-primary-color ((t (:foreground "darkorange" :background "#295488")))))
-
