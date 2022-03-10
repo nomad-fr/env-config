@@ -1,5 +1,5 @@
 (require 'deft)
-(setq deft-directory "~/local/Nextcloud/Notes")
+(setq deft-directory "~/clouds/Cloud-Neuronfarm/Notes")
 (setq deft-extension "org")
 (setq deft-text-mode 'org-mode)
 (setq deft-use-filename-as-title t)
@@ -32,9 +32,9 @@
   ))
 
 (global-set-key (kbd "C-c d")
-                (lambda () (interactive) (deft-neuronfarm "~/local/Nextcloud/Notes")))
+                (lambda () (interactive) (deft-neuronfarm "~/clouds/Cloud-Neuronfarm/Notes")))
 (global-set-key (kbd "C-c D")
-                (lambda () (interactive) (deft-smv "~/local/Nextcloud-SMV/Notes")))
+                (lambda () (interactive) (deft-smv "~/clouds/Cloud-SMV/Notes")))
 (provide 'deft)
 
 
