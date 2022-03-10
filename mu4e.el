@@ -2,6 +2,8 @@
 (require 'mu4e)
 (require 'org-mu4e)
 
+(global-set-key [f9] 'mu4e)
+
 (add-to-list 'load-path "~/VersionControl/GitHub/mu4e-overview/mu4e-overview.el")
 
 ;;send mail using postfix
