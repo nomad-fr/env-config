@@ -242,7 +242,7 @@
 "Michel LE COCQ : CNRS : UMR7154 - UMS3454\n"
 "IPGP : Institut de Physique du Globe de Paris\n"
 "Service Mutualisé Virtualisation / Sismologie / Géoscope\n"
-"Bureau 322 : Tél +33 (0)6 26 56 15 61\n"))
+"Bureau 313 : Tél +33 (0)6 26 56 15 61\n"))
             ("maison" .
 	       (concat
 "Michel Le Cocq | 06 16 25 43 24\n"
