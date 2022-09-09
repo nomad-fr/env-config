@@ -104,13 +104,6 @@ then
 	export CLICOLOR="YES"
 fi
 
-
-if [[ "$OSTYPE" == "freebsd"* ]]
-then
-# just for Grammalect
-alias python3=python3.7			
-fi
-
 alias grep='grep --color'
 #alias grep='grep --color=always'
 alias emacs='emacs -nw'
