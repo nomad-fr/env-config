@@ -105,6 +105,11 @@ then
 fi
 
 
+if [[ "$OSTYPE" == "freebsd"* ]]
+then
+alias python=python3.7			
+fi
+
 alias grep='grep --color'
 #alias grep='grep --color=always'
 alias emacs='emacs -nw'
