@@ -107,7 +107,8 @@ fi
 
 if [[ "$OSTYPE" == "freebsd"* ]]
 then
-alias python=python3.7			
+# just for Grammalect
+alias python3=python3.7			
 fi
 
 alias grep='grep --color'
