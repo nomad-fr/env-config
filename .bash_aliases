@@ -104,7 +104,6 @@ then
 	export CLICOLOR="YES"
 fi
 
-
 alias grep='grep --color'
 #alias grep='grep --color=always'
 alias emacs='emacs -nw'
