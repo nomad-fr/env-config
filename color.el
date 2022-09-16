@@ -1,6 +1,6 @@
 ;; Color ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(load-theme 'tangotango)
+;; (load-theme 'tangotango)
 (load-theme 'gruvbox-dark-hard)
 
 ;; M-x list-color-display to show all available color
