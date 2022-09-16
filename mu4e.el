@@ -99,7 +99,10 @@
 	  :key ?T)	
 	( :name  "List   : * all of them"
 		 :query "maildir:/IPGP/Listes/*"
-	  :key   ?g)	
+		 :key   ?g)
+	( :name  "List   : ASR"
+		 :query "maildir:/IPGP/Listes/ASR"
+		 :key   ?a)	
 	( :name  "List   : Respire"
 	  :query "maildir:/IPGP/Listes/Respire"
 	  :key   ?r)
