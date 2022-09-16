@@ -87,5 +87,5 @@ export NO_AT_BRIDGE=1
 
 # git
 GIT_PROMPT_ONLY_IN_REPO=1
-#source /home/nomad/VersionControl/GitHub/bash-git-prompt/gitprompt.sh
+source /home/nomad/VersionControl/GitHub/bash-git-prompt/gitprompt.sh
 
