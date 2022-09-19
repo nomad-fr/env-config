@@ -112,6 +112,12 @@
 	( :name  "List   : stockage"
 	  :query "maildir:/IPGP/Listes/stockage"
 	  :key   ?s)
+	( :name  "List   : FreeBSD bugs"
+	  :query "maildir:/IPGP/Listes/FreeBSD/bugs"
+	  :key   ?B)
+	( :name  "List   : FreeBSD fs"
+	  :query "maildir:/IPGP/Listes/FreeBSD/fs"
+	  :key   ?F)	
 	( :name  "Unread : NOT list folder"
 		 :query "flag:unread NOT maildir:/IPGP/Listes/*"
 		 :key   ?U)
