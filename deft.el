@@ -22,6 +22,7 @@
 
 (require 'deft)
 (setq deft-directory "~/clouds/Cloud-Neuronfarm/Notes")
+;; (setq deft-dir-list '("~/local/Nextcloud/Notes" "~/local/Nextcloud-SMV/Notes"))
 
 ;; Configure Deft to use .md as the file extension:
 (setq deft-default-extension "md")
@@ -40,9 +41,6 @@
 
 ;; enable searching for files in subdirectories (those not matching deft-recursive-ignore-dir-regexp)
 (setq deft-recursive t)
-
-
-
 
 ;;function to run deft in specified directory
 (defun deft-smv (dir)
@@ -76,9 +74,6 @@
 ;; ;; https://github.com/dfeich/helm-deft
 
 ;; (load-user-file "helm-deft.el")
-
-;; (setq helm-deft-dir-list '("~/local/Nextcloud/Notes" "~/local/Nextcloud-SMV/Notes"))
-;; (setq helm-deft-extension "txt")
 
 ;; Advising a function to provide better titles
 ;; https://jingsi.space/post/2017/04/05/organizing-a-complex-directory-for-emacs-org-mode-and-deft/#configuring-deft
