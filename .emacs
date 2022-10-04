@@ -26,8 +26,12 @@
 
 
 (if (system-type-is-linux)
-    (message "\nLinux\n")
-  
+    (message "\nLinux\n")  
+)
+
+
+(if (system-type-is-bsd)
+    (message "\nBSD\n")  
 )
 
 ;; Set default font
@@ -76,7 +80,7 @@
  ;; If there is more than one, they won't work right.
  '(bmkp-last-as-first-bookmark-file "~/.emacs.d/bookmarks")
  '(custom-safe-themes
-   '("7661b762556018a44a29477b84757994d8386d6edee909409fabe0631952dad9" "83e0376b5df8d6a3fbdfffb9fb0e8cf41a11799d9471293a810deb7586c131e6" "b89a4f5916c29a235d0600ad5a0849b1c50fab16c2c518e1d98f0412367e7f97" "5e2cdea6453f8963037723ab91c779b203fb201bf5c377094440f0c465d688ec" "a3e99dbdaa138996bb0c9c806bc3c3c6b4fd61d6973b946d750b555af8b7555b" "6b5c518d1c250a8ce17463b7e435e9e20faa84f3f7defba8b579d4f5925f60c1" "d14f3df28603e9517eb8fb7518b662d653b25b26e83bd8e129acea042b774298" "b9e9ba5aeedcc5ba8be99f1cc9301f6679912910ff92fdf7980929c2fc83ab4d" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" default))
+   '("d80952c58cf1b06d936b1392c38230b74ae1a2a6729594770762dc0779ac66b7" "7661b762556018a44a29477b84757994d8386d6edee909409fabe0631952dad9" "83e0376b5df8d6a3fbdfffb9fb0e8cf41a11799d9471293a810deb7586c131e6" "b89a4f5916c29a235d0600ad5a0849b1c50fab16c2c518e1d98f0412367e7f97" "5e2cdea6453f8963037723ab91c779b203fb201bf5c377094440f0c465d688ec" "a3e99dbdaa138996bb0c9c806bc3c3c6b4fd61d6973b946d750b555af8b7555b" "6b5c518d1c250a8ce17463b7e435e9e20faa84f3f7defba8b579d4f5925f60c1" "d14f3df28603e9517eb8fb7518b662d653b25b26e83bd8e129acea042b774298" "b9e9ba5aeedcc5ba8be99f1cc9301f6679912910ff92fdf7980929c2fc83ab4d" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" default))
  '(flycheck-grammalecte-download-without-asking t)
  '(flycheck-grammalecte-report-apos nil)
  '(flycheck-grammalecte-report-spellcheck t)
@@ -394,17 +398,23 @@
         (lambda (frame)
 	(select-frame frame)
 	
-	(set-face-attribute 'default nil :height 116) ;; 116 minimum size sinon le theme bave
+	;; (set-face-attribute 'default nil :height 116) ;; 116 minimum size sinon le theme bave
 
 	;; ajustement de la taille de police en fonction de la resolution
 	(when window-system
 	  ;; U4320 : 3840 x 2160
 	  ;; moitiée : 1920 x 2160
-	  (if (>= (x-display-pixel-height) 2160)
+	  (if (= (x-display-pixel-height) 2160)
 	      (set-face-attribute 'default nil :height 150))	  
 	  ;; Dell Xps13 : 3840 x 2400
-	  (if (>= (x-display-pixel-height) 2400)
-	      (set-face-attribute 'default nil :height 100)) )
+	  (if (= (x-display-pixel-height) 2400)
+	      (set-face-attribute 'default nil :height 100))
+
+	  ;; Dell Xps13 : 3840 x 2400
+	  (if (= (x-display-pixel-height) 2560)
+	      (set-face-attribute 'default nil :height 150))
+
+	  )	  		
 )))
 
 ;; load my config files
@@ -433,4 +443,5 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(minimap-active-region-background ((((background dark)) (:background "#181818")) (t (:background "#D3D3D3222222")) "Face for the active region in the minimap.
-              By default, this is only a different background color." :group 'minimap)))
+              By default, this is only a different background color." :group 'minimap))
+ )

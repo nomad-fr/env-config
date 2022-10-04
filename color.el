@@ -18,7 +18,10 @@
 
  '(minimap-active-region-background ((((background dark)) (:background "#181818")) (t (:background "#D3D3D3222222")) "Face for the active region in the minimap.
               By default, this is only a different background color." :group 'minimap))
-)
+
+
+ 
+ )
 
 ;; (add-to-list 'default-frame-alist '(foreground-color . "#E0DFDB"))
 ;; (add-to-list 'default-frame-alist '(background-color . "black"))
@@ -44,7 +47,6 @@
 ;; recognize from the normal marking (selection)
 (global-hl-line-mode t) ;; turn it on for all modes by default
 (set-face-background 'hl-line "gray10")
-
 ;;(set-face-attribute 'region nil :background "gray19") ;; couleur de fond des selections
 
 ;; Color end ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
