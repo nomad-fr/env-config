@@ -304,7 +304,7 @@
                             (:human-date . 10)
 			    (:mailing-list . 12)
                             (:from-or-to . 25)
-                            (:subject    . nil)
+                            (:thread-subject    . nil)
 			    ))
 
 
