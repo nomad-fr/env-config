@@ -283,5 +283,30 @@
   mu4e-index-cleanup nil      ;; don't do a full cleanup check
   mu4e-index-lazy-check t)    ;; don't consider up-to-date dirs
 
+
+
+(add-to-list 'mu4e-header-info-custom
+  '(:recipnum .
+     ( :name "Number of recipients"  ;; long name, as seen in the message-view
+       :shortname "R#"           ;; short name, as seen in the headers view
+       :help "Number of recipients for this message" ;; tooltip
+       :function (lambda (msg)
+          (format "%d"
+            (+ (length (mu4e-message-field msg :to))
+               (length (mu4e-message-field msg :cc))))))))
+
+
+
+
+(setq mu4e-view-fields '(:flags :maildir :mailing-list :tags)
+      mu4e-headers-fields '((:flags      . 5)
+			    (:recipnum . 2)			    
+                            (:human-date . 10)
+			    (:mailing-list . 12)
+                            (:from-or-to . 25)
+                            (:subject    . nil)
+			    ))
+
+
 ;; mu4e :  end
 
