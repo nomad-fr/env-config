@@ -283,30 +283,42 @@
   mu4e-index-cleanup nil      ;; don't do a full cleanup check
   mu4e-index-lazy-check t)    ;; don't consider up-to-date dirs
 
+;; mu4e-thread-folding
+(load-user-file "mu4e-thread-folding.el")
+(require 'mu4e-thread-folding)
 
+(mu4e-thread-folding-mode t)
+
+(add-to-list 'mu4e-header-info-custom
+             '(:empty . (:name "Empty"
+                         :function (lambda (msg) "   "))))
 
 (add-to-list 'mu4e-header-info-custom
   '(:recipnum .
      ( :name "Number of recipients"  ;; long name, as seen in the message-view
-       :shortname "R#"           ;; short name, as seen in the headers view
+       :shortname "Recip#"           ;; short name, as seen in the headers view
        :help "Number of recipients for this message" ;; tooltip
        :function (lambda (msg)
           (format "%d"
             (+ (length (mu4e-message-field msg :to))
                (length (mu4e-message-field msg :cc))))))))
 
+(setq mu4e-headers-fields '(
+			    (:empty         .    2)
+			    (:flags         .    6)
+			    (:recipnum      .    6)
+                            (:human-date    .   10)
+                            (:mailing-list  .   10)
+			    (:mailing-list  .   10)
+                            (:from-or-to    .   22)
+                            (:subject       .   nil)))
 
-
-
-(setq mu4e-view-fields '(:flags :maildir :mailing-list :tags)
-      mu4e-headers-fields '((:flags      . 5)
-			    (:recipnum . 2)			    
-                            (:human-date . 10)
-			    (:mailing-list . 12)
-                            (:from-or-to . 25)
-                            (:thread-subject    . nil)
-			    ))
-
+(define-key mu4e-headers-mode-map (kbd "<tab>")     'mu4e-headers-toggle-at-point)
+(define-key mu4e-headers-mode-map (kbd "<left>")    'mu4e-headers-fold-at-point)
+(define-key mu4e-headers-mode-map (kbd "f")  'mu4e-headers-fold-all)
+(define-key mu4e-headers-mode-map (kbd "<right>")   'mu4e-headers-unfold-at-point)
+(define-key mu4e-headers-mode-map (kbd "f") 'mu4e-headers-unfold-all)
+;; end -- mu4e-thread-folding
 
 ;; mu4e :  end
 
