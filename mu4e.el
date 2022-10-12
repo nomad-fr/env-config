@@ -287,11 +287,24 @@
 (load-user-file "mu4e-thread-folding.el")
 (require 'mu4e-thread-folding)
 
+(defcustom mu4e-thread-folding-root-unfolded-prefix-string
+  "▾"
+  "Prefix for the root node thread when it is unfolded."
+  :type 'string
+  :group 'mu4e-thread-folding)
+
+(defcustom mu4e-thread-folding-root-folded-prefix-string
+  "▸"
+  "Prefix for the root node (when folded)"
+  :type 'string
+  :group 'mu4e-thread-folding)
+
+
 (mu4e-thread-folding-mode t)
 
 (add-to-list 'mu4e-header-info-custom
              '(:empty . (:name "Empty"
-                         :function (lambda (msg) "   "))))
+                         :function (lambda (msg) ""))))
 
 (add-to-list 'mu4e-header-info-custom
   '(:recipnum .
@@ -304,20 +317,20 @@
                (length (mu4e-message-field msg :cc))))))))
 
 (setq mu4e-headers-fields '(
-			    (:empty         .    2)
+			    (:empty         .    0)
+                            (:human-date    .   10)
 			    (:flags         .    6)
 			    (:recipnum      .    6)
-                            (:human-date    .   10)
-                            (:mailing-list  .   10)
-			    (:mailing-list  .   10)
+			    (:mailing-list  .   12)
                             (:from-or-to    .   22)
-                            (:subject       .   nil)))
+			    (:thread-subject       .   80)			    
+			    ))
 
 (define-key mu4e-headers-mode-map (kbd "<tab>")     'mu4e-headers-toggle-at-point)
 (define-key mu4e-headers-mode-map (kbd "<left>")    'mu4e-headers-fold-at-point)
-(define-key mu4e-headers-mode-map (kbd "f")  'mu4e-headers-fold-all)
+(define-key mu4e-headers-mode-map (kbd "y")  'mu4e-headers-fold-all)
 (define-key mu4e-headers-mode-map (kbd "<right>")   'mu4e-headers-unfold-at-point)
-(define-key mu4e-headers-mode-map (kbd "f") 'mu4e-headers-unfold-all)
+(define-key mu4e-headers-mode-map (kbd "Y") 'mu4e-headers-unfold-all)
 ;; end -- mu4e-thread-folding
 
 ;; mu4e :  end
