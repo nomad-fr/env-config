@@ -451,3 +451,7 @@
 
 (fset 'euro
    (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([24 56 return 35 120 50 48 65 67 return] 0 "%d")) arg)))
+
+;; key to launch eshell
+(global-set-key [f5] 'eshell)
+
