@@ -283,5 +283,67 @@
   mu4e-index-cleanup nil      ;; don't do a full cleanup check
   mu4e-index-lazy-check t)    ;; don't consider up-to-date dirs
 
-;; mu4e :  end
+;; mu4e-thread-folding
+(load-user-file "mu4e-thread-folding.el")
+(require 'mu4e-thread-folding)
 
+(defcustom mu4e-thread-folding-root-unfolded-prefix-string
+  "▾"
+  "Prefix for the root node thread when it is unfolded."
+  :type 'string
+  :group 'mu4e-thread-folding)
+
+(defcustom mu4e-thread-folding-root-folded-prefix-string
+  "▸"
+  "Prefix for the root node (when folded)"
+  :type 'string
+  :group 'mu4e-thread-folding)
+
+
+(mu4e-thread-folding-mode t)
+
+(add-to-list 'mu4e-header-info-custom
+             '(:empty . (:name "Empty"
+                         :function (lambda (msg) ""))))
+
+(add-to-list 'mu4e-header-info-custom
+  '(:recipnum .
+     ( :name "Number of recipients"  ;; long name, as seen in the message-view
+       :shortname "Recip#"           ;; short name, as seen in the headers view
+       :help "Number of recipients for this message" ;; tooltip
+       :function (lambda (msg)
+          (format "%d"
+            (+ (length (mu4e-message-field msg :to))
+               (length (mu4e-message-field msg :cc))))))))
+
+(setq mu4e-headers-fields '(
+			    (:empty         .    0)
+                            (:human-date    .   10)
+			    (:flags         .    6)
+			    (:recipnum      .    6)
+			    (:mailing-list  .   12)
+                            (:from-or-to    .   22)
+			    (:thread-subject       .   80)			    
+			    ))
+
+(define-key mu4e-headers-mode-map (kbd "<tab>")     'mu4e-headers-toggle-at-point)
+(define-key mu4e-headers-mode-map (kbd "<left>")    'mu4e-headers-fold-at-point)
+(define-key mu4e-headers-mode-map (kbd "y")  'mu4e-headers-fold-all)
+(define-key mu4e-headers-mode-map (kbd "<right>")   'mu4e-headers-unfold-at-point)
+(define-key mu4e-headers-mode-map (kbd "Y") 'mu4e-headers-unfold-all)
+;; end -- mu4e-thread-folding
+
+;; ignore some auto imported adress
+(defun my-contact-processor (contact)
+  (cond
+    ;; remove unwanted
+    ((string-match-p "lemarchand@ipgp.fr" contact) nil)
+    ((string-match-p "noreply" contact) nil)
+    ;;
+    ;; jonh smiht --> John Smith
+    ;; ((string-match "jonh smiht" contact)
+    ;;    (replace-regexp-in-string "jonh smiht" "John Smith" contact))
+    (t contact)))
+
+(setq mu4e-contact-process-function 'my-contact-processor)
+;; end -- ignore some auto imported adress
