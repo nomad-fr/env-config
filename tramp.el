@@ -9,6 +9,15 @@
              (list (regexp-quote "/ssh:root@bogt")
                    "remote-shell" "/usr/local/bin/bash"))
 
+
+(add-to-list 'tramp-connection-properties
+             (list (regexp-quote "/ssh:root@192.168.0.7")
+                   "remote-shell" "/usr/local/bin/bash"))
+(add-to-list 'tramp-connection-properties
+             (list (regexp-quote "/ssh:root@gobt.neuronfarm.net")
+                   "remote-shell" "/usr/local/bin/bash"))
+
+
 ;; tramp shell work arround for IPGP host
 (add-to-list 'tramp-connection-properties
              (list (regexp-quote "/ssh:root@bigfish.ipgp.fr:")

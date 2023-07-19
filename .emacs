@@ -184,6 +184,8 @@
 ;; indiquez dans les 8 premières lignes du fichier ;; Time-stamp: <>
 (add-hook 'write-file-hooks 'time-stamp)
 
+(add-hook 'org-mode-hook #'auto-fill-mode)
+(setq-default fill-column 80)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; mutt emacs editor 
