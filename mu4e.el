@@ -1,6 +1,6 @@
 ;; mu4e : begin
 (require 'mu4e)
-(require 'org-mu4e)
+;; (require 'org-mu4e)
 
 (global-set-key [f9] 'mu4e)
 

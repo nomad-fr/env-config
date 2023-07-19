@@ -19,7 +19,8 @@ set $term foot
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu dmenu_path | dmenu | xargs swaymsg exec --
+#set $menu dmenu_path | dmenu | xargs swaymsg exec --
+set $menu wofi --show drun
 
 include /etc/sway/config-vars.d/*
 
@@ -83,7 +84,10 @@ input * {
 # Basics:
 #
     # Start a terminal
-    bindsym $mod+Return exec $term
+    #bindsym $mod+Return exec $term
+    bindsym $mod+f1 exec $term
+    bindsym $mod+f2 exec emacsclient -c
+    Bindsym $mod+f3 exec firefox
 
     # Kill focused window
     bindsym $mod+Shift+q kill
@@ -273,6 +277,7 @@ exec nm-applet --indicator
 
 # Applets
 exec blueman-applet
+exec emacs --daemon
 exec sleep 5 && nextcloud --background
 
 
