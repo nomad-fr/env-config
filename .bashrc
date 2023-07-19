@@ -92,16 +92,25 @@ source /home/nomad/VersionControl/GitHub/bash-git-prompt/gitprompt.sh
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/localstorage/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/localstorage/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/localstorage/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/localstorage/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
+# __conda_setup="$('/localstorage/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "/localstorage/anaconda3/etc/profile.d/conda.sh" ]; then
+#         . "/localstorage/anaconda3/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/localstorage/anaconda3/bin:$PATH"
+
+# __conda_setup="$('/localstorage/nomad/conda/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "/localstorage/nomad/conda/etc/profile.d/conda.sh" ]; then
+#         . "/localstorage/nomad/conda/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/localstorage/nomad/conda/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
+# # <<< conda initialize <<<
 

@@ -1,6 +1,6 @@
 ;; mu4e : begin
 (require 'mu4e)
-(require 'org-mu4e)
+;; (require 'org-mu4e)
 
 (global-set-key [f9] 'mu4e)
 
@@ -333,5 +333,17 @@
 (define-key mu4e-headers-mode-map (kbd "Y") 'mu4e-headers-unfold-all)
 ;; end -- mu4e-thread-folding
 
-;; mu4e :  end
+;; ignore some auto imported adress
+(defun my-contact-processor (contact)
+  (cond
+    ;; remove unwanted
+    ((string-match-p "lemarchand@ipgp.fr" contact) nil)
+    ((string-match-p "noreply" contact) nil)
+    ;;
+    ;; jonh smiht --> John Smith
+    ;; ((string-match "jonh smiht" contact)
+    ;;    (replace-regexp-in-string "jonh smiht" "John Smith" contact))
+    (t contact)))
 
+(setq mu4e-contact-process-function 'my-contact-processor)
+;; end -- ignore some auto imported adress
