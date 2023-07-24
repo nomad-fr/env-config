@@ -4,9 +4,9 @@
     "height": 18, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
     // Choose the order of the modules
-    "modules-left": ["sway/workspaces", "sway/mode", "custom/media"],
+    "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["sway/window"],
-    "modules-right": ["pulseaudio", "network", "backlight", "sway/language", "battery", "battery#bat2", "clock", "tray"],
+    "modules-right": ["custom/media","pulseaudio", "network", "backlight", "battery", "battery#bat2", "tray", "clock", "custom/lock", "custom/powermenu"],
     // Modules configuration
     // "sway/workspaces": {
     //     "disable-scroll": true,
@@ -132,6 +132,17 @@
         },
         "on-click": "pavucontrol"
     },
+    "custom/powermenu": {
+            "format": "",
+      	    //"on-click": "swaynag -t warning -m 'Power Menu Options' -b 'Logout' 'swaymsg exit' -b 'Suspend' 'systemctl suspend' -b 'Shutdown' 'systemctl shutdown' -b 'Reboot' 'systemctl reboot'"
+	    "on-click":"swaynag -t warning -m 'Power Menu Options' -b 'Shutdown'  'systemctl poweroff' -b 'Restart' 'systemctl reboot' -b 'Logout' 'swaymsg exit' -b 'Suspend' 'systemctl suspend' -b 'Hibernate' 'systemctl hibernate' --background=#005566 --button-background=#009999 --button-border=#002b33 --border-bottom=#002b33"
+    },
+    "custom/lock": {
+        "format": "",	
+        "on-click": "$HOME/.config/sway/lockman.sh 2> /dev/null"	
+    },
+
+
     "custom/media": {
         "format": "{icon} {}",
         "return-type": "json",

@@ -10,19 +10,25 @@
 set $mod Mod4
 
 # Home row direction keys, like vim
-set $left h
-set $down j
-set $up k
-set $right l
+# set $left h
+# set $down j
+# set $up k
+# set $right l
 # Your preferred terminal emulator
-set $term foot
+set $term footclient
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 #set $menu dmenu_path | dmenu | xargs swaymsg exec --
-set $menu wofi --show drun
+set $menu wofi --show=drun --width=400 --lines=10
+
+
+set $p ~/.config/sway
 
 include /etc/sway/config-vars.d/*
+
+
+
 
 ### Output configuration
 #
@@ -38,6 +44,8 @@ output * bg /home/nomad/Pictures/bg.jpg fill
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
 ### Idle configuration
+
+# lock screen before suspend. Use loginctl lock-session to lock your screen.
 #
 # Example configuration:
 #
@@ -45,10 +53,39 @@ output * bg /home/nomad/Pictures/bg.jpg fill
 #          timeout 300 'swaylock -f -c 000000' \
 #          timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
 #          before-sleep 'swaylock -f -c 000000'
+
+# Idle lock
+
+#     Turn screen off in 9min30sec
+#     Lock screen in 10min (so 30sec after screen off)
+#     Lock screen when going to sleep
+
+set $lock swaylock -c 550000
+exec swayidle -w \
+    timeout 600 $lock \
+    timeout 570 'swaymsg "output * dpms off"' \
+    resume 'swaymsg "output * dpms on"' \
+    before-sleep $lock
+
+# Manual lock
+
+#     Win + l to lock the screen immediately
+#     in 10 sec also switch the screen off
+
+set $lockman exec bash ~/.config/sway/lockman.sh
+bindsym $mod+l exec $lockman
+
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
+
+# set $laptop eDP-1
+# bindswitch --reload --locked lid:on output $laptop disable exec $lockman
+# bindswitch --reload --locked lid:off output $laptop enable exec $lockman
+
+bindswitch lid:off exec $lockman
+bindswitch lid:on exec $lockman
 
 ### Input configuration
 #
@@ -61,8 +98,11 @@ output * bg /home/nomad/Pictures/bg.jpg fill
   #     middle_emulation enabled
   # }
 
-#input 1:1:AT_Teanslated_Set_2_keyboard {
+# input "0:1:Power_Button" {     
+#}
+
 input * {
+
       #compose key right ctrl
       xkb_options compose:rctrl 
 
@@ -74,6 +114,7 @@ input * {
 
       # permit tap 2 and 3 fingers
       tap_button_map lrm
+
 }
 
 
@@ -86,14 +127,19 @@ input * {
 #
 # Basics:
 #
-    # Start a terminal
-    #bindsym $mod+Return exec $term
     bindsym $mod+f1 exec $term
     bindsym $mod+f2 exec emacsclient -c
     Bindsym $mod+f3 exec firefox
+    Bindsym $mod+f4 exec caja
+
+    # capture d'ecran
+    Bindsym $mod+f10 exec swaynag -t warning -m 'screenshot -> : ~/Pictures/' -z 'full' 'grim' -B 'selection' 'grim -g "$(slurp)"'
+
+    # kill waybar to hide it
+    bindsym $mod+home exec killall -SIGUSR1 waybar
 
     # Kill focused window
-    bindsym $mod+Shift+q kill
+    bindsym $mod+Shift+k kill
 
     # Start your launcher
     bindsym $mod+d exec $menu
@@ -124,10 +170,10 @@ input * {
 # Moving around:
 #
     # Move your focus around
-    bindsym $mod+$left focus left
-    bindsym $mod+$down focus down
-    bindsym $mod+$up focus up
-    bindsym $mod+$right focus right
+    # bindsym $mod+$left focus left
+    # bindsym $mod+$down focus down
+    # bindsym $mod+$up focus up
+    # bindsym $mod+$right focus right
     # Or use $mod+[up|down|left|right]
     bindsym $mod+Left focus left
     bindsym $mod+Down focus down
@@ -135,10 +181,10 @@ input * {
     bindsym $mod+Right focus right
 
     # Move the focused window with the same, but add Shift
-    bindsym $mod+Shift+$left move left
-    bindsym $mod+Shift+$down move down
-    bindsym $mod+Shift+$up move up
-    bindsym $mod+Shift+$right move right
+    # bindsym $mod+Shift+$left move left
+    # bindsym $mod+Shift+$down move down
+    # bindsym $mod+Shift+$up move up
+    # bindsym $mod+Shift+$right move right
     # Ditto, with arrow keys
     bindsym $mod+Shift+Left move left
     bindsym $mod+Shift+Down move down
@@ -186,7 +232,7 @@ input * {
     bindsym $mod+e layout toggle split
 
     # Make the current focus fullscreen
-    bindsym $mod+f fullscreen
+    bindsym $mod+f11 fullscreen
 
     # Toggle the current focus between tiling and floating mode
     bindsym $mod+Shift+space floating toggle
@@ -216,10 +262,10 @@ mode "resize" {
     # right will grow the containers width
     # up will shrink the containers height
     # down will grow the containers height
-    bindsym $left resize shrink width 10px
-    bindsym $down resize grow height 10px
-    bindsym $up resize shrink height 10px
-    bindsym $right resize grow width 10px
+    # bindsym $left resize shrink width 10px
+    # bindsym $down resize grow height 10px
+    # bindsym $up resize shrink height 10px
+    # bindsym $right resize grow width 10px
 
     # Ditto, with arrow keys
     bindsym Left resize shrink width 10px
@@ -254,6 +300,10 @@ bar {
     workspace_buttons yes
 }
 
+title {
+
+}
+
 #
 # Waybar:
 #
@@ -270,7 +320,9 @@ bar {
 #     bindsym $mod+b mode "default"
 # }
 # bindsym $mod+c mode "waybar"
-			
+
+
+
 #################
 ### Autostart ###
 #################
@@ -279,6 +331,7 @@ bar {
 exec nm-applet --indicator
 
 # Applets
+exec foot --server
 exec blueman-applet
 exec emacs --daemon
 exec sleep 5 && nextcloud --background
