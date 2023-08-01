@@ -69,6 +69,18 @@
                 (lambda () (interactive) (deft-smv "~/clouds/Cloud-SMV/Notes")))
 (provide 'deft)
 
+;; fonction pour changer de repertoire...
+(defun my-deft-cd ()
+  "Run Deft in selected directory.
+Prompt the user for a directory and run Deft in it."
+  (interactive)
+  (let ((deft-directory (expand-file-name (read-directory-name "Deft directory: "))))
+    (if (get-buffer deft-buffer)
+        (and (switch-to-buffer deft-buffer) (deft-refresh))
+      (deft))))
+
+
+
 
 ;; ;; helm-deft
 ;; ;; https://github.com/dfeich/helm-deft

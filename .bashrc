@@ -120,3 +120,4 @@ source /home/nomad/VersionControl/GitHub/bash-git-prompt/gitprompt.sh
 # unset __conda_setup
 # # <<< conda initialize <<<
 
+

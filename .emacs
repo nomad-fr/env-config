@@ -455,4 +455,3 @@
 
 ;; key to launch eshell
 (global-set-key [f5] 'eshell)
-
