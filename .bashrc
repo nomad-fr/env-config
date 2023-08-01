@@ -2,6 +2,12 @@
 
 PATH=$PATH:~/bin
 
+# necessaire pour ssh via foot
+if [ "$TERM" = "foot" ]
+then
+TERM=xterm-256color
+fi
+
 # # start the agent automatically and make sure that only one ssh-agent
 # # process runs at a time
 
