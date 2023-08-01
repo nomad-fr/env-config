@@ -20,7 +20,8 @@ set $term footclient
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 #set $menu dmenu_path | dmenu | xargs swaymsg exec --
-set $menu wofi --show=drun --width=400 --lines=10
+#set $menu wofi
+set $menu fuzzel
 
 
 set $p ~/.config/sway
@@ -117,9 +118,7 @@ input * {
       tap_button_map lrm
 
 }
-
-
-
+input 1386:18668:Wacom_HID_48EC_Finger map_to_output eDP-1
 
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
@@ -331,10 +330,10 @@ title {
 exec nm-applet --indicator
 
 # Applets
+exec ~/bin/rot8
 exec foot --server
 exec blueman-applet
 exec emacs --daemon
 exec sleep 5 && nextcloud --background
-
 
 include /etc/sway/config.d/*
