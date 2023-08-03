@@ -2,6 +2,12 @@
 
 PATH=$PATH:~/bin
 
+# necessaire pour ssh via foot
+if [ "$TERM" = "foot" ]
+then
+TERM=xterm-256color
+fi
+
 # # start the agent automatically and make sure that only one ssh-agent
 # # process runs at a time
 
@@ -113,4 +119,5 @@ source /home/nomad/VersionControl/GitHub/bash-git-prompt/gitprompt.sh
 # fi
 # unset __conda_setup
 # # <<< conda initialize <<<
+
 

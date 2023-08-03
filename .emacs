@@ -400,7 +400,8 @@
     (add-hook 'after-make-frame-functions
         (lambda (frame)
 	(select-frame frame)
-	
+
+	(set-face-attribute 'default nil :height 100)
 	;; (set-face-attribute 'default nil :height 116) ;; 116 minimum size sinon le theme bave
 
 	;; ajustement de la taille de police en fonction de la resolution
@@ -408,14 +409,14 @@
 	  ;; U4320 : 3840 x 2160
 	  ;; moitiée : 1920 x 2160
 	  (if (= (x-display-pixel-height) 2160)
-	      (set-face-attribute 'default nil :height 150))	  
+	      (set-face-attribute 'default nil :height 70))	  
 	  ;; Dell Xps13 : 3840 x 2400
 	  (if (= (x-display-pixel-height) 2400)
-	      (set-face-attribute 'default nil :height 100))
+	      (set-face-attribute 'default nil :height 70))
 
 	  ;; Dell Xps13 : 3840 x 2400
 	  (if (= (x-display-pixel-height) 2560)
-	      (set-face-attribute 'default nil :height 150))
+	      (set-face-attribute 'default nil :height 70))
 
 	  )	  		
 )))
@@ -454,4 +455,3 @@
 
 ;; key to launch eshell
 (global-set-key [f5] 'eshell)
-
