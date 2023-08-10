@@ -16,12 +16,11 @@
 ;;  '(mode-line ((t (:foreground "#295488" :background "darkorange" :box nil))))
 ;;  '(mode-line-inactive ((t (:foreground "darkorange" :background "#295488" :box nil))))
 
- '(minimap-active-region-background ((((background dark)) (:background "#181818")) (t (:background "#D3D3D3222222")) "Face for the active region in the minimap.
-              By default, this is only a different background color." :group 'minimap))
-
-
- 
- )
+ ;; '(minimap-active-region-background
+ ;;   ((((background dark)) (:background "#181818"))
+ ;;    (t (:background "#3465A4")) "Face for the active region in the minimap.
+ ;;              By default, this is only a different background color." :group 'minimap))
+ ;; )
 
 ;; (add-to-list 'default-frame-alist '(foreground-color . "#E0DFDB"))
 ;; (add-to-list 'default-frame-alist '(background-color . "black"))
