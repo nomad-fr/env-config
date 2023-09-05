@@ -88,7 +88,7 @@
  '(ispell-dictionary nil)
  '(markdown-command "pandoc")
  '(package-selected-packages
-   '(magit pdf-tools dirvish cyberpunk-theme tangotango-theme zenburn-theme gruvbox-theme helm-directory deft exec-path-from-shell async with-emacs git-commit-insert-issue flycheck flycheck-grammalecte frame-local projectile ov s dash-functional dash smart-mode-line-atom-one-dark-theme smart-mode-line org-caldav pov-mode apache-mode salt-mode xah-elisp-mode paredit emamux transpose-frame minimap markdown-mode elm-mode auto-package-update auto-complete-auctex auctex))
+   '(ob-tmux dashboard vterm dired-sidebar demap magit pdf-tools dirvish cyberpunk-theme tangotango-theme zenburn-theme gruvbox-theme helm-directory deft exec-path-from-shell async with-emacs git-commit-insert-issue flycheck flycheck-grammalecte frame-local projectile ov s dash-functional dash smart-mode-line-atom-one-dark-theme smart-mode-line org-caldav pov-mode apache-mode salt-mode xah-elisp-mode paredit emamux transpose-frame minimap markdown-mode elm-mode auto-package-update auto-complete-auctex auctex))
  '(sml/pre-modes-separator (propertize " " 'face 'sml/modes)))
 
 (defun markdown-to-html ()
@@ -434,13 +434,20 @@
   "Load a file in current user's configuration directory"
   (load-file (expand-file-name file user-init-dir)))
 
-(load-user-file "color.el")
 (load-user-file "mu4e.el")
 (load-user-file "tramp.el")
 (load-user-file "org-mode.el")
 (load-user-file "flycheck.el")
-(load-user-file "minimap.el")
 (load-user-file "deft.el")
+(load-user-file "color.el")
+(load-user-file "tab-bar.el")
+(load-user-file "dashboard.el")
+(load-user-file "org-caldav.el")
+(load-user-file "nano-agenda.el")
+
+(setq bookmark-default-file  (concat user-emacs-directory "bookmarks"))
+(bookmark-load bookmark-default-file t)
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -455,3 +462,17 @@
 
 ;; key to launch eshell
 (global-set-key [f5] 'eshell)
+
+;; key to launch demap minimap
+(use-package demap
+	     :ensure t
+	     :commands (demap-toggle))
+(global-set-key [f4] 'demap-toggle)
+
+;; launch dired-sidebar
+(use-package dired-sidebar
+  :ensure t
+  :commands (dired-sidebar-toggle-sidebar))
+(global-set-key [f3] 'dired-sidebar-toggle-sidebar)
+
+;; (desktop-save-mode 1)

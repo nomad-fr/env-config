@@ -6,7 +6,7 @@
 ;; M-x list-color-display to show all available color
 ;; custom colors
 
-(custom-set-faces
+;; (custom-set-faces
 ;;  '(ido-first-match ((t (:foreground "#ccff66"))))
 ;;  '(ido-incomplete-regexp ((t (:foreground "#ffffff"))))
 ;;  '(ido-indicator ((t (:foreground "#ffffff"))))
@@ -16,11 +16,11 @@
 ;;  '(mode-line ((t (:foreground "#295488" :background "darkorange" :box nil))))
 ;;  '(mode-line-inactive ((t (:foreground "darkorange" :background "#295488" :box nil))))
 
- ;; '(minimap-active-region-background
- ;;   ((((background dark)) (:background "#181818"))
- ;;    (t (:background "#3465A4")) "Face for the active region in the minimap.
- ;;              By default, this is only a different background color." :group 'minimap))
- ;; )
+;; '(minimap-active-region-background
+;;   ((((background dark)) (:background "#181818"))
+;;    (t (:background "#3465A4")) "Face for the active region in the minimap.
+;;              By default, this is only a different background color." :group 'minimap))
+;; )
 
 ;; (add-to-list 'default-frame-alist '(foreground-color . "#E0DFDB"))
 ;; (add-to-list 'default-frame-alist '(background-color . "black"))
@@ -45,7 +45,7 @@
 ;; highlight the current line; set a custom face, so we can
 ;; recognize from the normal marking (selection)
 (global-hl-line-mode t) ;; turn it on for all modes by default
-(set-face-background 'hl-line "gray10")
+(set-face-background 'hl-line "#000000")
 ;;(set-face-attribute 'region nil :background "gray19") ;; couleur de fond des selections
 
 ;; Color end ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
