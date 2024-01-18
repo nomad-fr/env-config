@@ -263,7 +263,7 @@
           (mu4e-read-option "Signature:"
             '(("pro" .
 	       (concat
-"Michel LE COCQ : CNRS : UMR7154 - UMS3454\n"
+"Michel LE COCQ : CNRS : UMR7154 - UAR 3454\n"
 "IPGP : Institut de Physique du Globe de Paris\n"
 "Service Mutualisé Virtualisation / Sismologie / Géoscope\n"
 "Bureau 313 : Tél +33 (0)6 26 56 15 61\n"))
