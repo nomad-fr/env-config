@@ -73,6 +73,12 @@
 	( :name "Today NOT List"
           :query "date:today..now AND NOT maildir:/IPGP/Listes/*"
 	  :key ?t)
+	( :name "Today List"
+          :query "date:today..now AND maildir:/IPGP/Listes/*"
+	  :key ?b)
+	( :name "All Till 4w"
+          :query "date:4w..now"
+	  :key ?e)		
 	( :name  "Drafts"
 	  :query "flag:draft and maildir:/Drafts/"
 	  :key   ?d)	
@@ -111,7 +117,16 @@
 	  :key   ?R)
 	( :name  "List   : stockage"
 	  :query "maildir:/IPGP/Listes/stockage"
+	  :key   ?c)
+	( :name  "List   : ceph"
+	  :query "maildir:/IPGP/Listes/Ceph"
+	  :key   ?w)	
+	( :name  "List   : CEPH-users"
+	  :query "maildir:/IPGP/Listes/CEPH-users"
 	  :key   ?s)
+	( :name  "List   : GT-ZFS"
+	  :query "maildir:/IPGP/Listes/GT-ZFS"
+	  :key   ?z)		
 	( :name  "List   : FreeBSD bugs"
 	  :query "maildir:/IPGP/Listes/FreeBSD/bugs"
 	  :key   ?B)

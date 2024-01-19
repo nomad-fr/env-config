@@ -80,7 +80,7 @@
  ;; If there is more than one, they won't work right.
  '(bmkp-last-as-first-bookmark-file "~/.emacs.d/bookmarks")
  '(custom-safe-themes
-   '("82225f1fa1e4d3b00c63700f691fc0dc7c9bdab8a996e6a78f451f9a15bd74fc" "b1a691bb67bd8bd85b76998caf2386c9a7b2ac98a116534071364ed6489b695d" "d80952c58cf1b06d936b1392c38230b74ae1a2a6729594770762dc0779ac66b7" "7661b762556018a44a29477b84757994d8386d6edee909409fabe0631952dad9" "83e0376b5df8d6a3fbdfffb9fb0e8cf41a11799d9471293a810deb7586c131e6" "b89a4f5916c29a235d0600ad5a0849b1c50fab16c2c518e1d98f0412367e7f97" "5e2cdea6453f8963037723ab91c779b203fb201bf5c377094440f0c465d688ec" "a3e99dbdaa138996bb0c9c806bc3c3c6b4fd61d6973b946d750b555af8b7555b" "6b5c518d1c250a8ce17463b7e435e9e20faa84f3f7defba8b579d4f5925f60c1" "d14f3df28603e9517eb8fb7518b662d653b25b26e83bd8e129acea042b774298" "b9e9ba5aeedcc5ba8be99f1cc9301f6679912910ff92fdf7980929c2fc83ab4d" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" default))
+   '("d445c7b530713eac282ecdeea07a8fa59692c83045bf84dd112dd738c7bcad1d" "82225f1fa1e4d3b00c63700f691fc0dc7c9bdab8a996e6a78f451f9a15bd74fc" "b1a691bb67bd8bd85b76998caf2386c9a7b2ac98a116534071364ed6489b695d" "d80952c58cf1b06d936b1392c38230b74ae1a2a6729594770762dc0779ac66b7" "7661b762556018a44a29477b84757994d8386d6edee909409fabe0631952dad9" "83e0376b5df8d6a3fbdfffb9fb0e8cf41a11799d9471293a810deb7586c131e6" "b89a4f5916c29a235d0600ad5a0849b1c50fab16c2c518e1d98f0412367e7f97" "5e2cdea6453f8963037723ab91c779b203fb201bf5c377094440f0c465d688ec" "a3e99dbdaa138996bb0c9c806bc3c3c6b4fd61d6973b946d750b555af8b7555b" "6b5c518d1c250a8ce17463b7e435e9e20faa84f3f7defba8b579d4f5925f60c1" "d14f3df28603e9517eb8fb7518b662d653b25b26e83bd8e129acea042b774298" "b9e9ba5aeedcc5ba8be99f1cc9301f6679912910ff92fdf7980929c2fc83ab4d" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" default))
  '(flycheck-grammalecte-download-without-asking t)
  '(flycheck-grammalecte-report-apos nil)
  '(flycheck-grammalecte-report-spellcheck t)
@@ -88,7 +88,7 @@
  '(ispell-dictionary nil)
  '(markdown-command "pandoc")
  '(package-selected-packages
-   '(pdf-tools dirvish cyberpunk-theme tangotango-theme zenburn-theme gruvbox-theme helm-directory deft exec-path-from-shell async with-emacs magit-popup git-commit-insert-issue flycheck flycheck-grammalecte frame-local projectile ov s dash-functional dash smart-mode-line-atom-one-dark-theme smart-mode-line org-caldav pov-mode apache-mode salt-mode xah-elisp-mode paredit emamux transpose-frame minimap markdown-mode magit elm-mode auto-package-update auto-complete-auctex auctex))
+   '(ob-tmux dashboard vterm dired-sidebar demap magit pdf-tools dirvish cyberpunk-theme tangotango-theme zenburn-theme gruvbox-theme helm-directory deft exec-path-from-shell async with-emacs git-commit-insert-issue flycheck flycheck-grammalecte frame-local projectile ov s dash-functional dash smart-mode-line-atom-one-dark-theme smart-mode-line org-caldav pov-mode apache-mode salt-mode xah-elisp-mode paredit emamux transpose-frame minimap markdown-mode elm-mode auto-package-update auto-complete-auctex auctex))
  '(sml/pre-modes-separator (propertize " " 'face 'sml/modes)))
 
 (defun markdown-to-html ()
@@ -434,20 +434,27 @@
   "Load a file in current user's configuration directory"
   (load-file (expand-file-name file user-init-dir)))
 
-(load-user-file "color.el")
 (load-user-file "mu4e.el")
 (load-user-file "tramp.el")
 (load-user-file "org-mode.el")
 (load-user-file "flycheck.el")
-(load-user-file "minimap.el")
 (load-user-file "deft.el")
+(load-user-file "color.el")
+(load-user-file "tab-bar.el")
+(load-user-file "dashboard.el")
+(load-user-file "org-caldav.el")
+(load-user-file "nano-agenda.el")
+
+(setq bookmark-default-file  (concat user-emacs-directory "bookmarks"))
+(bookmark-load bookmark-default-file t)
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(minimap-active-region-background ((((background dark)) (:background "#181818")) (t (:background "#D3D3D3222222")) "Face for the active region in the minimap. By default, this is only a different background color." :group 'minimap))
- )
+ '(minimap-active-region-background ((((background dark)) (:background "#181818")) (t (:background "#D3D3D3222222")) "Face for the active region in the minimap.
+              By default, this is only a different background color." :group 'minimap)))
 (put 'downcase-region 'disabled nil)
 
 (fset 'euro
@@ -455,3 +462,17 @@
 
 ;; key to launch eshell
 (global-set-key [f5] 'eshell)
+
+;; key to launch demap minimap
+(use-package demap
+	     :ensure t
+	     :commands (demap-toggle))
+(global-set-key [f4] 'demap-toggle)
+
+;; launch dired-sidebar
+(use-package dired-sidebar
+  :ensure t
+  :commands (dired-sidebar-toggle-sidebar))
+(global-set-key [f3] 'dired-sidebar-toggle-sidebar)
+
+;; (desktop-save-mode 1)

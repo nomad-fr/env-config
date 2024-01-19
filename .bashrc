@@ -8,15 +8,36 @@ then
 TERM=xterm-256color
 fi
 
+
+# eval `keychain --eval --agents ssh ~/.ssh/id_rsa_ipgp ~/.ssh/id_rsa_neuronfarm`
+
 # # start the agent automatically and make sure that only one ssh-agent
 # # process runs at a time
+ssh_pid_file="$HOME/.config/ssh-agent.pid"
+SSH_AUTH_SOCK="$HOME/.config/ssh-agent.sock"
+if [ -z "$SSH_AGENT_PID" ]
+then
+	# no PID exported, try to get it from pidfile
+	SSH_AGENT_PID=$(cat "$ssh_pid_file")
+fi
 
-# if ! pgrep -u "$USER" ssh-agent > /dev/null; then
-#     ssh-agent > ~/.ssh-agent-thing
-# fi
-# if [[ "$SSH_AGENT_PID" == "" ]]; then
-#     eval "$(<~/.ssh-agent-thing)"
-# fi
+if ! kill -0 $SSH_AGENT_PID &> /dev/null
+then
+	# the agent is not running, start it
+	rm "$SSH_AUTH_SOCK" &> /dev/null
+	>&2 echo "Starting SSH agent, since it's not running; this can take a moment"
+	eval "$(ssh-agent -s -a "$SSH_AUTH_SOCK")"
+	echo "$SSH_AGENT_PID" > "$ssh_pid_file"
+	ssh-add -A 2>/dev/null
+
+	>&2 echo "Started ssh-agent with '$SSH_AUTH_SOCK'"
+# else
+# 	>&2 echo "ssh-agent on '$SSH_AUTH_SOCK' ($SSH_AGENT_PID)"
+fi
+export SSH_AGENT_PID
+export SSH_AUTH_SOCK
+
+
 
 # if [ ! -f "${HOME}/.gpg-agent-info" ] && [ -S "${HOME}/.gnupg/S.gpg-agent" ] && [ -S "${HOME}/.gnupg/S.gpg-agent.ssh" ]; then
 #     echo "GPG_AGENT_INFO=${HOME}/.gnupg/S.gpg-agent" >> "${HOME}/.gpg-agent-info";
@@ -98,26 +119,17 @@ source /home/nomad/VersionControl/GitHub/bash-git-prompt/gitprompt.sh
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-# __conda_setup="$('/localstorage/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-# if [ $? -eq 0 ]; then
-#     eval "$__conda_setup"
-# else
-#     if [ -f "/localstorage/anaconda3/etc/profile.d/conda.sh" ]; then
-#         . "/localstorage/anaconda3/etc/profile.d/conda.sh"
-#     else
-#         export PATH="/localstorage/anaconda3/bin:$PATH"
-
-# __conda_setup="$('/localstorage/nomad/conda/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-# if [ $? -eq 0 ]; then
-#     eval "$__conda_setup"
-# else
-#     if [ -f "/localstorage/nomad/conda/etc/profile.d/conda.sh" ]; then
-#         . "/localstorage/nomad/conda/etc/profile.d/conda.sh"
-#     else
-#         export PATH="/localstorage/nomad/conda/bin:$PATH"
-#     fi
-# fi
-# unset __conda_setup
-# # <<< conda initialize <<<
+__conda_setup="$('/local/miniconda/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/local/miniconda/etc/profile.d/conda.sh" ]; then
+        . "/local/miniconda/etc/profile.d/conda.sh"
+    else
+        export PATH="/local/miniconda/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
 
 
