@@ -22,7 +22,7 @@
 
 (require 'deft)
 (setq deft-directory "~/clouds/Cloud-Neuronfarm/Notes")
-;; (setq deft-dir-list '("~/local/Nextcloud/Notes" "~/local/Nextcloud-SMV/Notes"))
+(setq deft-dir-list '("~/clouds/Cloud-Neuronfarm/Notes" "~/local/Nextcloud-SMV/Notes"))
 
 ;; Configure Deft to use .md as the file extension:
 (setq deft-default-extension "md")
@@ -42,32 +42,35 @@
 ;; enable searching for files in subdirectories (those not matching deft-recursive-ignore-dir-regexp)
 (setq deft-recursive t)
 
-;;function to run deft in specified directory
-(defun deft-smv (dir)
-  "Run deft in directory DIR but doesn't change deft-directory"
-  (let ((temp deft-directory))
-  (setq deft-directory dir)
-  (switch-to-buffer "*Deft*")
-  (kill-this-buffer)
-  (deft)
-  (setq deft-directory temp)
-  ))
+;; ;;function to run deft in specified directory
+;; (defun deft-smv (dir)
+;;   "Run deft in directory DIR but doesn't change deft-directory"
+;;   (let ((temp deft-directory))
+;;   (setq deft-directory "~/clouds/Cloud-Neuronfarm/Notes")
+;;   (switch-to-buffer "*Deft*")
+;;   (kill-this-buffer)
+;;   (deft)
+;;   (setq deft-directory temp)
+;;   ))
 
-(defun deft-neuronfarm (dir)
-  "Run deft in directory DIR but doesn't change deft-directory"
-  (let ((temp deft-directory))
-  (setq deft-directory dir)
-  (switch-to-buffer "*Deft*")
-  (kill-this-buffer)
-  (deft)
-  (setq deft-directory temp)
-  ))
+;; (defun deft-neuronfarm (dir)
+;;   "Run deft in directory DIR but doesn't change deft-directory"
+;;   (let ((temp deft-directory))
+;;   (setq deft-directory "~/local/Nextcloud-SMV/Notes")
+;;   (switch-to-buffer "*Deft*")
+;;   (kill-this-buffer)
+;;   (deft)
+;;   (setq deft-directory temp)
+;;   ))
 
-(global-set-key (kbd "C-c d")
-                (lambda () (interactive) (deft-neuronfarm "~/clouds/Cloud-Neuronfarm/Notes")))
-(global-set-key (kbd "C-c D")
-                (lambda () (interactive) (deft-smv "~/clouds/Cloud-SMV/Notes")))
+;; (global-set-key (kbd "C-x C-d")
+;; 		(lambda () (interactive) (deft-neuronfarm "~/clouds/Cloud-Neuronfarm/Notes")))		
+;; (global-set-key (kbd "C-x C-e")
+;;                 (lambda () (interactive) (deft-smv "~/clouds/Cloud-SMV/Notes")))
+
 (provide 'deft)
+(global-set-key (kbd "C-x C-d") 'my-deft-cd)
+;; voir : https://github.com/jrblevin/deft/issues/65
 
 ;; fonction pour changer de repertoire...
 (defun my-deft-cd ()
