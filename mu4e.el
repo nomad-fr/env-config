@@ -203,6 +203,16 @@
 (when (fboundp 'imagemagick-register-types)
   (imagemagick-register-types))
 
+;;; SMTP
+;; /!\ check if it's installed
+(setq sendmail-program "msmtp")
+;; Configure the function to use for sending mail
+(setq message-send-mail-function 'smtpmail-send-it)
+;; (smtpmail-auth-credentials . "~/.authinfo.gpg" )
+
+(setq smtpmail-debug-info t
+      smtpmail-debug-verb t)
+
 (setq mu4e-contexts
       `( ,(make-mu4e-context
        	  :name "NeuronFarm"
@@ -213,9 +223,16 @@
        			(when msg 
        			  (mu4e-message-contact-field-matches msg 
        			    :to "nomad@neuronfarm.net")))
-       	  :vars '( ( user-mail-address	    . "nomad@neuronfarm.net"  )
-       		   ( user-full-name	    . "Michel Le Cocq" )
-		   )) 
+       	  :vars '( (user-mail-address	    . "nomad@neuronfarm.net"  )
+       		   (user-full-name	    . "Michel Le Cocq" )
+		   (smtpmail-smtp-server    . "mail.neuronfarm.net")
+                   (smtpmail-smtp-service   . 587)
+		   (smtpmail-stream-type    . starttls)
+		   (smtpmail-smtp-user      . "nomad@neuronfarm.net")
+		   (starttls-gnutls-program "gnutls-cli")
+		   (smtpmail-use-gnutls t)
+		 )	         
+	    ) 
        ,(make-mu4e-context
 	  :name "IPGP"
 	  :enter-func (lambda () (mu4e-message "Switch to the IPGP context"))
@@ -225,10 +242,16 @@
 	  :match-func (lambda (msg)
 			(when msg
 			  (string-match-p "^/IPGP" (mu4e-message-field msg :maildir))))
-	  :vars '( ( user-mail-address	     . "lecocq@ipgp.fr" )
-		   ( user-full-name	     . "Michel Le Cocq" )
-		   )) ))      
-      
+	  :vars '( (user-mail-address	    . "lecocq@ipgp.fr" )
+		   (user-full-name	    . "Michel Le Cocq" )
+		  (send-mail-function      . smtpmail-send-it )
+		                  (smtpmail-auth-credentials . "~/.authinfo" )
+		   (smtpmail-smtp-user      . "lecocq")		   
+		   (smtpmail-smtp-server    . "smtps.ipgp.fr")
+                   (smtpmail-smtp-service   . 465)
+                   (smtpmail-stream-type    . ssl) )
+	  )))
+
 ;; set `mu4e-context-policy` and `mu4e-compose-policy` to tweak when mu4e should
 ;; guess or ask the correct context, e.g.
 
@@ -291,7 +314,7 @@
           (mu4e-read-option "Signature:"
             '(("pro" .
 	       (concat
-"Michel LE COCQ : CNRS : UMR7154 - UMS3454\n"
+"Michel LE COCQ : CNRS : UMR7154 - UAR 3454\n"
 "IPGP : Institut de Physique du Globe de Paris\n"
 "Service Mutualisé Virtualisation / Sismologie / Géoscope\n"
 "Bureau 313 : Tél +33 (0)6 26 56 15 61\n"))

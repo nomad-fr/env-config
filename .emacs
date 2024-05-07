@@ -441,6 +441,7 @@
 (load-user-file "deft.el")
 (load-user-file "color.el")
 (load-user-file "tab-bar.el")
+
 ;;(load-user-file "dashboard.el")
 ;; (load-user-file "org-caldav.el")
 ;; (load-user-file "nano-agenda.el")
@@ -455,7 +456,6 @@
  ;; If there is more than one, they won't work right.
  '(minimap-active-region-background ((((background dark)) (:background "#181818")) (t (:background "#D3D3D3222222")) "Face for the active region in the minimap.
               By default, this is only a different background color." :group 'minimap)))
-(put 'downcase-region 'disabled nil)
 
 (fset 'euro
    (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([24 56 return 35 120 50 48 65 67 return] 0 "%d")) arg)))
@@ -476,3 +476,5 @@
 (global-set-key [f3] 'dired-sidebar-toggle-sidebar)
 
 ;; (desktop-save-mode 1)
+(put 'downcase-region 'disabled nil)
+(put 'upcase-region 'disabled nil)
