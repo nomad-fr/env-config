@@ -1,6 +1,34 @@
 ;; mu4e : begin
 (require 'mu4e)
-;; (require 'org-mu4e)
+;;(require 'org-mu4e)
+
+
+;; ;; (require 'consult)
+
+;; ;; consult-mu
+;; (autoload 'consult-mu "~/.emacs.d/consult-mu.el" "consult-mu." t)
+
+
+
+
+
+;; (use-package consult-mu
+;;   :straight (consult-mu :type git :host github :repo "armindarvish/consult-mu" :branch "main")
+;;   :after (consult mu4e)
+;;   :custom
+;;   ;;maximum number of results shown in minibuffer
+;;   (consult-mu-maxnum 200)
+;;   ;;show preview when pressing any keys
+;;   (consult-mu-preview-key 'any)
+;;   ;;do not mark email as read when previewed
+;;   (consult-mu-mark-previewed-as-read nil)
+;;   ;;do not amrk email as read when selected. This is a good starting point to ensure you would not miss important emails marked as read by mistake especially when trying this package out. Later you can change this to t.
+;;   (consult-mu-mark-viewed-as-read nil)
+;;   ;; open the message in mu4e-view-buffer when selected.
+;;   (consult-mu-action #'consult-mu--view-action)
+;;   )
+
+
 
 (global-set-key [f9] 'mu4e)
 
