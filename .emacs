@@ -441,12 +441,12 @@
 (load-user-file "deft.el")
 (load-user-file "color.el")
 (load-user-file "tab-bar.el")
-(load-user-file "dashboard.el")
-(load-user-file "org-caldav.el")
-(load-user-file "nano-agenda.el")
+;;(load-user-file "dashboard.el")
+;; (load-user-file "org-caldav.el")
+;; (load-user-file "nano-agenda.el")
 
-(setq bookmark-default-file  (concat user-emacs-directory "bookmarks"))
-(bookmark-load bookmark-default-file t)
+;; (setq bookmark-default-file  (concat user-emacs-directory "bookmarks"))
+;; (bookmark-load bookmark-default-file t)
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
