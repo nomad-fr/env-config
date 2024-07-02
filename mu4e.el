@@ -146,6 +146,9 @@
 	( :name  "List   : stockage"
 	  :query "maildir:/IPGP/Listes/stockage"
 	  :key   ?c)
+	( :name  "List   : Proxmox"
+	  :query "maildir:/IPGP/Listes/Proxmox"
+	  :key   ?p)	
 	( :name  "List   : ceph"
 	  :query "maildir:/IPGP/Listes/Ceph"
 	  :key   ?w)	
