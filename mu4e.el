@@ -1,6 +1,34 @@
 ;; mu4e : begin
 (require 'mu4e)
-;; (require 'org-mu4e)
+;;(require 'org-mu4e)
+
+
+;; ;; (require 'consult)
+
+;; ;; consult-mu
+;; (autoload 'consult-mu "~/.emacs.d/consult-mu.el" "consult-mu." t)
+
+
+
+
+
+;; (use-package consult-mu
+;;   :straight (consult-mu :type git :host github :repo "armindarvish/consult-mu" :branch "main")
+;;   :after (consult mu4e)
+;;   :custom
+;;   ;;maximum number of results shown in minibuffer
+;;   (consult-mu-maxnum 200)
+;;   ;;show preview when pressing any keys
+;;   (consult-mu-preview-key 'any)
+;;   ;;do not mark email as read when previewed
+;;   (consult-mu-mark-previewed-as-read nil)
+;;   ;;do not amrk email as read when selected. This is a good starting point to ensure you would not miss important emails marked as read by mistake especially when trying this package out. Later you can change this to t.
+;;   (consult-mu-mark-viewed-as-read nil)
+;;   ;; open the message in mu4e-view-buffer when selected.
+;;   (consult-mu-action #'consult-mu--view-action)
+;;   )
+
+
 
 (global-set-key [f9] 'mu4e)
 
@@ -118,6 +146,9 @@
 	( :name  "List   : stockage"
 	  :query "maildir:/IPGP/Listes/stockage"
 	  :key   ?c)
+	( :name  "List   : Proxmox"
+	  :query "maildir:/IPGP/Listes/Proxmox"
+	  :key   ?p)	
 	( :name  "List   : ceph"
 	  :query "maildir:/IPGP/Listes/Ceph"
 	  :key   ?w)	
@@ -175,6 +206,26 @@
 (when (fboundp 'imagemagick-register-types)
   (imagemagick-register-types))
 
+;;; SMTP
+;; /!\ check if it's installed
+(setq sendmail-program "msmtp")
+;; Configure the function to use for sending mail
+(setq message-send-mail-function 'smtpmail-send-it)
+;; (smtpmail-auth-credentials . "~/.authinfo.gpg" )
+
+(setq smtpmail-debug-info t
+      smtpmail-debug-verb t)
+
+;;; question replay to all
+(defun compose-reply-wide-or-not-please-ask ()
+  "Ask whether to reply-to-all or not."
+  (interactive)
+  (mu4e-compose-reply (yes-or-no-p "Reply to all? : to avoid question use W.")))
+(define-key mu4e-compose-minor-mode-map (kbd "R")
+  #'compose-reply-wide-or-not-please-ask)
+;;;
+
+;;; mu4e context
 (setq mu4e-contexts
       `( ,(make-mu4e-context
        	  :name "NeuronFarm"
@@ -185,9 +236,16 @@
        			(when msg 
        			  (mu4e-message-contact-field-matches msg 
        			    :to "nomad@neuronfarm.net")))
-       	  :vars '( ( user-mail-address	    . "nomad@neuronfarm.net"  )
-       		   ( user-full-name	    . "Michel Le Cocq" )
-		   )) 
+       	  :vars '( (user-mail-address	    . "nomad@neuronfarm.net"  )
+       		   (user-full-name	    . "Michel Le Cocq" )
+		   (smtpmail-smtp-server    . "mail.neuronfarm.net")
+                   (smtpmail-smtp-service   . 587)
+		   (smtpmail-stream-type    . starttls)
+		   (smtpmail-smtp-user      . "nomad@neuronfarm.net")
+		   (starttls-gnutls-program "gnutls-cli")
+		   (smtpmail-use-gnutls t)
+		 )	         
+	    ) 
        ,(make-mu4e-context
 	  :name "IPGP"
 	  :enter-func (lambda () (mu4e-message "Switch to the IPGP context"))
@@ -197,10 +255,16 @@
 	  :match-func (lambda (msg)
 			(when msg
 			  (string-match-p "^/IPGP" (mu4e-message-field msg :maildir))))
-	  :vars '( ( user-mail-address	     . "lecocq@ipgp.fr" )
-		   ( user-full-name	     . "Michel Le Cocq" )
-		   )) ))      
-      
+	  :vars '( (user-mail-address	    . "lecocq@ipgp.fr" )
+		   (user-full-name	    . "Michel Le Cocq" )
+		  (send-mail-function      . smtpmail-send-it )
+		                  (smtpmail-auth-credentials . "~/.authinfo" )
+		   (smtpmail-smtp-user      . "lecocq")		   
+		   (smtpmail-smtp-server    . "smtps.ipgp.fr")
+                   (smtpmail-smtp-service   . 465)
+                   (smtpmail-stream-type    . ssl) )
+	  )))
+
 ;; set `mu4e-context-policy` and `mu4e-compose-policy` to tweak when mu4e should
 ;; guess or ask the correct context, e.g.
 

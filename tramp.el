@@ -17,6 +17,9 @@
 (add-to-list 'tramp-connection-properties
              (list (regexp-quote "/ssh:root@gobt.neuronfarm.net")
                    "remote-shell" "/usr/local/bin/bash"))
+(add-to-list 'tramp-connection-properties
+             (list (regexp-quote "/ssh:root@obgt.neuronfarm.net")
+                   "remote-shell" "/usr/local/bin/bash"))
 
 ;; tramp shell work arround for IPGP host
 (add-to-list 'tramp-connection-properties
