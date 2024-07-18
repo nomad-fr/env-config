@@ -88,7 +88,7 @@
  '(ispell-dictionary nil)
  '(markdown-command "pandoc")
  '(package-selected-packages
-   '(ob-tmux dashboard vterm dired-sidebar demap magit pdf-tools dirvish cyberpunk-theme tangotango-theme zenburn-theme gruvbox-theme helm-directory deft exec-path-from-shell async with-emacs git-commit-insert-issue flycheck flycheck-grammalecte frame-local projectile ov s dash-functional dash smart-mode-line-atom-one-dark-theme smart-mode-line org-caldav pov-mode apache-mode salt-mode xah-elisp-mode paredit emamux transpose-frame minimap markdown-mode elm-mode auto-package-update auto-complete-auctex auctex))
+   '(ob-tmux vterm dired-sidebar demap magit pdf-tools dirvish cyberpunk-theme tangotango-theme zenburn-theme gruvbox-theme helm-directory deft exec-path-from-shell async with-emacs git-commit-insert-issue flycheck flycheck-grammalecte frame-local projectile ov s dash-functional dash smart-mode-line-atom-one-dark-theme smart-mode-line org-caldav pov-mode apache-mode salt-mode xah-elisp-mode paredit emamux transpose-frame minimap markdown-mode elm-mode auto-package-update auto-complete-auctex auctex))
  '(sml/pre-modes-separator (propertize " " 'face 'sml/modes)))
 
 (defun markdown-to-html ()
@@ -441,7 +441,7 @@
 (load-user-file "deft.el")
 (load-user-file "color.el")
 (load-user-file "tab-bar.el")
-(load-user-file "dashboard.el")
+;; (load-user-file "dashboard.el")
 (load-user-file "org-caldav.el")
 (load-user-file "nano-agenda.el")
 
