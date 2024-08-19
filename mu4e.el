@@ -146,6 +146,9 @@
 	( :name  "List   : stockage"
 	  :query "maildir:/IPGP/Listes/stockage"
 	  :key   ?c)
+	( :name  "List   : Proxmox"
+	  :query "maildir:/IPGP/Listes/Proxmox"
+	  :key   ?p)	
 	( :name  "List   : ceph"
 	  :query "maildir:/IPGP/Listes/Ceph"
 	  :key   ?w)	
@@ -294,6 +297,8 @@
 
 ;; don't save message to Sent Messages, IMAP takes care of this
 (setq mu4e-sent-messages-behavior 'delete)
+
+(setq message-ignored-mail-headers "^Date:" )
 
 (add-hook 'mu4e-compose-mode-hook
    ;; add me in Bcc based on context

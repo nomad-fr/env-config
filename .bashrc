@@ -2,6 +2,10 @@
 
 PATH=$PATH:~/bin
 
+# necessaire sous wayland pour certaines apps java dont :
+# kvm ipmi ovh et supermicro
+export _JAVA_AWT_WM_NONREPARENTING=1
+
 # necessaire pour ssh via foot
 if [ "$TERM" = "foot" ]
 then
