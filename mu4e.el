@@ -213,14 +213,14 @@
 (setq smtpmail-debug-info t
       smtpmail-debug-verb t)
 
-;;; question replay to all
-(defun compose-reply-wide-or-not-please-ask ()
-  "Ask whether to reply-to-all or not."
-  (interactive)
-  (mu4e-compose-reply (yes-or-no-p "Reply to all? : to avoid question use W.")))
-(define-key mu4e-compose-minor-mode-map (kbd "R")
-  #'compose-reply-wide-or-not-please-ask)
-;;;
+;; ;;; question replay to all
+;; (defun compose-reply-wide-or-not-please-ask ()
+;;   "Ask whether to reply-to-all or not."
+;;   (interactive)
+;;   (mu4e-compose-reply (yes-or-no-p "Reply to all? : to avoid question use W.")))
+;; (define-key mu4e-compose-minor-mode-map (kbd "R")
+;;   #'compose-reply-wide-or-not-please-ask)
+;; ;;;
 
 ;;; mu4e context
 (setq mu4e-contexts
