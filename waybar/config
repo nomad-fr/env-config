@@ -3,15 +3,14 @@
     // "position": "bottom", // Waybar position (top|bottom|left|right)
     "height": 18, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
+
     // Choose the order of the modules
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["sway/window"],
-<<<<<<< HEAD
-    // "modules-right": ["custom/media","pulseaudio","network", "backlight", "battery", "battery#bat2", "tray", "clock", "custom/lock", "custom/powermenu"],
-    "modules-right":    [               "pulseaudio","network",                                         "tray", "clock", "custom/lock", "custom/powermenu"],	
-=======
-    "modules-right": ["custom/media","pulseaudio","network", "backlight", "battery", "battery#bat2", "custom/display", "tray", "clock", "custom/lock", "custom/powermenu"],
->>>>>>> 977891bef5ab0372d2969c7db6e45550eb949302
+    // "Modules-right": ["custom/media","pulseaudio","network", "backlight", "battery", "battery#bat2", "tray", "clock", "custom/lock", "custom/powermenu"],	
+       "modules-right": ["custom/media","pulseaudio","network", "backlight", "battery", "battery#bat2","custom/display", "tray", "clock", "custom/lock", "custom/powermenu"],
+    // "modules-right":    [               "pulseaudio","network",                                         "tray", "clock", "custom/lock", "custom/powermenu"],
+    
     // Modules configuration
     // "sway/workspaces": {
     //     "disable-scroll": true,
@@ -151,13 +150,15 @@
         "on-click": "$HOME/.config/sway/lockman.sh 2> /dev/null"	
     },
 
-
     "custom/display": {
-    	"format": "🖵",
-	"on-click":"swaynag -t warning -m $(/home/nomad/bin/sway-display | head -n1)"
-        // "on-click":"swaynag -t warning -m 'Display Options' -b '1'  'wlr-randr | grep -v "^ " | head -n1' --background=#005566 --button-background=#009999 --button-border=#002b33 --border-bottom=#002b33"
-    },
+        "format": "🖥️",
+	    "on-click":"swaynag -t warning -m 'Menu Display Setup' $(/home/nomad/bin/sway-display) -b 'wdisplays' 'wdisplays' --background=#005566 --button-background=#009999 --button-border=#002b33 --border-bottom=#002b33"    
 
+
+//	    "on-click":"swaynag -t warning -m 'Menu Display Setup' -b 'Shutdown'  'systemctl poweroff' -b 'Restart' 'systemctl reboot' -b 'Logout' 'swaymsg exit' -b 'Suspend' 'systemctl suspend' -b 'Hibernate' 'systemctl hibernate' --background=#005566 --button-background=#009999 --button-border=#002b33 --border-bottom=#002b33"
+// 	"on-click":"swaynag -t warning -m $(/home/nomad/bin/sway-display | head -n1)"
+	    
+    },
 
 
     "custom/media": {
