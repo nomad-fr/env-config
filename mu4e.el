@@ -2,6 +2,8 @@
 (require 'mu4e)
 ;;(require 'org-mu4e)
 
+;; (mu4e-marker-icons-mode 1)
+
 
 ;; ;; (require 'consult)
 
@@ -216,14 +218,13 @@
 (setq smtpmail-debug-info t
       smtpmail-debug-verb t)
 
-;; ;;; question replay to all
+;;; question replay to all
 ;; (defun compose-reply-wide-or-not-please-ask ()
 ;;   "Ask whether to reply-to-all or not."
 ;;   (interactive)
 ;;   (mu4e-compose-reply (yes-or-no-p "Reply to all? : to avoid question use W.")))
 ;; (define-key mu4e-compose-minor-mode-map (kbd "R")
 ;;   #'compose-reply-wide-or-not-please-ask)
-;; ;;;
 
 ;;; mu4e context
 (setq mu4e-contexts
@@ -331,8 +332,9 @@
 	       (concat
 "Michel LE COCQ : CNRS : UMR7154 - UAR 3454\n"
 "IPGP : Institut de Physique du Globe de Paris\n"
-"Service Mutualisé Virtualisation / Sismologie / Géoscope\n"
-"Bureau 313 : Tél +33 (0)6 26 56 15 61\n"))
+"  Service Mutualisé : Virtualisation/Stockage\n"
+"ResInfo :  GT-Proxmox  GT-ZFS  Copil  Respire\n"
+"Tél +33 (0)6 26 56 15 61\n"))
             ("maison" .
 	       (concat
 "Michel Le Cocq | 06 16 25 43 24\n"
@@ -419,6 +421,7 @@
   (cond
     ;; remove unwanted
     ((string-match-p "lemarchand@ipgp.fr" contact) nil)
+    ((string-match-p "informaticien@ipgp.fr" contact) nil)   
     ((string-match-p "noreply" contact) nil)
     ;;
     ;; jonh smiht --> John Smith
