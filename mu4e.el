@@ -2,6 +2,8 @@
 (require 'mu4e)
 ;;(require 'org-mu4e)
 
+;; (mu4e-marker-icons-mode 1)
+
 
 ;; ;; (require 'consult)
 
@@ -420,6 +422,7 @@
   (cond
     ;; remove unwanted
     ((string-match-p "lemarchand@ipgp.fr" contact) nil)
+    ((string-match-p "informaticien@ipgp.fr" contact) nil)   
     ((string-match-p "noreply" contact) nil)
     ;;
     ;; jonh smiht --> John Smith

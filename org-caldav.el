@@ -20,28 +20,20 @@
 	      (run-with-idle-timer
 	       (* 1 secs) nil 'org-caldav-sync)))
 
-;; This is the sync on close function; it also prompts for save after syncing so
-;; no late changes get lost 
-  (defun org-caldav-sync-at-close ()
-    (org-caldav-sync)
-    (save-some-buffers))
+;; URL of the caldav server
+;; (setq org-caldav-url "https://NEXTCLOUD-SERVER-URL/remote.php/dav/calendars/USERID")
+;; calendar ID on server
+;; (setq org-caldav-calendar-id "CALENDAR-ID")
 
-;; This is the delayed sync function; it waits until emacs has been idle for 
-;; "secs" seconds before syncing.  The delay is important because the caldav-sync
-;; can take five or ten seconds, which would be painful if it did that right at save.  
-;; This way it just waits until you've been idle for a while to avoid disturbing 
-;; the user.
-(defvar org-caldav-sync-timer nil
-  "Timer that `org-caldav-push-timer' used to reschedule itself, or nil.")
-(defun org-caldav-sync-with-delay (secs)
-  (when org-caldav-sync-timer
-    (cancel-timer org-caldav-sync-timer))
-  (setq org-caldav-sync-timer
-	      (run-with-idle-timer
-	       (* 1 secs) nil 'org-caldav-sync)))
 
 ;; Actual calendar configuration edit this to meet your specific needs
-(setq org-caldav-url "https://cloud.neuronfarm.net/remote.php/dav/calendars/nomad/")
+;;(setq org-caldav-url "https://cloud.neuronfarm.net/remote.php/dav/calendars/nomad/")
+
+(setq org-caldavs
+      '(
+	(:caldav-url "https://cloud.neuronfarm.net/remote.php/dav/calendars/nomad/")
+	(:caldav-url "https://smv-cloud.ipgp.fr/remote.php/dav/calendars/lecocq/")
+	))
 
 (setq org-caldav-calendars
       '(
