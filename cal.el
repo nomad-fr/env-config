@@ -20,3 +20,6 @@
 ;; (khalel-add-capture-template)
 
 (setq khalel-default-calendar "smv")
+
+
+(add-to-list 'org-agenda-files "~/org/calendar.org")
