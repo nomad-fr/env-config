@@ -1,0 +1,37 @@
+IMAPAccount NeuronFarm
+# Address to connect to
+Host mail.neuronfarm.net
+User nomad@neuronfarm.net
+PassCmd "gpg -q --for-your-eyes-only --no-tty -d ~/.emacs.d/.mbsyncpass.gpg"
+#Pass ***************
+# To store the password in an encrypted file use PassCmd instead of Pass
+# PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d ~/.mailpass.gpg"
+#
+# Use SSL
+SSLType IMAPS
+# The following line should work. If get certificate errors, uncomment the two following lines and read the "Troubleshooting" section.
+CertificateFile ~/.cert/mail.neuronfarm.net.pem
+
+IMAPStore neuronfarm-remote
+Account NeuronFarm
+
+MaildirStore neuronfarm-local
+Subfolders Verbatim
+# The trailing "/" is important
+Path ~/.localsyncmail/neuronfarm/
+Inbox ~/.localsyncmail/neuronfarm/Inbox
+
+Channel neuronfarm
+Master :neuronfarm-remote:
+Slave :neuronfarm-local:
+# Exclude everything under the internal [Gmail] folder, except the interesting folders
+# Patterns * ![Gmail]* "[Gmail]/Sent Mail" "[Gmail]/Starred" "[Gmail]/All Mail"
+# Or include everything
+#Patterns * "!Drafts"
+Patterns *
+# Automatically create missing mailboxes, both locally and on the server
+Create Both
+# Save the synchronization state files in the relevant directory
+SyncState *
+# Permanently remove all messages [on the Master/Slave] marked for deletion.
+Expunge Both
