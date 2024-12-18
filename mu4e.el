@@ -2,6 +2,8 @@
 (require 'mu4e)
 ;;(require 'org-mu4e)
 
+;; (mu4e-marker-icons-mode 1)
+
 
 ;; ;; (require 'consult)
 
@@ -223,7 +225,6 @@
 ;;   (mu4e-compose-reply (yes-or-no-p "Reply to all? : to avoid question use W.")))
 ;; (define-key mu4e-compose-minor-mode-map (kbd "R")
 ;;   #'compose-reply-wide-or-not-please-ask)
-;;;
 
 ;;; mu4e context
 (setq mu4e-contexts
@@ -420,6 +421,7 @@
   (cond
     ;; remove unwanted
     ((string-match-p "lemarchand@ipgp.fr" contact) nil)
+    ((string-match-p "informaticien@ipgp.fr" contact) nil)   
     ((string-match-p "noreply" contact) nil)
     ;;
     ;; jonh smiht --> John Smith

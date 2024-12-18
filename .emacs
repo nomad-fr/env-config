@@ -88,7 +88,7 @@
  '(ispell-dictionary nil)
  '(markdown-command "pandoc")
  '(package-selected-packages
-   '(ob-tmux vterm dired-sidebar demap magit pdf-tools dirvish cyberpunk-theme tangotango-theme zenburn-theme gruvbox-theme helm-directory deft exec-path-from-shell async with-emacs git-commit-insert-issue flycheck flycheck-grammalecte frame-local projectile ov s dash-functional dash smart-mode-line-atom-one-dark-theme smart-mode-line org-caldav pov-mode apache-mode salt-mode xah-elisp-mode paredit emamux transpose-frame minimap markdown-mode elm-mode auto-package-update auto-complete-auctex auctex))
+   '(khalel mu4e-marker-icons all-the-icons-nerd-fonts dashboard epl pkg-info ob-tmux vterm dired-sidebar demap magit pdf-tools dirvish cyberpunk-theme tangotango-theme zenburn-theme gruvbox-theme helm-directory deft exec-path-from-shell async with-emacs git-commit-insert-issue flycheck flycheck-grammalecte frame-local projectile ov s dash-functional dash smart-mode-line-atom-one-dark-theme smart-mode-line org-caldav pov-mode apache-mode salt-mode xah-elisp-mode paredit emamux transpose-frame minimap markdown-mode elm-mode auto-package-update auto-complete-auctex auctex))
  '(sml/pre-modes-separator (propertize " " 'face 'sml/modes)))
 
 (defun markdown-to-html ()
@@ -173,8 +173,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; key binding
 
-(autoload 'setnu-mode "~/config/emacs/setnu.el" "set-nu" t)
-(global-set-key (kbd "<f6>") 'linum-mode)	; show line number with f6
+;; (autoload 'setnu-mode "~/config/emacs/setnu.el" "set-nu" t)
+;; (global-set-key (kbd "<f6>") 'linum-mode)	; show line number with f6
 
 (global-set-key (kbd "<f7>") 'ispell-region)	; ispell region with f7
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -319,9 +319,9 @@
 ;; show line numbers
 ;; show line number with f6 : see key bindings
 ;; https://github.com/targzeta/linum-highlight-current-line-number
-(add-to-list 'load-path "~/VersionControl/GitHub/linum-highlight-current-line-number/")
-(require 'linum-highlight-current-line-number)
-(setq linum-format 'linum-highlight-current-line-number)
+;; (add-to-list 'load-path "~/VersionControl/GitHub/linum-highlight-current-line-number/")
+;; (require 'linum-highlight-current-line-number)
+;; (setq linum-format 'linum-highlight-current-line-number)
 ;; If you want line number to start at 0, put this in your emacs init file:
 ;; (require 'linum)
 ;; (setq linum-format
@@ -339,21 +339,21 @@
 ;; sidebar : end
 
 ;; 
-(unless window-system
-  (add-hook 'linum-before-numbering-hook
-	    (lambda ()
-	      (setq-local linum-format-fmt
-			  (let ((w (length (number-to-string
-					    (count-lines (point-min) (point-max))))))
-			    (concat "%" (number-to-string w) "d"))))))
+;; (unless window-system
+;;   (add-hook 'linum-before-numbering-hook
+;; 	    (lambda ()
+;; 	      (setq-local linum-format-fmt
+;; 			  (let ((w (length (number-to-string
+;; 					    (count-lines (point-min) (point-max))))))
+;; 			    (concat "%" (number-to-string w) "d"))))))
 
-(defun linum-format-func (line)
-  (concat
-   (propertize (format linum-format-fmt line) 'face 'linum)
-   (propertize " " 'face 'mode-line)))
+;; (defun linum-format-func (line)
+;;   (concat
+;;    (propertize (format linum-format-fmt line) 'face 'linum)
+;;    (propertize " " 'face 'mode-line)))
 
-(unless window-system
-  (setq linum-format 'linum-format-func))
+;; (unless window-system
+;;   (setq linum-format 'linum-format-func))
 ;;
 
 ;; open full screen
@@ -441,7 +441,9 @@
 (load-user-file "deft.el")
 (load-user-file "color.el")
 (load-user-file "tab-bar.el")
-;; (load-user-file "dashboard.el")
+(setq dashboard-display-icons-p t)
+(load-user-file "dashboard.el")
+(load-user-file "cal.el")
 ;; (load-user-file "org-caldav.el")
 ;; (load-user-file "nano-agenda.el")
 
@@ -480,3 +482,6 @@
 ;; (desktop-save-mode 1)
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
+
+(when (display-graphic-p)
+  (require 'all-the-icons))

@@ -1,0 +1,31 @@
+[general]
+status_path = "~/.vdirsyncer/status/"
+
+[storage cal_local]
+type = "filesystem"
+path = "~/.caldav/"
+fileext = ".ics"
+
+[storage cal_neuronfarm_remote]
+type = "caldav"
+url = "https://cloud.neuronfarm.net"
+username = "nomad"
+password = "oNomadBleu"
+
+[storage cal_smv_ipgp_remote]
+type = "caldav"
+url = "https://smv-cloud.ipgp.fr"
+username = "lecocq"
+password = "5econde5ec0nd3AideLagardeFabric4n7"
+
+[pair my_cal]
+a = "cal_local"
+b = "cal_neuronfarm_remote"
+collections = ["default", "appart", "perso", "lisa_shared_by_celine"]
+metadata = ["color", "displayname", "description"]
+
+[pair my_workcal]
+a = "cal_local"
+b = "cal_smv_ipgp_remote"
+collections = ["smv", "resinfo", "sismo", "gt-zfs", "ipgp", "geoscope", "smv-share", "gaiadata", "personal_shared_by_weissenb", "gt-proxmox", "sms"]
+metadata = ["color", "displayname", "description"]
