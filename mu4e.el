@@ -1,4 +1,4 @@
-;; mu4e : begin
+t;; mu4e : begin
 (require 'mu4e)
 ;;(require 'org-mu4e)
 
@@ -106,8 +106,8 @@
 	( :name "Today List"
           :query "date:today..now AND maildir:/IPGP/Listes/*"
 	  :key ?b)
-	( :name "All Till 4w"
-          :query "date:4w..now"
+	( :name "All Till 4w NOT List"
+          :query "date:4w..now AND NOT maildir:/IPGP/Listes/*"
 	  :key ?e)		
 	( :name  "Drafts"
 	  :query "flag:draft and maildir:/Drafts/"
@@ -169,6 +169,9 @@
 	( :name  "Unread : NOT list folder"
 		 :query "flag:unread NOT maildir:/IPGP/Listes/*"
 		 :key   ?U)
+	( :name "Unread : All list messages"
+		:query "flag:unread AND maildir:/IPGP/Listes/*"
+	  :key ?v)			
 	( :name "Unread : All messages"
 		:query "flag:unread AND NOT flag:trashed"
 	  :key ?u)		
