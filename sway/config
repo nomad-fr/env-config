@@ -336,4 +336,4 @@ exec blueman-applet
 exec emacs --daemon
 exec sleep 5 && nextcloud --background
 
-include /etc/sway/config.d/*
+#include /etc/sway/config.d/*

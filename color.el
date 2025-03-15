@@ -1,7 +1,8 @@
 ;; Color ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; (load-theme 'tangotango)
-(load-theme 'gruvbox-dark-hard)
+;; (load-theme 'adwaita-dark)
+;; (load-theme 'gruvbox-dark-hard)
 
 ;; M-x list-color-display to show all available color
 ;; custom colors
