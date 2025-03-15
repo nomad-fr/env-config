@@ -79,16 +79,29 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(bmkp-last-as-first-bookmark-file "~/.emacs.d/bookmarks")
- '(custom-safe-themes
-   '("8363207a952efb78e917230f5a4d3326b2916c63237c1f61d7e5fe07def8d378" "d445c7b530713eac282ecdeea07a8fa59692c83045bf84dd112dd738c7bcad1d" "82225f1fa1e4d3b00c63700f691fc0dc7c9bdab8a996e6a78f451f9a15bd74fc" "b1a691bb67bd8bd85b76998caf2386c9a7b2ac98a116534071364ed6489b695d" "d80952c58cf1b06d936b1392c38230b74ae1a2a6729594770762dc0779ac66b7" "7661b762556018a44a29477b84757994d8386d6edee909409fabe0631952dad9" "83e0376b5df8d6a3fbdfffb9fb0e8cf41a11799d9471293a810deb7586c131e6" "b89a4f5916c29a235d0600ad5a0849b1c50fab16c2c518e1d98f0412367e7f97" "5e2cdea6453f8963037723ab91c779b203fb201bf5c377094440f0c465d688ec" "a3e99dbdaa138996bb0c9c806bc3c3c6b4fd61d6973b946d750b555af8b7555b" "6b5c518d1c250a8ce17463b7e435e9e20faa84f3f7defba8b579d4f5925f60c1" "d14f3df28603e9517eb8fb7518b662d653b25b26e83bd8e129acea042b774298" "b9e9ba5aeedcc5ba8be99f1cc9301f6679912910ff92fdf7980929c2fc83ab4d" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" default))
+ '(custom-enabled-themes '(modus-vivendi-deuteranopia))
  '(flycheck-grammalecte-download-without-asking t)
  '(flycheck-grammalecte-report-apos nil)
  '(flycheck-grammalecte-report-spellcheck t)
  '(grammalecte-download-without-asking t)
+ '(ignored-local-variable-values '((buffer-read-only . 1)))
  '(ispell-dictionary nil)
  '(markdown-command "pandoc")
  '(package-selected-packages
-   '(yaml-mode khalel mu4e-marker-icons all-the-icons-nerd-fonts dashboard epl pkg-info ob-tmux vterm dired-sidebar demap magit pdf-tools dirvish cyberpunk-theme tangotango-theme zenburn-theme gruvbox-theme helm-directory deft exec-path-from-shell async with-emacs git-commit-insert-issue flycheck flycheck-grammalecte frame-local projectile ov s dash-functional dash smart-mode-line-atom-one-dark-theme smart-mode-line org-caldav pov-mode apache-mode salt-mode xah-elisp-mode paredit emamux transpose-frame minimap markdown-mode elm-mode auto-package-update auto-complete-auctex auctex))
+   '(all-the-icons-nerd-fonts apache-mode async auctex auto-complete-auctex
+			      auto-package-update csharp-mode dashboard deft
+			      demap dictionary dired-sidebar dired-subtree
+			      dirvish editorconfig eglot elixir-ts-mode elm-mode
+			      emamux epl exec-path-from-shell faceup flycheck
+			      flycheck-grammalecte frame-local
+			      git-commit-insert-issue helm-directory idlwave
+			      khalel less-css-mode magit markdown-mode minimap
+			      mu4e-marker-icons ob-tmux org org-caldav ov
+			      paredit pdf-tools pkg-info projectile python s
+			      salt-mode smart-mode-line tramp transient
+			      transpose-frame verilog-mode vterm wallpaper
+			      which-key window-tool-bar with-emacs
+			      xah-elisp-mode yaml-mode))
  '(sml/pre-modes-separator (propertize " " 'face 'sml/modes)))
 
 (defun markdown-to-html ()

@@ -138,7 +138,7 @@ t;; mu4e : begin
 		 :key   ?g)
 	( :name  "List   : ASR"
 		 :query "maildir:/IPGP/Listes/ASR"
-		 :key   ?a)	
+		 :key   ?a)
 	( :name  "List   : Respire"
 	  :query "maildir:/IPGP/Listes/Respire"
 	  :key   ?r)
@@ -157,6 +157,9 @@ t;; mu4e : begin
 	( :name  "List   : CEPH-users"
 	  :query "maildir:/IPGP/Listes/CEPH-users"
 	  :key   ?s)
+	( :name  "List   : hackers"
+		 :query "maildir:/IPGP/Listes/hackesr"
+		 :key   ?h)			
 	( :name  "List   : GT-ZFS"
 	  :query "maildir:/IPGP/Listes/GT-ZFS"
 	  :key   ?z)		
