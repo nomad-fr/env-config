@@ -46,6 +46,12 @@
 
 (add-to-list 'load-path "~/VersionControl/GitHub/mu4e-overview/mu4e-overview.el")
 
+;; New release v1.12.9
+;; "transient" menu, which provides easy access to some
+;; common (and some not so common) functions in mu4e. enable this with:
+(require 'mu4e-transient)
+(global-set-key (kbd "C-c m") #'mu4e-transient-menu)
+
 ;;send mail using postfix
 (setq send-mail-function 'sendmail-send-it)
 (setq message-send-mail-function 'message-send-mail-with-sendmail)
