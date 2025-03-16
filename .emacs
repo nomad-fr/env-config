@@ -79,7 +79,32 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(bmkp-last-as-first-bookmark-file "~/.emacs.d/bookmarks")
- '(custom-enabled-themes '(modus-vivendi-deuteranopia))
+ '(custom-enabled-themes '(boron))
+ '(custom-safe-themes
+   '("381d853432d631889a6d7a379f5b26db5bd4358400ff480e2596ab9ef92544de"
+     "3001510be1be4a38508ff07633e97b810c0a52c6fa2f4c7153d22cc7596d9172"
+     "e6fb17048752ae4f07e8a689f59fb909a7e3008c5db75af3d870b701ce6506ef"
+     "075ebf0443b362beac7da83995a6af1cf30c1591502d22b32903e7cb4a854831"
+     "95b51aab1acd95ebcc7f47a60dd02d1a6b4b2c4aa68027b6d4138c2f70c583ae"
+     "3c6bd0ca16d4355d34c57e328fda29dbe69d91f260306662aa9c30cc08744e36"
+     "7153b82e50b6f7452b4519097f880d968a6eaf6f6ef38cc45a144958e553fbc6"
+     "5e3fc08bcadce4c6785fc49be686a4a82a356db569f55d411258984e952f194a"
+     "a0feb1322de9e26a4d209d1cfa236deaf64662bb604fa513cca6a057ddf0ef64"
+     "ab04c00a7e48ad784b52f34aa6bfa1e80d0c3fcacc50e1189af3651013eb0d58"
+     "04dd0236a367865e591927a3810f178e8d33c372ad5bfef48b5ce90d4b476481"
+     "7356632cebc6a11a87bc5fcffaa49bae528026a78637acd03cae57c091afd9b9"
+     "13528b5379acd2051c2229dc8a72ed3b24f9cd6460d7beba5a3999b7c0756224"
+     "a0074afc88f875c2d6905ca5bd39df1ca226e201fc2fd7338bac21df7d957b05"
+     "e970c30a3664e485abba230c9bbc8474e018e366fe06fb37d92f01455c08be69"
+     "5a4cdc4365122d1a17a7ad93b6e3370ffe95db87ed17a38a94713f6ffe0d8ceb"
+     "810691bd221e4639d5ef736b1bd930a7fb32a7c6043a5634e04f86edea973f6d"
+     "ad7d874d137291e09fe2963babc33d381d087fa14928cb9d34350b67b6556b6d"
+     "c46651ab216eb31e699be1bd5e6df8229b08005b534194c1ea92519b09661d71"
+     "45333f79e4a7fdeff9924d5b6658f84fb468ef38f749455e5b58ba4154782007"
+     "daa27dcbe26a280a9425ee90dc7458d85bd540482b93e9fa94d4f43327128077"
+     "c20728f5c0cb50972b50c929b004a7496d3f2e2ded387bf870f89da25793bb44"
+     "d2ab3d4f005a9ad4fb789a8f65606c72f30ce9d281a9e42da55f7f4b9ef5bfc6"
+     "3551e990107704518b1770275011ba6696f5092eae592ea33850ea1e82a61508" default))
  '(flycheck-grammalecte-download-without-asking t)
  '(flycheck-grammalecte-report-apos nil)
  '(flycheck-grammalecte-report-spellcheck t)
@@ -89,19 +114,19 @@
  '(markdown-command "pandoc")
  '(package-selected-packages
    '(all-the-icons-nerd-fonts apache-mode async auctex auto-complete-auctex
-			      auto-package-update csharp-mode cyberpunk-theme
-			      dash dash-functional dashboard deft demap
-			      dictionary dired-sidebar dirvish editorconfig
-			      elm-mode emamux epl exec-path-from-shell flycheck
+			      auto-package-update boron-theme csharp-mode
+			      dashboard deft demap dictionary dired-sidebar
+			      dired-subtree dirvish editorconfig eglot
+			      elixir-ts-mode elm-mode emamux epl
+			      exec-path-from-shell faceup flycheck
 			      flycheck-grammalecte frame-local
-			      git-commit-insert-issue gruvbox-theme
-			      helm-directory khalel magit markdown-mode minimap
-			      mu4e-marker-icons ob-tmux org-caldav ov paredit
-			      pdf-tools pkg-info pov-mode projectile s salt-mode
-			      smart-mode-line
-			      smart-mode-line-atom-one-dark-theme
-			      tangotango-theme transpose-frame vterm with-emacs
-			      xah-elisp-mode zenburn-theme))
+			      git-commit-insert-issue helm-directory idlwave
+			      khalel less-css-mode magit markdown-mode minimap
+			      mu4e-marker-icons ob-tmux org org-caldav ov
+			      paredit pdf-tools pkg-info projectile s salt-mode
+			      smart-mode-line tramp transient transpose-frame
+			      verilog-mode wallpaper with-emacs xah-elisp-mode
+			      yaml-mode))
  '(sml/pre-modes-separator (propertize " " 'face 'sml/modes)))
 
 (defun markdown-to-html ()
