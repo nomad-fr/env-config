@@ -31,7 +31,7 @@
 
 
 (if (system-type-is-bsd)
-    (message "\nBSD\n")  
+    (message "\nBSD\n")
 )
 
 ;; Set default font
@@ -79,7 +79,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(bmkp-last-as-first-bookmark-file "~/.emacs.d/bookmarks")
- '(custom-enabled-themes '(modus-vivendi-deuteranopia))
+ '(custom-enabled-themes '(boron))
+ '(custom-safe-themes
+   '("381d853432d631889a6d7a379f5b26db5bd4358400ff480e2596ab9ef92544de" default))
  '(flycheck-grammalecte-download-without-asking t)
  '(flycheck-grammalecte-report-apos nil)
  '(flycheck-grammalecte-report-spellcheck t)
@@ -89,16 +91,15 @@
  '(markdown-command "pandoc")
  '(package-selected-packages
    '(all-the-icons-nerd-fonts apache-mode async auctex auto-complete-auctex
-			      auto-package-update csharp-mode cyberpunk-theme
-			      dash dash-functional dashboard deft demap
-			      dictionary dired-sidebar dirvish editorconfig
-			      elm-mode emamux epl exec-path-from-shell flycheck
+			      boron-theme csharp-mode cyberpunk-theme dash
+			      dash-functional dashboard deft demap dictionary
+			      dired-sidebar dirvish editorconfig elm-mode emamux
+			      epl exec-path-from-shell flycheck
 			      flycheck-grammalecte frame-local
-			      git-commit-insert-issue gruvbox-theme
-			      helm-directory khalel magit markdown-mode minimap
-			      mu4e-marker-icons ob-tmux org-caldav ov paredit
-			      pdf-tools pkg-info pov-mode projectile s salt-mode
-			      smart-mode-line
+			      git-commit-insert-issue helm-directory khalel
+			      magit markdown-mode minimap mu4e-marker-icons
+			      ob-tmux org-caldav ov paredit pdf-tools pkg-info
+			      projectile s salt-mode smart-mode-line
 			      smart-mode-line-atom-one-dark-theme
 			      tangotango-theme transpose-frame vterm with-emacs
 			      xah-elisp-mode zenburn-theme))
@@ -456,7 +457,7 @@
 (load-user-file "tab-bar.el")
 (setq dashboard-display-icons-p t)
 (load-user-file "dashboard.el")
-(load-user-file "cal.el")
+;; (load-user-file "cal.el")
 ;; (load-user-file "org-caldav.el")
 ;; (load-user-file "nano-agenda.el")
 

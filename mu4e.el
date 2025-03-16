@@ -1,4 +1,14 @@
-t;; mu4e : begin
+;; mu4e : begin
+
+
+
+(if (system-type-is-bsd)
+    (message "\nBSD mu4 loading\n")
+    (add-to-list 'load-path "~/mu/mu-1.12.9/build/mu4e/mu4e.el")
+    (setq mu4e-mu-binary "/home/nomad/bin/mu")
+)
+
+
 (require 'mu4e)
 ;;(require 'org-mu4e)
 
