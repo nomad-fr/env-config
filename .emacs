@@ -25,17 +25,14 @@
 ;; ‘M-x insert-system-name‘ or ‘M-x insert-system-type‘ to test them.
 
 
-(if (system-type-is-linux)
+(when (system-type-is-linux)
     (message "\nLinux\n")  
 )
 
-
-(if (system-type-is-bsd)
-    (message "\nBSD\n")
-    (message "\nBSD mu4 loading\n")
-    (add-to-list 'load-path "~/mu/mu-1.12.9/build/mu4e/mu4e.el")
-    (setq mu4e-mu-binary "/home/nomad/bin/mu")  
+(when (system-type-is-bsd)
+  (message "\nBSD\n")
 )
+
 
 ;; Set default font
 (add-to-list 'default-frame-alist
