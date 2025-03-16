@@ -32,6 +32,9 @@
 
 (if (system-type-is-bsd)
     (message "\nBSD\n")
+    (message "\nBSD mu4 loading\n")
+    (add-to-list 'load-path "~/mu/mu-1.12.9/build/mu4e/mu4e.el")
+    (setq mu4e-mu-binary "/home/nomad/bin/mu")  
 )
 
 ;; Set default font
