@@ -1,3 +1,50 @@
+(use-package auto-package-update
+  ;; https://github.com/rranelli/auto-package-update.el
+  
+  :custom
+  ;; Interval in DAYS for automatic package update.
+  (auto-package-update-interval 1)
+  (auto-package-update-prompt-before-update t)
+  (auto-package-update-hide-results t)
+  (auto-package-update-show-preview t)
+  (setq auto-package-update-delete-old-versions t)
+  ;; to run without blocking emacs
+  (package-refresh-contents :async)
+  :config
+  ;; Bellow will update your installed packages at startup if there is an update pending.
+  (auto-package-update-maybe)
+  ;; You can register a check every day at a given time using auto-package-update-at-time:
+  ;; (auto-package-update-at-time "09:00")
+
+  ;; we won't get all packages updated. The best practice is
+  ;; M-x package-refresh-contents
+  ;; first, then use auto-package-update-now-async. Note, it's not 100% async,
+  ;; byte compiling packages can still block Emacs.
+
+  ;; List of functions to be called before running an automatic package update.
+  (add-hook 'auto-package-update-before-hook
+            (lambda () (message "Emacs is going to update packages now")))
+
+  ;; List of functions to be called before running an automatic package update.
+  ;; auto-package-update-after-hook
+
+  ;; Name of the file in which the last update day is going to be stored.
+  ;; auto-package-update-last-update-day-filename
+  
+  ;; auto-package-update-buffer-name
+  ;; Name of the buffer that shows updated packages and error after execution.
+  )
+
+;; to enable upgrade of built-in packages
+(setq package-install-upgrade-built-in 't)
+
+;; You can upgrade all your packages by periodically doing
+;; M-x package-list-packages RET and then pressing U followed by x.
+;; You'll be prompted to remove the obsolete versions once the upgrades are install.
+;; M-x package-autoremove is now built in.
+;; M-x package-menu-mark-obsolete-for-deletion
+
+
 ;; Single dot emacs file and per-computer configuration
 ;; https://sigquit.wordpress.com/2008/09/28/single-dot-emacs-file/
 ;; Get current system's name
@@ -91,18 +138,20 @@
  '(markdown-command "pandoc")
  '(package-selected-packages
    '(all-the-icons-nerd-fonts apache-mode async auctex auto-complete-auctex
-			      boron-theme csharp-mode cyberpunk-theme dash
-			      dash-functional dashboard deft demap dictionary
-			      dired-sidebar dirvish editorconfig elm-mode emamux
-			      epl exec-path-from-shell flycheck
-			      flycheck-grammalecte frame-local
-			      git-commit-insert-issue helm-directory khalel
-			      magit markdown-mode minimap mu4e-marker-icons
-			      ob-tmux org-caldav ov paredit pdf-tools pkg-info
-			      projectile s salt-mode smart-mode-line
+			      auto-package-update boron-theme csharp-mode
+			      cyberpunk-theme dash dash-functional dashboard
+			      deft demap dictionary dired-sidebar editorconfig
+			      eglot elm-mode emamux epl exec-path-from-shell
+			      faceup flycheck flycheck-grammalecte frame-local
+			      git-commit-insert-issue helm-directory idlwave
+			      khalel markdown-mode minimap org org-caldav ov
+			      paredit pdf-tools pkg-info projectile python s
+			      salt-mode smart-mode-line
 			      smart-mode-line-atom-one-dark-theme
-			      tangotango-theme transpose-frame vterm with-emacs
-			      xah-elisp-mode zenburn-theme))
+			      tangotango-theme track-changes tramp
+			      transpose-frame verilog-mode vterm which-key
+			      window-tool-bar with-emacs xah-elisp-mode
+			      zenburn-theme))
  '(sml/pre-modes-separator (propertize " " 'face 'sml/modes)))
 
 (defun markdown-to-html ()

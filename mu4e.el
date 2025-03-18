@@ -17,10 +17,6 @@
 ;; ;; consult-mu
 ;; (autoload 'consult-mu "~/.emacs.d/consult-mu.el" "consult-mu." t)
 
-
-
-
-
 ;; (use-package consult-mu
 ;;   :straight (consult-mu :type git :host github :repo "armindarvish/consult-mu" :branch "main")
 ;;   :after (consult mu4e)
