@@ -1,4 +1,14 @@
 ;; mu4e : begin
+<<<<<<< HEAD
+=======
+
+(when (system-type-is-bsd)
+  (message "\nBSD mu4 loading\n")
+  (add-to-list 'load-path "~/mu/mu-1.12.9/build/mu4e/mu4e.el")
+  (setq mu4e-mu-binary "/home/nomad/bin/mu")  
+)
+
+>>>>>>> 3411d8602877148f18c3ca4abc85fe8646b60da6
 (require 'mu4e)
 ;;(require 'org-mu4e)
 
@@ -9,10 +19,6 @@
 
 ;; ;; consult-mu
 ;; (autoload 'consult-mu "~/.emacs.d/consult-mu.el" "consult-mu." t)
-
-
-
-
 
 ;; (use-package consult-mu
 ;;   :straight (consult-mu :type git :host github :repo "armindarvish/consult-mu" :branch "main")
@@ -35,6 +41,12 @@
 (global-set-key [f9] 'mu4e)
 
 (add-to-list 'load-path "~/VersionControl/GitHub/mu4e-overview/mu4e-overview.el")
+
+;; New release v1.12.9
+;; "transient" menu, which provides easy access to some
+;; common (and some not so common) functions in mu4e. enable this with:
+(require 'mu4e-transient)
+(global-set-key (kbd "C-c m") #'mu4e-transient-menu)
 
 ;;send mail using postfix
 (setq send-mail-function 'sendmail-send-it)
@@ -138,7 +150,7 @@
 		 :key   ?g)
 	( :name  "List   : ASR"
 		 :query "maildir:/IPGP/Listes/ASR"
-		 :key   ?a)	
+		 :key   ?a)
 	( :name  "List   : Respire"
 	  :query "maildir:/IPGP/Listes/Respire"
 	  :key   ?r)
@@ -157,6 +169,9 @@
 	( :name  "List   : CEPH-users"
 	  :query "maildir:/IPGP/Listes/CEPH-users"
 	  :key   ?s)
+	( :name  "List   : hackers"
+		 :query "maildir:/IPGP/Listes/hackesr"
+		 :key   ?h)			
 	( :name  "List   : GT-ZFS"
 	  :query "maildir:/IPGP/Listes/GT-ZFS"
 	  :key   ?z)		

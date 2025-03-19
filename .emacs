@@ -1,3 +1,50 @@
+(use-package auto-package-update
+  ;; https://github.com/rranelli/auto-package-update.el
+  
+  :custom
+  ;; Interval in DAYS for automatic package update.
+  (auto-package-update-interval 1)
+  (auto-package-update-prompt-before-update t)
+  (auto-package-update-hide-results t)
+  (auto-package-update-show-preview t)
+  (setq auto-package-update-delete-old-versions t)
+  ;; to run without blocking emacs
+  (package-refresh-contents :async)
+  :config
+  ;; Bellow will update your installed packages at startup if there is an update pending.
+  (auto-package-update-maybe)
+  ;; You can register a check every day at a given time using auto-package-update-at-time:
+  ;; (auto-package-update-at-time "09:00")
+
+  ;; we won't get all packages updated. The best practice is
+  ;; M-x package-refresh-contents
+  ;; first, then use auto-package-update-now-async. Note, it's not 100% async,
+  ;; byte compiling packages can still block Emacs.
+
+  ;; List of functions to be called before running an automatic package update.
+  (add-hook 'auto-package-update-before-hook
+            (lambda () (message "Emacs is going to update packages now")))
+
+  ;; List of functions to be called before running an automatic package update.
+  ;; auto-package-update-after-hook
+
+  ;; Name of the file in which the last update day is going to be stored.
+  ;; auto-package-update-last-update-day-filename
+  
+  ;; auto-package-update-buffer-name
+  ;; Name of the buffer that shows updated packages and error after execution.
+  )
+
+;; to enable upgrade of built-in packages
+(setq package-install-upgrade-built-in 't)
+
+;; You can upgrade all your packages by periodically doing
+;; M-x package-list-packages RET and then pressing U followed by x.
+;; You'll be prompted to remove the obsolete versions once the upgrades are install.
+;; M-x package-autoremove is now built in.
+;; M-x package-menu-mark-obsolete-for-deletion
+
+
 ;; Single dot emacs file and per-computer configuration
 ;; https://sigquit.wordpress.com/2008/09/28/single-dot-emacs-file/
 ;; Get current system's name
@@ -25,14 +72,14 @@
 ;; ‘M-x insert-system-name‘ or ‘M-x insert-system-type‘ to test them.
 
 
-(if (system-type-is-linux)
+(when (system-type-is-linux)
     (message "\nLinux\n")  
 )
 
-
-(if (system-type-is-bsd)
-    (message "\nBSD\n")  
+(when (system-type-is-bsd)
+  (message "\nBSD\n")
 )
+
 
 ;; Set default font
 (add-to-list 'default-frame-alist
@@ -81,28 +128,12 @@
  '(bmkp-last-as-first-bookmark-file "~/.emacs.d/bookmarks")
  '(custom-enabled-themes '(boron))
  '(custom-safe-themes
-   '("381d853432d631889a6d7a379f5b26db5bd4358400ff480e2596ab9ef92544de"
-     "8363207a952efb78e917230f5a4d3326b2916c63237c1f61d7e5fe07def8d378"
-     "d445c7b530713eac282ecdeea07a8fa59692c83045bf84dd112dd738c7bcad1d"
-     "82225f1fa1e4d3b00c63700f691fc0dc7c9bdab8a996e6a78f451f9a15bd74fc"
-     "b1a691bb67bd8bd85b76998caf2386c9a7b2ac98a116534071364ed6489b695d"
-     "d80952c58cf1b06d936b1392c38230b74ae1a2a6729594770762dc0779ac66b7"
-     "7661b762556018a44a29477b84757994d8386d6edee909409fabe0631952dad9"
-     "83e0376b5df8d6a3fbdfffb9fb0e8cf41a11799d9471293a810deb7586c131e6"
-     "b89a4f5916c29a235d0600ad5a0849b1c50fab16c2c518e1d98f0412367e7f97"
-     "5e2cdea6453f8963037723ab91c779b203fb201bf5c377094440f0c465d688ec"
-     "a3e99dbdaa138996bb0c9c806bc3c3c6b4fd61d6973b946d750b555af8b7555b"
-     "6b5c518d1c250a8ce17463b7e435e9e20faa84f3f7defba8b579d4f5925f60c1"
-     "d14f3df28603e9517eb8fb7518b662d653b25b26e83bd8e129acea042b774298"
-     "b9e9ba5aeedcc5ba8be99f1cc9301f6679912910ff92fdf7980929c2fc83ab4d"
-     "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223"
-     "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa"
-     "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e"
-     "84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" default))
+   '("381d853432d631889a6d7a379f5b26db5bd4358400ff480e2596ab9ef92544de" default))
  '(flycheck-grammalecte-download-without-asking t)
  '(flycheck-grammalecte-report-apos nil)
  '(flycheck-grammalecte-report-spellcheck t)
  '(grammalecte-download-without-asking t)
+ '(ignored-local-variable-values '((buffer-read-only . 1)))
  '(ispell-dictionary nil)
  '(markdown-command "pandoc")
  '(org-agenda-files nil)
@@ -110,21 +141,18 @@
    '(all-the-icons-nerd-fonts apache-mode async auctex auto-complete-auctex
 			      auto-package-update boron-theme csharp-mode
 			      cyberpunk-theme dash dash-functional dashboard
-			      deft demap dictionary dired-sidebar dirvish
-			      editorconfig eglot elixir-ts-mode elm-mode emamux
-			      epl exec-path-from-shell faceup flycheck
-			      flycheck-grammalecte frame-local
-			      git-commit-insert-issue gruvbox-theme
-			      helm-directory idlwave khalel less-css-mode magit
-			      markdown-mode minimap mu4e-marker-icons ob-tmux
-			      org org-caldav ov paredit pdf-tools pkg-info
-			      pov-mode projectile python s salt-mode
-			      smart-mode-line
+			      deft demap dictionary dired-sidebar editorconfig
+			      eglot elm-mode emamux epl exec-path-from-shell
+			      faceup flycheck flycheck-grammalecte frame-local
+			      git-commit-insert-issue helm-directory idlwave
+			      khalel markdown-mode minimap org org-caldav ov
+			      paredit pdf-tools pkg-info projectile python s
+			      salt-mode smart-mode-line
 			      smart-mode-line-atom-one-dark-theme
 			      tangotango-theme track-changes tramp
-			      transpose-frame verilog-mode vterm wallpaper
-			      which-key window-tool-bar with-emacs
-			      xah-elisp-mode yaml-mode zenburn-theme))
+			      transpose-frame verilog-mode vterm which-key
+			      window-tool-bar with-emacs xah-elisp-mode
+			      zenburn-theme))
  '(sml/pre-modes-separator (propertize " " 'face 'sml/modes)))
 
 (defun markdown-to-html ()
@@ -479,7 +507,7 @@
 (load-user-file "tab-bar.el")
 (setq dashboard-display-icons-p t)
 (load-user-file "dashboard.el")
-(load-user-file "cal.el")
+;; (load-user-file "cal.el")
 ;; (load-user-file "org-caldav.el")
 ;; (load-user-file "nano-agenda.el")
 
