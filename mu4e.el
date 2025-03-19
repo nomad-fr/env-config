@@ -1,6 +1,4 @@
 ;; mu4e : begin
-<<<<<<< HEAD
-=======
 
 (when (system-type-is-bsd)
   (message "\nBSD mu4 loading\n")
@@ -8,7 +6,6 @@
   (setq mu4e-mu-binary "/home/nomad/bin/mu")  
 )
 
->>>>>>> 3411d8602877148f18c3ca4abc85fe8646b60da6
 (require 'mu4e)
 ;;(require 'org-mu4e)
 
