@@ -1,4 +1,4 @@
-t;; mu4e : begin
+;; mu4e : begin
 (require 'mu4e)
 ;;(require 'org-mu4e)
 
